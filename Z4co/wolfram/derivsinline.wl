@@ -71,9 +71,16 @@ $MainPrint[] :=
     pr["template <typename T>"];
     pr["inline T fd_1st(const cGH *GH, T *gf, int i, int j, int k, int dir) {"];
     PrintIndexes3D[4, 1];
-    pr[];
     pr["  return"];
     PrintFDExpression[4, 1];
+    pr["}"];
+    pr[];
+
+    pr["template <typename T>"];
+    pr["inline T fd_2nd(const cGH *GH, T *gf, int i, int j, int k, int dir) {"];
+    PrintIndexes3D[4, 2];
+    pr["  return"];
+    PrintFDExpression[4, 2];
     pr["}"];
   ];
 
