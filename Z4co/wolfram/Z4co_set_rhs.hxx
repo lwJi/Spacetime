@@ -176,17 +176,17 @@ const auto ddbeta333 = fd_2nd(beta333, ijk, 3, 3);
 
 auto dlnW1
 =
-dW1[ijk]/W[ijk]
+dW1/W[ijk]
 ;
 
 auto dlnW2
 =
-dW2[ijk]/W[ijk]
+dW2/W[ijk]
 ;
 
 auto dlnW3
 =
-dW3[ijk]/W[ijk]
+dW3/W[ijk]
 ;
 
 auto invgamt11
@@ -281,92 +281,92 @@ gamt33[ijk]/Power(W[ijk],2)
 
 auto GtDDD111
 =
-dgamt111[ijk]/2.
+dgamt111/2.
 ;
 
 auto GtDDD112
 =
-dgamt211[ijk]/2.
+dgamt211/2.
 ;
 
 auto GtDDD113
 =
-dgamt311[ijk]/2.
+dgamt311/2.
 ;
 
 auto GtDDD122
 =
--0.5*dgamt122[ijk] + dgamt212[ijk]
+-0.5*dgamt122 + dgamt212
 ;
 
 auto GtDDD123
 =
-(-dgamt123[ijk] + dgamt213[ijk] + dgamt312[ijk])/2.
+(-dgamt123 + dgamt213 + dgamt312)/2.
 ;
 
 auto GtDDD133
 =
--0.5*dgamt133[ijk] + dgamt313[ijk]
+-0.5*dgamt133 + dgamt313
 ;
 
 auto GtDDD211
 =
-dgamt112[ijk] - dgamt211[ijk]/2.
+dgamt112 - dgamt211/2.
 ;
 
 auto GtDDD212
 =
-dgamt122[ijk]/2.
+dgamt122/2.
 ;
 
 auto GtDDD213
 =
-(dgamt123[ijk] - dgamt213[ijk] + dgamt312[ijk])/2.
+(dgamt123 - dgamt213 + dgamt312)/2.
 ;
 
 auto GtDDD222
 =
-dgamt222[ijk]/2.
+dgamt222/2.
 ;
 
 auto GtDDD223
 =
-dgamt322[ijk]/2.
+dgamt322/2.
 ;
 
 auto GtDDD233
 =
--0.5*dgamt233[ijk] + dgamt323[ijk]
+-0.5*dgamt233 + dgamt323
 ;
 
 auto GtDDD311
 =
-dgamt113[ijk] - dgamt311[ijk]/2.
+dgamt113 - dgamt311/2.
 ;
 
 auto GtDDD312
 =
-(dgamt123[ijk] + dgamt213[ijk] - dgamt312[ijk])/2.
+(dgamt123 + dgamt213 - dgamt312)/2.
 ;
 
 auto GtDDD313
 =
-dgamt133[ijk]/2.
+dgamt133/2.
 ;
 
 auto GtDDD322
 =
-dgamt223[ijk] - dgamt322[ijk]/2.
+dgamt223 - dgamt322/2.
 ;
 
 auto GtDDD323
 =
-dgamt233[ijk]/2.
+dgamt233/2.
 ;
 
 auto GtDDD333
 =
-dgamt333[ijk]/2.
+dgamt333/2.
 ;
 
 auto GtDDU111
@@ -614,92 +614,92 @@ Gt311*invgamt11 + 2*Gt312*invgamt12 + 2*Gt313*invgamt13 + Gt322*invgamt22 +
 
 auto dgam111
 =
-(dgamt111[ijk] - 2*dlnW1*gamt11[ijk])/Power(W[ijk],2)
+(dgamt111 - 2*dlnW1*gamt11[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam112
 =
-(dgamt112[ijk] - 2*dlnW1*gamt12[ijk])/Power(W[ijk],2)
+(dgamt112 - 2*dlnW1*gamt12[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam113
 =
-(dgamt113[ijk] - 2*dlnW1*gamt13[ijk])/Power(W[ijk],2)
+(dgamt113 - 2*dlnW1*gamt13[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam122
 =
-(dgamt122[ijk] - 2*dlnW1*gamt22[ijk])/Power(W[ijk],2)
+(dgamt122 - 2*dlnW1*gamt22[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam123
 =
-(dgamt123[ijk] - 2*dlnW1*gamt23[ijk])/Power(W[ijk],2)
+(dgamt123 - 2*dlnW1*gamt23[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam133
 =
-(dgamt133[ijk] - 2*dlnW1*gamt33[ijk])/Power(W[ijk],2)
+(dgamt133 - 2*dlnW1*gamt33[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam211
 =
-(dgamt211[ijk] - 2*dlnW2*gamt11[ijk])/Power(W[ijk],2)
+(dgamt211 - 2*dlnW2*gamt11[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam212
 =
-(dgamt212[ijk] - 2*dlnW2*gamt12[ijk])/Power(W[ijk],2)
+(dgamt212 - 2*dlnW2*gamt12[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam213
 =
-(dgamt213[ijk] - 2*dlnW2*gamt13[ijk])/Power(W[ijk],2)
+(dgamt213 - 2*dlnW2*gamt13[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam222
 =
-(dgamt222[ijk] - 2*dlnW2*gamt22[ijk])/Power(W[ijk],2)
+(dgamt222 - 2*dlnW2*gamt22[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam223
 =
-(dgamt223[ijk] - 2*dlnW2*gamt23[ijk])/Power(W[ijk],2)
+(dgamt223 - 2*dlnW2*gamt23[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam233
 =
-(dgamt233[ijk] - 2*dlnW2*gamt33[ijk])/Power(W[ijk],2)
+(dgamt233 - 2*dlnW2*gamt33[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam311
 =
-(dgamt311[ijk] - 2*dlnW3*gamt11[ijk])/Power(W[ijk],2)
+(dgamt311 - 2*dlnW3*gamt11[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam312
 =
-(dgamt312[ijk] - 2*dlnW3*gamt12[ijk])/Power(W[ijk],2)
+(dgamt312 - 2*dlnW3*gamt12[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam313
 =
-(dgamt313[ijk] - 2*dlnW3*gamt13[ijk])/Power(W[ijk],2)
+(dgamt313 - 2*dlnW3*gamt13[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam322
 =
-(dgamt322[ijk] - 2*dlnW3*gamt22[ijk])/Power(W[ijk],2)
+(dgamt322 - 2*dlnW3*gamt22[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam323
 =
-(dgamt323[ijk] - 2*dlnW3*gamt23[ijk])/Power(W[ijk],2)
+(dgamt323 - 2*dlnW3*gamt23[ijk])/Power(W[ijk],2)
 ;
 
 auto dgam333
 =
-(dgamt333[ijk] - 2*dlnW3*gamt33[ijk])/Power(W[ijk],2)
+(dgamt333 - 2*dlnW3*gamt33[ijk])/Power(W[ijk],2)
 ;
 
 auto GamDDD111
@@ -932,68 +932,62 @@ Power(invgamt13,2)*exAt11[ijk] + 2*invgamt13*invgamt23*exAt12[ijk] +
 
 auto tDtDW11
 =
-ddW11[ijk] - Gt111*dW1[ijk] - Gt211*dW2[ijk] - Gt311*dW3[ijk]
+ddW11 - dW1*Gt111 - dW2*Gt211 - dW3*Gt311
 ;
 
 auto tDtDW12
 =
-ddW12[ijk] - Gt112*dW1[ijk] - Gt212*dW2[ijk] - Gt312*dW3[ijk]
+ddW12 - dW1*Gt112 - dW2*Gt212 - dW3*Gt312
 ;
 
 auto tDtDW13
 =
-ddW13[ijk] - Gt113*dW1[ijk] - Gt213*dW2[ijk] - Gt313*dW3[ijk]
+ddW13 - dW1*Gt113 - dW2*Gt213 - dW3*Gt313
 ;
 
 auto tDtDW22
 =
-ddW22[ijk] - Gt122*dW1[ijk] - Gt222*dW2[ijk] - Gt322*dW3[ijk]
+ddW22 - dW1*Gt122 - dW2*Gt222 - dW3*Gt322
 ;
 
 auto tDtDW23
 =
-ddW23[ijk] - Gt123*dW1[ijk] - Gt223*dW2[ijk] - Gt323*dW3[ijk]
+ddW23 - dW1*Gt123 - dW2*Gt223 - dW3*Gt323
 ;
 
 auto tDtDW33
 =
-ddW33[ijk] - Gt133*dW1[ijk] - Gt233*dW2[ijk] - Gt333*dW3[ijk]
+ddW33 - dW1*Gt133 - dW2*Gt233 - dW3*Gt333
 ;
 
 auto DDalpha11
 =
--(Gam111*dalpha1[ijk]) - Gam211*dalpha2[ijk] - Gam311*dalpha3[ijk] +
-  ddalpha11[ijk]
+ddalpha11 - dalpha1*Gam111 - dalpha2*Gam211 - dalpha3*Gam311
 ;
 
 auto DDalpha12
 =
--(Gam112*dalpha1[ijk]) - Gam212*dalpha2[ijk] - Gam312*dalpha3[ijk] +
-  ddalpha12[ijk]
+ddalpha12 - dalpha1*Gam112 - dalpha2*Gam212 - dalpha3*Gam312
 ;
 
 auto DDalpha13
 =
--(Gam113*dalpha1[ijk]) - Gam213*dalpha2[ijk] - Gam313*dalpha3[ijk] +
-  ddalpha13[ijk]
+ddalpha13 - dalpha1*Gam113 - dalpha2*Gam213 - dalpha3*Gam313
 ;
 
 auto DDalpha22
 =
--(Gam122*dalpha1[ijk]) - Gam222*dalpha2[ijk] - Gam322*dalpha3[ijk] +
-  ddalpha22[ijk]
+ddalpha22 - dalpha1*Gam122 - dalpha2*Gam222 - dalpha3*Gam322
 ;
 
 auto DDalpha23
 =
--(Gam123*dalpha1[ijk]) - Gam223*dalpha2[ijk] - Gam323*dalpha3[ijk] +
-  ddalpha23[ijk]
+ddalpha23 - dalpha1*Gam123 - dalpha2*Gam223 - dalpha3*Gam323
 ;
 
 auto DDalpha33
 =
--(Gam133*dalpha1[ijk]) - Gam233*dalpha2[ijk] - Gam333*dalpha3[ijk] +
-  ddalpha33[ijk]
+ddalpha33 - dalpha1*Gam133 - dalpha2*Gam233 - dalpha3*Gam333
 ;
 
 auto RtW11
@@ -1061,13 +1055,12 @@ auto Rt11
 3*Gt111*GtDDU111 + 3*Gt112*GtDDU112 + 3*Gt113*GtDDU113 + 2*Gt211*GtDDU121 +
   2*Gt212*GtDDU122 + 2*Gt213*GtDDU123 + 2*Gt311*GtDDU131 +
   2*Gt312*GtDDU132 + 2*Gt313*GtDDU133 + Gt211*GtDDU211 + Gt212*GtDDU212 +
-  Gt213*GtDDU213 + Gt311*GtDDU311 + Gt312*GtDDU312 + Gt313*GtDDU313 +
-  GtDDD111*trGtd1 + GtDDD112*trGtd2 + GtDDD113*trGtd3 -
-  (invgamt11*ddgamt1111[ijk])/2. - invgamt12*ddgamt1211[ijk] -
-  invgamt13*ddgamt1311[ijk] - (invgamt22*ddgamt2211[ijk])/2. -
-  invgamt23*ddgamt2311[ijk] - (invgamt33*ddgamt3311[ijk])/2. +
-  dtrGt11[ijk]*gamt11[ijk] + dtrGt12[ijk]*gamt12[ijk] +
-  dtrGt13[ijk]*gamt13[ijk]
+  Gt213*GtDDU213 + Gt311*GtDDU311 + Gt312*GtDDU312 + Gt313*GtDDU313 -
+  (ddgamt1111*invgamt11)/2. - ddgamt1211*invgamt12 - ddgamt1311*invgamt13 -
+  (ddgamt2211*invgamt22)/2. - ddgamt2311*invgamt23 -
+  (ddgamt3311*invgamt33)/2. + GtDDD111*trGtd1 + GtDDD112*trGtd2 +
+  GtDDD113*trGtd3 + dtrGt11*gamt11[ijk] + dtrGt12*gamt12[ijk] +
+  dtrGt13*gamt13[ijk]
 ;
 
 auto Rt12
@@ -1079,15 +1072,14 @@ auto Rt12
     2*Gt111*GtDDU211 + 2*Gt112*GtDDU212 + 2*Gt113*GtDDU213 +
     4*Gt211*GtDDU221 + 4*Gt212*GtDDU222 + 4*Gt213*GtDDU223 +
     2*Gt311*GtDDU231 + 2*Gt312*GtDDU232 + 2*Gt313*GtDDU233 +
-    2*Gt311*GtDDU321 + 2*Gt312*GtDDU322 + 2*Gt313*GtDDU323 +
-    GtDDD112*trGtd1 + GtDDD211*trGtd1 + GtDDD122*trGtd2 + GtDDD212*trGtd2 +
-    GtDDD123*trGtd3 + GtDDD213*trGtd3 - invgamt11*ddgamt1112[ijk] -
-    2*invgamt12*ddgamt1212[ijk] - 2*invgamt13*ddgamt1312[ijk] -
-    invgamt22*ddgamt2212[ijk] - 2*invgamt23*ddgamt2312[ijk] -
-    invgamt33*ddgamt3312[ijk] + dtrGt21[ijk]*gamt11[ijk] +
-    dtrGt11[ijk]*gamt12[ijk] + dtrGt22[ijk]*gamt12[ijk] +
-    dtrGt23[ijk]*gamt13[ijk] + dtrGt12[ijk]*gamt22[ijk] +
-    dtrGt13[ijk]*gamt23[ijk])/2.
+    2*Gt311*GtDDU321 + 2*Gt312*GtDDU322 + 2*Gt313*GtDDU323 -
+    ddgamt1112*invgamt11 - 2*ddgamt1212*invgamt12 -
+    2*ddgamt1312*invgamt13 - ddgamt2212*invgamt22 -
+    2*ddgamt2312*invgamt23 - ddgamt3312*invgamt33 + GtDDD112*trGtd1 +
+    GtDDD211*trGtd1 + GtDDD122*trGtd2 + GtDDD212*trGtd2 + GtDDD123*trGtd3 +
+    GtDDD213*trGtd3 + dtrGt21*gamt11[ijk] +
+    (dtrGt11 + dtrGt22)*gamt12[ijk] + dtrGt23*gamt13[ijk] +
+    dtrGt12*gamt22[ijk] + dtrGt13*gamt23[ijk])/2.
 ;
 
 auto Rt13
@@ -1099,15 +1091,14 @@ auto Rt13
     2*Gt211*GtDDU231 + 2*Gt212*GtDDU232 + 2*Gt213*GtDDU233 +
     2*Gt111*GtDDU311 + 2*Gt112*GtDDU312 + 2*Gt113*GtDDU313 +
     2*Gt211*GtDDU321 + 2*Gt212*GtDDU322 + 2*Gt213*GtDDU323 +
-    4*Gt311*GtDDU331 + 4*Gt312*GtDDU332 + 4*Gt313*GtDDU333 +
-    GtDDD113*trGtd1 + GtDDD311*trGtd1 + GtDDD123*trGtd2 + GtDDD312*trGtd2 +
-    GtDDD133*trGtd3 + GtDDD313*trGtd3 - invgamt11*ddgamt1113[ijk] -
-    2*invgamt12*ddgamt1213[ijk] - 2*invgamt13*ddgamt1313[ijk] -
-    invgamt22*ddgamt2213[ijk] - 2*invgamt23*ddgamt2313[ijk] -
-    invgamt33*ddgamt3313[ijk] + dtrGt31[ijk]*gamt11[ijk] +
-    dtrGt32[ijk]*gamt12[ijk] + dtrGt11[ijk]*gamt13[ijk] +
-    dtrGt33[ijk]*gamt13[ijk] + dtrGt12[ijk]*gamt23[ijk] +
-    dtrGt13[ijk]*gamt33[ijk])/2.
+    4*Gt311*GtDDU331 + 4*Gt312*GtDDU332 + 4*Gt313*GtDDU333 -
+    ddgamt1113*invgamt11 - 2*ddgamt1213*invgamt12 -
+    2*ddgamt1313*invgamt13 - ddgamt2213*invgamt22 -
+    2*ddgamt2313*invgamt23 - ddgamt3313*invgamt33 + GtDDD113*trGtd1 +
+    GtDDD311*trGtd1 + GtDDD123*trGtd2 + GtDDD312*trGtd2 + GtDDD133*trGtd3 +
+    GtDDD313*trGtd3 + dtrGt31*gamt11[ijk] + dtrGt32*gamt12[ijk] +
+    dtrGt11*gamt13[ijk] + dtrGt33*gamt13[ijk] + dtrGt12*gamt23[ijk] +
+    dtrGt13*gamt33[ijk])/2.
 ;
 
 auto Rt22
@@ -1116,12 +1107,11 @@ Gt112*GtDDU121 + Gt122*GtDDU122 + Gt123*GtDDU123 + 2*Gt112*GtDDU211 +
   2*Gt122*GtDDU212 + 2*Gt123*GtDDU213 + 3*Gt212*GtDDU221 +
   3*Gt222*GtDDU222 + 3*Gt223*GtDDU223 + 2*Gt312*GtDDU231 +
   2*Gt322*GtDDU232 + 2*Gt323*GtDDU233 + Gt312*GtDDU321 + Gt322*GtDDU322 +
-  Gt323*GtDDU323 + GtDDD212*trGtd1 + GtDDD222*trGtd2 + GtDDD223*trGtd3 -
-  (invgamt11*ddgamt1122[ijk])/2. - invgamt12*ddgamt1222[ijk] -
-  invgamt13*ddgamt1322[ijk] - (invgamt22*ddgamt2222[ijk])/2. -
-  invgamt23*ddgamt2322[ijk] - (invgamt33*ddgamt3322[ijk])/2. +
-  dtrGt21[ijk]*gamt12[ijk] + dtrGt22[ijk]*gamt22[ijk] +
-  dtrGt23[ijk]*gamt23[ijk]
+  Gt323*GtDDU323 - (ddgamt1122*invgamt11)/2. - ddgamt1222*invgamt12 -
+  ddgamt1322*invgamt13 - (ddgamt2222*invgamt22)/2. - ddgamt2322*invgamt23 -
+  (ddgamt3322*invgamt33)/2. + GtDDD212*trGtd1 + GtDDD222*trGtd2 +
+  GtDDD223*trGtd3 + dtrGt21*gamt12[ijk] + dtrGt22*gamt22[ijk] +
+  dtrGt23*gamt23[ijk]
 ;
 
 auto Rt23
@@ -1133,15 +1123,14 @@ auto Rt23
     2*Gt323*GtDDU232 + 2*Gt223*GtDDU233 + 2*Gt333*GtDDU233 +
     2*Gt112*GtDDU311 + 2*Gt122*GtDDU312 + 2*Gt123*GtDDU313 +
     2*Gt212*GtDDU321 + 2*Gt222*GtDDU322 + 2*Gt223*GtDDU323 +
-    4*Gt312*GtDDU331 + 4*Gt322*GtDDU332 + 4*Gt323*GtDDU333 +
-    GtDDD213*trGtd1 + GtDDD312*trGtd1 + GtDDD223*trGtd2 + GtDDD322*trGtd2 +
-    GtDDD233*trGtd3 + GtDDD323*trGtd3 - invgamt11*ddgamt1123[ijk] -
-    2*invgamt12*ddgamt1223[ijk] - 2*invgamt13*ddgamt1323[ijk] -
-    invgamt22*ddgamt2223[ijk] - 2*invgamt23*ddgamt2323[ijk] -
-    invgamt33*ddgamt3323[ijk] + dtrGt31[ijk]*gamt12[ijk] +
-    dtrGt21[ijk]*gamt13[ijk] + dtrGt32[ijk]*gamt22[ijk] +
-    dtrGt22[ijk]*gamt23[ijk] + dtrGt33[ijk]*gamt23[ijk] +
-    dtrGt23[ijk]*gamt33[ijk])/2.
+    4*Gt312*GtDDU331 + 4*Gt322*GtDDU332 + 4*Gt323*GtDDU333 -
+    ddgamt1123*invgamt11 - 2*ddgamt1223*invgamt12 -
+    2*ddgamt1323*invgamt13 - ddgamt2223*invgamt22 -
+    2*ddgamt2323*invgamt23 - ddgamt3323*invgamt33 + GtDDD213*trGtd1 +
+    GtDDD312*trGtd1 + GtDDD223*trGtd2 + GtDDD322*trGtd2 + GtDDD233*trGtd3 +
+    GtDDD323*trGtd3 + dtrGt31*gamt12[ijk] + dtrGt21*gamt13[ijk] +
+    dtrGt32*gamt22[ijk] + dtrGt22*gamt23[ijk] + dtrGt33*gamt23[ijk] +
+    dtrGt23*gamt33[ijk])/2.
 ;
 
 auto Rt33
@@ -1150,12 +1139,11 @@ Gt113*GtDDU131 + Gt123*GtDDU132 + Gt133*GtDDU133 + Gt213*GtDDU231 +
   Gt223*GtDDU232 + Gt233*GtDDU233 + 2*Gt113*GtDDU311 + 2*Gt123*GtDDU312 +
   2*Gt133*GtDDU313 + 2*Gt213*GtDDU321 + 2*Gt223*GtDDU322 +
   2*Gt233*GtDDU323 + 3*Gt313*GtDDU331 + 3*Gt323*GtDDU332 +
-  3*Gt333*GtDDU333 + GtDDD313*trGtd1 + GtDDD323*trGtd2 + GtDDD333*trGtd3 -
-  (invgamt11*ddgamt1133[ijk])/2. - invgamt12*ddgamt1233[ijk] -
-  invgamt13*ddgamt1333[ijk] - (invgamt22*ddgamt2233[ijk])/2. -
-  invgamt23*ddgamt2333[ijk] - (invgamt33*ddgamt3333[ijk])/2. +
-  dtrGt31[ijk]*gamt13[ijk] + dtrGt32[ijk]*gamt23[ijk] +
-  dtrGt33[ijk]*gamt33[ijk]
+  3*Gt333*GtDDU333 - (ddgamt1133*invgamt11)/2. - ddgamt1233*invgamt12 -
+  ddgamt1333*invgamt13 - (ddgamt2233*invgamt22)/2. - ddgamt2333*invgamt23 -
+  (ddgamt3333*invgamt33)/2. + GtDDD313*trGtd1 + GtDDD323*trGtd2 +
+  GtDDD333*trGtd3 + dtrGt31*gamt13[ijk] + dtrGt32*gamt23[ijk] +
+  dtrGt33*gamt33[ijk]
 ;
 
 auto R11
@@ -1260,73 +1248,63 @@ invgam11*Ss11 + 2*invgam12*Ss12 + 2*invgam13*Ss13 + invgam22*Ss22 +
 
 dtW[ijk]
 =
-beta1[ijk]*dW1[ijk] + beta2[ijk]*dW2[ijk] + beta3[ijk]*dW3[ijk] -
-  ((dbeta11[ijk] + dbeta22[ijk] + dbeta33[ijk])*W[ijk])/3. +
+dW1*beta1[ijk] + dW2*beta2[ijk] + dW3*beta3[ijk] -
+  ((dbeta11 + dbeta22 + dbeta33)*W[ijk])/3. +
   (alpha[ijk]*exKh[ijk]*W[ijk])/3. + (2*alpha[ijk]*Theta[ijk]*W[ijk])/3.
 ;
 
 dtgamt11[ijk]
 =
-beta1[ijk]*dgamt111[ijk] + beta2[ijk]*dgamt211[ijk] +
-  beta3[ijk]*dgamt311[ijk] - 2*alpha[ijk]*exAt11[ijk] +
-  2*dbeta11[ijk]*gamt11[ijk] -
-  (2*(dbeta11[ijk] + dbeta22[ijk] + dbeta33[ijk])*gamt11[ijk])/3. +
-  2*dbeta12[ijk]*gamt12[ijk] + 2*dbeta13[ijk]*gamt13[ijk]
+dgamt111*beta1[ijk] + dgamt211*beta2[ijk] + dgamt311*beta3[ijk] -
+  2*alpha[ijk]*exAt11[ijk] + 2*dbeta11*gamt11[ijk] -
+  (2*(dbeta11 + dbeta22 + dbeta33)*gamt11[ijk])/3. + 2*dbeta12*gamt12[ijk] +
+  2*dbeta13*gamt13[ijk]
 ;
 
 dtgamt12[ijk]
 =
-beta1[ijk]*dgamt112[ijk] + beta2[ijk]*dgamt212[ijk] +
-  beta3[ijk]*dgamt312[ijk] - 2*alpha[ijk]*exAt12[ijk] +
-  dbeta21[ijk]*gamt11[ijk] + (dbeta11[ijk]*gamt12[ijk])/3. +
-  (dbeta22[ijk]*gamt12[ijk])/3. - (2*dbeta33[ijk]*gamt12[ijk])/3. +
-  dbeta23[ijk]*gamt13[ijk] + dbeta12[ijk]*gamt22[ijk] +
-  dbeta13[ijk]*gamt23[ijk]
+dgamt112*beta1[ijk] + dgamt212*beta2[ijk] + dgamt312*beta3[ijk] -
+  2*alpha[ijk]*exAt12[ijk] + dbeta21*gamt11[ijk] + dbeta11*gamt12[ijk] +
+  dbeta22*gamt12[ijk] - (2*(dbeta11 + dbeta22 + dbeta33)*gamt12[ijk])/3. +
+  dbeta23*gamt13[ijk] + dbeta12*gamt22[ijk] + dbeta13*gamt23[ijk]
 ;
 
 dtgamt13[ijk]
 =
-beta1[ijk]*dgamt113[ijk] + beta2[ijk]*dgamt213[ijk] +
-  beta3[ijk]*dgamt313[ijk] - 2*alpha[ijk]*exAt13[ijk] +
-  dbeta31[ijk]*gamt11[ijk] + dbeta32[ijk]*gamt12[ijk] +
-  (dbeta11[ijk]*gamt13[ijk])/3. - (2*dbeta22[ijk]*gamt13[ijk])/3. +
-  (dbeta33[ijk]*gamt13[ijk])/3. + dbeta12[ijk]*gamt23[ijk] +
-  dbeta13[ijk]*gamt33[ijk]
+dgamt113*beta1[ijk] + dgamt213*beta2[ijk] + dgamt313*beta3[ijk] -
+  2*alpha[ijk]*exAt13[ijk] + dbeta31*gamt11[ijk] + dbeta32*gamt12[ijk] +
+  dbeta11*gamt13[ijk] + dbeta33*gamt13[ijk] -
+  (2*(dbeta11 + dbeta22 + dbeta33)*gamt13[ijk])/3. + dbeta12*gamt23[ijk] +
+  dbeta13*gamt33[ijk]
 ;
 
 dtgamt22[ijk]
 =
-beta1[ijk]*dgamt122[ijk] + beta2[ijk]*dgamt222[ijk] +
-  beta3[ijk]*dgamt322[ijk] - 2*alpha[ijk]*exAt22[ijk] +
-  2*dbeta21[ijk]*gamt12[ijk] + 2*dbeta22[ijk]*gamt22[ijk] -
-  (2*(dbeta11[ijk] + dbeta22[ijk] + dbeta33[ijk])*gamt22[ijk])/3. +
-  2*dbeta23[ijk]*gamt23[ijk]
+dgamt122*beta1[ijk] + dgamt222*beta2[ijk] + dgamt322*beta3[ijk] -
+  2*alpha[ijk]*exAt22[ijk] + 2*dbeta21*gamt12[ijk] + 2*dbeta22*gamt22[ijk] -
+  (2*(dbeta11 + dbeta22 + dbeta33)*gamt22[ijk])/3. + 2*dbeta23*gamt23[ijk]
 ;
 
 dtgamt23[ijk]
 =
-beta1[ijk]*dgamt123[ijk] + beta2[ijk]*dgamt223[ijk] +
-  beta3[ijk]*dgamt323[ijk] - 2*alpha[ijk]*exAt23[ijk] +
-  dbeta31[ijk]*gamt12[ijk] + dbeta21[ijk]*gamt13[ijk] +
-  dbeta32[ijk]*gamt22[ijk] - (2*dbeta11[ijk]*gamt23[ijk])/3. +
-  (dbeta22[ijk]*gamt23[ijk])/3. + (dbeta33[ijk]*gamt23[ijk])/3. +
-  dbeta23[ijk]*gamt33[ijk]
+dgamt123*beta1[ijk] + dgamt223*beta2[ijk] + dgamt323*beta3[ijk] -
+  2*alpha[ijk]*exAt23[ijk] + dbeta31*gamt12[ijk] + dbeta21*gamt13[ijk] +
+  dbeta32*gamt22[ijk] + dbeta22*gamt23[ijk] + dbeta33*gamt23[ijk] -
+  (2*(dbeta11 + dbeta22 + dbeta33)*gamt23[ijk])/3. + dbeta23*gamt33[ijk]
 ;
 
 dtgamt33[ijk]
 =
-beta1[ijk]*dgamt133[ijk] + beta2[ijk]*dgamt233[ijk] +
-  beta3[ijk]*dgamt333[ijk] - 2*alpha[ijk]*exAt33[ijk] +
-  2*dbeta31[ijk]*gamt13[ijk] + 2*dbeta32[ijk]*gamt23[ijk] +
-  2*dbeta33[ijk]*gamt33[ijk] -
-  (2*(dbeta11[ijk] + dbeta22[ijk] + dbeta33[ijk])*gamt33[ijk])/3.
+dgamt133*beta1[ijk] + dgamt233*beta2[ijk] + dgamt333*beta3[ijk] -
+  2*alpha[ijk]*exAt33[ijk] + 2*dbeta31*gamt13[ijk] + 2*dbeta32*gamt23[ijk] +
+  2*dbeta33*gamt33[ijk] - (2*(dbeta11 + dbeta22 + dbeta33)*gamt33[ijk])/3.
 ;
 
 dtexKh[ijk]
 =
 -(DDalpha11*invgam11) - 2*DDalpha12*invgam12 - 2*DDalpha13*invgam13 -
   DDalpha22*invgam22 - 2*DDalpha23*invgam23 - DDalpha33*invgam33 +
-  beta1[ijk]*dexKh1[ijk] + beta2[ijk]*dexKh2[ijk] + beta3[ijk]*dexKh3[ijk] +
+  dexKh1*beta1[ijk] + dexKh2*beta2[ijk] + dexKh3*beta3[ijk] +
   alpha[ijk]*(4*cpi*rho + 4*cpi*trSs + exAtUU11*exAt11[ijk] +
      2*exAtUU12*exAt12[ijk] + 2*exAtUU13*exAt13[ijk] +
      exAtUU22*exAt22[ijk] + 2*exAtUU23*exAt23[ijk] + exAtUU33*exAt33[ijk] +
@@ -1337,14 +1315,11 @@ dtexKh[ijk]
 
 dtexAt11[ijk]
 =
-(3*beta1[ijk]*dexAt111[ijk] + 3*beta2[ijk]*dexAt211[ijk] +
-    3*beta3[ijk]*dexAt311[ijk] + 4*dbeta11[ijk]*exAt11[ijk] -
-    2*dbeta22[ijk]*exAt11[ijk] - 2*dbeta33[ijk]*exAt11[ijk] -
-    6*invgamt11*alpha[ijk]*Power(exAt11[ijk],2) +
-    6*dbeta12[ijk]*exAt12[ijk] -
+(3*dexAt111*beta1[ijk] + 3*dexAt211*beta2[ijk] + 3*dexAt311*beta3[ijk] +
+    4*dbeta11*exAt11[ijk] - 2*dbeta22*exAt11[ijk] - 2*dbeta33*exAt11[ijk] -
+    6*invgamt11*alpha[ijk]*Power(exAt11[ijk],2) + 6*dbeta12*exAt12[ijk] -
     12*invgamt12*alpha[ijk]*exAt11[ijk]*exAt12[ijk] -
-    6*invgamt22*alpha[ijk]*Power(exAt12[ijk],2) +
-    6*dbeta13[ijk]*exAt13[ijk] -
+    6*invgamt22*alpha[ijk]*Power(exAt12[ijk],2) + 6*dbeta13*exAt13[ijk] -
     12*invgamt13*alpha[ijk]*exAt11[ijk]*exAt13[ijk] -
     12*invgamt23*alpha[ijk]*exAt12[ijk]*exAt13[ijk] -
     6*invgamt33*alpha[ijk]*Power(exAt13[ijk],2) +
@@ -1374,21 +1349,17 @@ dtexAt11[ijk]
 
 dtexAt12[ijk]
 =
-(3*beta1[ijk]*dexAt112[ijk] + 3*beta2[ijk]*dexAt212[ijk] +
-    3*beta3[ijk]*dexAt312[ijk] + 3*dbeta21[ijk]*exAt11[ijk] +
-    dbeta11[ijk]*exAt12[ijk] + dbeta22[ijk]*exAt12[ijk] -
-    2*dbeta33[ijk]*exAt12[ijk] -
-    6*invgamt11*alpha[ijk]*exAt11[ijk]*exAt12[ijk] -
-    6*invgamt12*alpha[ijk]*Power(exAt12[ijk],2) +
-    3*dbeta23[ijk]*exAt13[ijk] -
-    6*invgamt13*alpha[ijk]*exAt12[ijk]*exAt13[ijk] +
-    3*dbeta12[ijk]*exAt22[ijk] -
+(3*dexAt112*beta1[ijk] + 3*dexAt212*beta2[ijk] + 3*dexAt312*beta3[ijk] +
+    3*dbeta21*exAt11[ijk] + dbeta11*exAt12[ijk] + dbeta22*exAt12[ijk] -
+    2*dbeta33*exAt12[ijk] - 6*invgamt11*alpha[ijk]*exAt11[ijk]*
+     exAt12[ijk] - 6*invgamt12*alpha[ijk]*Power(exAt12[ijk],2) +
+    3*dbeta23*exAt13[ijk] - 6*invgamt13*alpha[ijk]*exAt12[ijk]*
+     exAt13[ijk] + 3*dbeta12*exAt22[ijk] -
     6*invgamt12*alpha[ijk]*exAt11[ijk]*exAt22[ijk] -
     6*invgamt22*alpha[ijk]*exAt12[ijk]*exAt22[ijk] -
     6*invgamt23*alpha[ijk]*exAt13[ijk]*exAt22[ijk] +
-    3*dbeta13[ijk]*exAt23[ijk] -
-    6*invgamt13*alpha[ijk]*exAt11[ijk]*exAt23[ijk] -
-    6*invgamt23*alpha[ijk]*exAt12[ijk]*exAt23[ijk] -
+    3*dbeta13*exAt23[ijk] - 6*invgamt13*alpha[ijk]*exAt11[ijk]*
+     exAt23[ijk] - 6*invgamt23*alpha[ijk]*exAt12[ijk]*exAt23[ijk] -
     6*invgamt33*alpha[ijk]*exAt13[ijk]*exAt23[ijk] +
     3*alpha[ijk]*exAt12[ijk]*exKh[ijk] +
     6*alpha[ijk]*exAt12[ijk]*Theta[ijk] - 3*DDalpha12*Power(W[ijk],2) +
@@ -1416,20 +1387,17 @@ dtexAt12[ijk]
 
 dtexAt13[ijk]
 =
-(3*beta1[ijk]*dexAt113[ijk] + 3*beta2[ijk]*dexAt213[ijk] +
-    3*beta3[ijk]*dexAt313[ijk] + 3*dbeta31[ijk]*exAt11[ijk] +
-    3*dbeta32[ijk]*exAt12[ijk] + dbeta11[ijk]*exAt13[ijk] -
-    2*dbeta22[ijk]*exAt13[ijk] + dbeta33[ijk]*exAt13[ijk] -
+(3*dexAt113*beta1[ijk] + 3*dexAt213*beta2[ijk] + 3*dexAt313*beta3[ijk] +
+    3*dbeta31*exAt11[ijk] + 3*dbeta32*exAt12[ijk] + dbeta11*exAt13[ijk] -
+    2*dbeta22*exAt13[ijk] + dbeta33*exAt13[ijk] -
     6*invgamt11*alpha[ijk]*exAt11[ijk]*exAt13[ijk] -
     6*invgamt12*alpha[ijk]*exAt12[ijk]*exAt13[ijk] -
-    6*invgamt13*alpha[ijk]*Power(exAt13[ijk],2) +
-    3*dbeta12[ijk]*exAt23[ijk] -
+    6*invgamt13*alpha[ijk]*Power(exAt13[ijk],2) + 3*dbeta12*exAt23[ijk] -
     6*invgamt12*alpha[ijk]*exAt11[ijk]*exAt23[ijk] -
     6*invgamt22*alpha[ijk]*exAt12[ijk]*exAt23[ijk] -
     6*invgamt23*alpha[ijk]*exAt13[ijk]*exAt23[ijk] +
-    3*dbeta13[ijk]*exAt33[ijk] -
-    6*invgamt13*alpha[ijk]*exAt11[ijk]*exAt33[ijk] -
-    6*invgamt23*alpha[ijk]*exAt12[ijk]*exAt33[ijk] -
+    3*dbeta13*exAt33[ijk] - 6*invgamt13*alpha[ijk]*exAt11[ijk]*
+     exAt33[ijk] - 6*invgamt23*alpha[ijk]*exAt12[ijk]*exAt33[ijk] -
     6*invgamt33*alpha[ijk]*exAt13[ijk]*exAt33[ijk] +
     3*alpha[ijk]*exAt13[ijk]*exKh[ijk] +
     6*alpha[ijk]*exAt13[ijk]*Theta[ijk] - 3*DDalpha13*Power(W[ijk],2) +
@@ -1457,14 +1425,11 @@ dtexAt13[ijk]
 
 dtexAt22[ijk]
 =
-(3*beta1[ijk]*dexAt122[ijk] + 3*beta2[ijk]*dexAt222[ijk] +
-    3*beta3[ijk]*dexAt322[ijk] + 6*dbeta21[ijk]*exAt12[ijk] -
-    6*invgamt11*alpha[ijk]*Power(exAt12[ijk],2) -
-    2*dbeta11[ijk]*exAt22[ijk] + 4*dbeta22[ijk]*exAt22[ijk] -
-    2*dbeta33[ijk]*exAt22[ijk] -
+(3*dexAt122*beta1[ijk] + 3*dexAt222*beta2[ijk] + 3*dexAt322*beta3[ijk] +
+    6*dbeta21*exAt12[ijk] - 6*invgamt11*alpha[ijk]*Power(exAt12[ijk],2) -
+    2*dbeta11*exAt22[ijk] + 4*dbeta22*exAt22[ijk] - 2*dbeta33*exAt22[ijk] -
     12*invgamt12*alpha[ijk]*exAt12[ijk]*exAt22[ijk] -
-    6*invgamt22*alpha[ijk]*Power(exAt22[ijk],2) +
-    6*dbeta23[ijk]*exAt23[ijk] -
+    6*invgamt22*alpha[ijk]*Power(exAt22[ijk],2) + 6*dbeta23*exAt23[ijk] -
     12*invgamt13*alpha[ijk]*exAt12[ijk]*exAt23[ijk] -
     12*invgamt23*alpha[ijk]*exAt22[ijk]*exAt23[ijk] -
     6*invgamt33*alpha[ijk]*Power(exAt23[ijk],2) +
@@ -1494,19 +1459,15 @@ dtexAt22[ijk]
 
 dtexAt23[ijk]
 =
-(3*beta1[ijk]*dexAt123[ijk] + 3*beta2[ijk]*dexAt223[ijk] +
-    3*beta3[ijk]*dexAt323[ijk] + 3*dbeta31[ijk]*exAt12[ijk] +
-    3*dbeta21[ijk]*exAt13[ijk] -
+(3*dexAt123*beta1[ijk] + 3*dexAt223*beta2[ijk] + 3*dexAt323*beta3[ijk] +
+    3*dbeta31*exAt12[ijk] + 3*dbeta21*exAt13[ijk] -
     6*invgamt11*alpha[ijk]*exAt12[ijk]*exAt13[ijk] +
-    3*dbeta32[ijk]*exAt22[ijk] -
-    6*invgamt12*alpha[ijk]*exAt13[ijk]*exAt22[ijk] -
-    2*dbeta11[ijk]*exAt23[ijk] + dbeta22[ijk]*exAt23[ijk] +
-    dbeta33[ijk]*exAt23[ijk] -
-    6*invgamt12*alpha[ijk]*exAt12[ijk]*exAt23[ijk] -
+    3*dbeta32*exAt22[ijk] - 6*invgamt12*alpha[ijk]*exAt13[ijk]*
+     exAt22[ijk] - 2*dbeta11*exAt23[ijk] + dbeta22*exAt23[ijk] +
+    dbeta33*exAt23[ijk] - 6*invgamt12*alpha[ijk]*exAt12[ijk]*exAt23[ijk] -
     6*invgamt13*alpha[ijk]*exAt13[ijk]*exAt23[ijk] -
     6*invgamt22*alpha[ijk]*exAt22[ijk]*exAt23[ijk] -
-    6*invgamt23*alpha[ijk]*Power(exAt23[ijk],2) +
-    3*dbeta23[ijk]*exAt33[ijk] -
+    6*invgamt23*alpha[ijk]*Power(exAt23[ijk],2) + 3*dbeta23*exAt33[ijk] -
     6*invgamt13*alpha[ijk]*exAt12[ijk]*exAt33[ijk] -
     6*invgamt23*alpha[ijk]*exAt22[ijk]*exAt33[ijk] -
     6*invgamt33*alpha[ijk]*exAt23[ijk]*exAt33[ijk] +
@@ -1536,14 +1497,11 @@ dtexAt23[ijk]
 
 dtexAt33[ijk]
 =
-(3*beta1[ijk]*dexAt133[ijk] + 3*beta2[ijk]*dexAt233[ijk] +
-    3*beta3[ijk]*dexAt333[ijk] + 6*dbeta31[ijk]*exAt13[ijk] -
-    6*invgamt11*alpha[ijk]*Power(exAt13[ijk],2) +
-    6*dbeta32[ijk]*exAt23[ijk] -
-    12*invgamt12*alpha[ijk]*exAt13[ijk]*exAt23[ijk] -
-    6*invgamt22*alpha[ijk]*Power(exAt23[ijk],2) -
-    2*dbeta11[ijk]*exAt33[ijk] - 2*dbeta22[ijk]*exAt33[ijk] +
-    4*dbeta33[ijk]*exAt33[ijk] -
+(3*dexAt133*beta1[ijk] + 3*dexAt233*beta2[ijk] + 3*dexAt333*beta3[ijk] +
+    6*dbeta31*exAt13[ijk] - 6*invgamt11*alpha[ijk]*Power(exAt13[ijk],2) +
+    6*dbeta32*exAt23[ijk] - 12*invgamt12*alpha[ijk]*exAt13[ijk]*
+     exAt23[ijk] - 6*invgamt22*alpha[ijk]*Power(exAt23[ijk],2) -
+    2*dbeta11*exAt33[ijk] - 2*dbeta22*exAt33[ijk] + 4*dbeta33*exAt33[ijk] -
     12*invgamt13*alpha[ijk]*exAt13[ijk]*exAt33[ijk] -
     12*invgamt23*alpha[ijk]*exAt23[ijk]*exAt33[ijk] -
     6*invgamt33*alpha[ijk]*Power(exAt33[ijk],2) +
@@ -1573,78 +1531,65 @@ dtexAt33[ijk]
 
 dttrGt1[ijk]
 =
-(-6*exAtUU11*dalpha1[ijk] - 6*exAtUU12*dalpha2[ijk] -
-    6*exAtUU13*dalpha3[ijk] - trGtd1*dbeta11[ijk] - 3*trGtd2*dbeta21[ijk] +
-    2*trGtd1*dbeta22[ijk] - 3*trGtd3*dbeta31[ijk] + 2*trGtd1*dbeta33[ijk] +
-    4*invgamt11*ddbeta111[ijk] + 7*invgamt12*ddbeta121[ijk] +
-    invgamt11*ddbeta122[ijk] + 7*invgamt13*ddbeta131[ijk] +
-    invgamt11*ddbeta133[ijk] + 3*invgamt22*ddbeta221[ijk] +
-    invgamt12*ddbeta222[ijk] + 6*invgamt23*ddbeta231[ijk] +
-    invgamt13*ddbeta232[ijk] + invgamt12*ddbeta233[ijk] +
-    3*invgamt33*ddbeta331[ijk] + invgamt13*ddbeta333[ijk] +
-    3*beta1[ijk]*dtrGt11[ijk] + 3*beta2[ijk]*dtrGt21[ijk] +
-    3*beta3[ijk]*dtrGt31[ijk] -
+(-6*dalpha1*exAtUU11 - 6*dalpha2*exAtUU12 - 6*dalpha3*exAtUU13 +
+    4*ddbeta111*invgamt11 + ddbeta122*invgamt11 + ddbeta133*invgamt11 +
+    7*ddbeta121*invgamt12 + ddbeta222*invgamt12 + ddbeta233*invgamt12 +
+    7*ddbeta131*invgamt13 + ddbeta232*invgamt13 + ddbeta333*invgamt13 +
+    3*ddbeta221*invgamt22 + 6*ddbeta231*invgamt23 + 3*ddbeta331*invgamt33 -
+    dbeta11*trGtd1 + 2*dbeta22*trGtd1 + 2*dbeta33*trGtd1 -
+    3*dbeta21*trGtd2 - 3*dbeta31*trGtd3 + 3*dtrGt11*beta1[ijk] +
+    3*dtrGt21*beta2[ijk] + 3*dtrGt31*beta3[ijk] -
     2*alpha[ijk]*(9*dlnW1*exAtUU11 + 9*dlnW2*exAtUU12 + 9*dlnW3*exAtUU13 -
        3*exAtUU11*Gt111 - 6*exAtUU12*Gt112 - 6*exAtUU13*Gt113 -
        3*exAtUU22*Gt122 - 6*exAtUU23*Gt123 - 3*exAtUU33*Gt133 +
+       2*dexKh1*invgamt11 + dTheta1*invgamt11 + 2*dexKh2*invgamt12 +
+       dTheta2*invgamt12 + 2*dexKh3*invgamt13 + dTheta3*invgamt13 +
        24*cpi*invgamt11*Sm1 + 24*cpi*invgamt12*Sm2 + 24*cpi*invgamt13*Sm3 -
-       3*ckappa1*trGtd1 + 2*invgamt11*dexKh1[ijk] +
-       2*invgamt12*dexKh2[ijk] + 2*invgamt13*dexKh3[ijk] +
-       invgamt11*dTheta1[ijk] + invgamt12*dTheta2[ijk] +
-       invgamt13*dTheta3[ijk] + 3*ckappa1*trGt1[ijk]))/3.
+       3*ckappa1*trGtd1 + 3*ckappa1*trGt1[ijk]))/3.
 ;
 
 dttrGt2[ijk]
 =
-(-6*exAtUU12*dalpha1[ijk] - 6*exAtUU22*dalpha2[ijk] -
-    6*exAtUU23*dalpha3[ijk] + 2*trGtd2*dbeta11[ijk] -
-    3*trGtd1*dbeta12[ijk] - trGtd2*dbeta22[ijk] - 3*trGtd3*dbeta32[ijk] +
-    2*trGtd2*dbeta33[ijk] + invgamt12*ddbeta111[ijk] +
-    3*invgamt11*ddbeta112[ijk] + invgamt22*ddbeta121[ijk] +
-    7*invgamt12*ddbeta122[ijk] + invgamt23*ddbeta131[ijk] +
-    6*invgamt13*ddbeta132[ijk] + invgamt12*ddbeta133[ijk] +
-    4*invgamt22*ddbeta222[ijk] + 7*invgamt23*ddbeta232[ijk] +
-    invgamt22*ddbeta233[ijk] + 3*invgamt33*ddbeta332[ijk] +
-    invgamt23*ddbeta333[ijk] + 3*beta1[ijk]*dtrGt12[ijk] +
-    3*beta2[ijk]*dtrGt22[ijk] + 3*beta3[ijk]*dtrGt32[ijk] -
+(-6*dalpha1*exAtUU12 - 6*dalpha2*exAtUU22 - 6*dalpha3*exAtUU23 +
+    3*ddbeta112*invgamt11 + ddbeta111*invgamt12 + 7*ddbeta122*invgamt12 +
+    ddbeta133*invgamt12 + 6*ddbeta132*invgamt13 + ddbeta121*invgamt22 +
+    4*ddbeta222*invgamt22 + ddbeta233*invgamt22 + ddbeta131*invgamt23 +
+    7*ddbeta232*invgamt23 + ddbeta333*invgamt23 + 3*ddbeta332*invgamt33 -
+    3*dbeta12*trGtd1 + 2*dbeta11*trGtd2 - dbeta22*trGtd2 +
+    2*dbeta33*trGtd2 - 3*dbeta32*trGtd3 + 3*dtrGt12*beta1[ijk] +
+    3*dtrGt22*beta2[ijk] + 3*dtrGt32*beta3[ijk] -
     2*alpha[ijk]*(9*dlnW1*exAtUU12 + 9*dlnW2*exAtUU22 + 9*dlnW3*exAtUU23 -
        3*exAtUU11*Gt211 - 6*exAtUU12*Gt212 - 6*exAtUU13*Gt213 -
        3*exAtUU22*Gt222 - 6*exAtUU23*Gt223 - 3*exAtUU33*Gt233 +
+       2*dexKh1*invgamt12 + dTheta1*invgamt12 + 2*dexKh2*invgamt22 +
+       dTheta2*invgamt22 + 2*dexKh3*invgamt23 + dTheta3*invgamt23 +
        24*cpi*invgamt12*Sm1 + 24*cpi*invgamt22*Sm2 + 24*cpi*invgamt23*Sm3 -
-       3*ckappa1*trGtd2 + 2*invgamt12*dexKh1[ijk] +
-       2*invgamt22*dexKh2[ijk] + 2*invgamt23*dexKh3[ijk] +
-       invgamt12*dTheta1[ijk] + invgamt22*dTheta2[ijk] +
-       invgamt23*dTheta3[ijk] + 3*ckappa1*trGt2[ijk]))/3.
+       3*ckappa1*trGtd2 + 3*ckappa1*trGt2[ijk]))/3.
 ;
 
 dttrGt3[ijk]
 =
-(-6*exAtUU13*dalpha1[ijk] - 6*exAtUU23*dalpha2[ijk] -
-    6*exAtUU33*dalpha3[ijk] + 2*trGtd3*dbeta11[ijk] -
-    3*trGtd1*dbeta13[ijk] + 2*trGtd3*dbeta22[ijk] - 3*trGtd2*dbeta23[ijk] -
-    trGtd3*dbeta33[ijk] + invgamt13*ddbeta111[ijk] +
-    3*invgamt11*ddbeta113[ijk] + invgamt23*ddbeta121[ijk] +
-    invgamt13*ddbeta122[ijk] + 6*invgamt12*ddbeta123[ijk] +
-    invgamt33*ddbeta131[ijk] + 7*invgamt13*ddbeta133[ijk] +
-    invgamt23*ddbeta222[ijk] + 3*invgamt22*ddbeta223[ijk] +
-    invgamt33*ddbeta232[ijk] + 7*invgamt23*ddbeta233[ijk] +
-    4*invgamt33*ddbeta333[ijk] + 3*beta1[ijk]*dtrGt13[ijk] +
-    3*beta2[ijk]*dtrGt23[ijk] + 3*beta3[ijk]*dtrGt33[ijk] -
+(-6*dalpha1*exAtUU13 - 6*dalpha2*exAtUU23 - 6*dalpha3*exAtUU33 +
+    3*ddbeta113*invgamt11 + 6*ddbeta123*invgamt12 + ddbeta111*invgamt13 +
+    ddbeta122*invgamt13 + 7*ddbeta133*invgamt13 + 3*ddbeta223*invgamt22 +
+    ddbeta121*invgamt23 + ddbeta222*invgamt23 + 7*ddbeta233*invgamt23 +
+    ddbeta131*invgamt33 + ddbeta232*invgamt33 + 4*ddbeta333*invgamt33 -
+    3*dbeta13*trGtd1 - 3*dbeta23*trGtd2 + 2*dbeta11*trGtd3 +
+    2*dbeta22*trGtd3 - dbeta33*trGtd3 + 3*dtrGt13*beta1[ijk] +
+    3*dtrGt23*beta2[ijk] + 3*dtrGt33*beta3[ijk] -
     2*alpha[ijk]*(9*dlnW1*exAtUU13 + 9*dlnW2*exAtUU23 + 9*dlnW3*exAtUU33 -
        3*exAtUU11*Gt311 - 6*exAtUU12*Gt312 - 6*exAtUU13*Gt313 -
        3*exAtUU22*Gt322 - 6*exAtUU23*Gt323 - 3*exAtUU33*Gt333 +
+       2*dexKh1*invgamt13 + dTheta1*invgamt13 + 2*dexKh2*invgamt23 +
+       dTheta2*invgamt23 + 2*dexKh3*invgamt33 + dTheta3*invgamt33 +
        24*cpi*invgamt13*Sm1 + 24*cpi*invgamt23*Sm2 + 24*cpi*invgamt33*Sm3 -
-       3*ckappa1*trGtd3 + 2*invgamt13*dexKh1[ijk] +
-       2*invgamt23*dexKh2[ijk] + 2*invgamt33*dexKh3[ijk] +
-       invgamt13*dTheta1[ijk] + invgamt23*dTheta2[ijk] +
-       invgamt33*dTheta3[ijk] + 3*ckappa1*trGt3[ijk]))/3.
+       3*ckappa1*trGtd3 + 3*ckappa1*trGt3[ijk]))/3.
 ;
 
 dtTheta[ijk]
 =
-beta1[ijk]*dTheta1[ijk] + beta2[ijk]*dTheta2[ijk] +
-  beta3[ijk]*dTheta3[ijk] - (alpha[ijk]*
-     (48*cpi*rho - 3*trR + 3*exAtUU11*exAt11[ijk] +
+dTheta1*beta1[ijk] + dTheta2*beta2[ijk] + dTheta3*beta3[ijk] -
+  (alpha[ijk]*(48*cpi*rho - 3*trR + 3*exAtUU11*exAt11[ijk] +
        6*exAtUU12*exAt12[ijk] + 6*exAtUU13*exAt13[ijk] +
        3*exAtUU22*exAt22[ijk] + 6*exAtUU23*exAt23[ijk] +
        3*exAtUU33*exAt33[ijk] - 2*Power(exKh[ijk],2) +
@@ -1654,26 +1599,26 @@ beta1[ijk]*dTheta1[ijk] + beta2[ijk]*dTheta2[ijk] +
 
 dtalpha[ijk]
 =
-beta1[ijk]*dalpha1[ijk] + beta2[ijk]*dalpha2[ijk] +
-  beta3[ijk]*dalpha3[ijk] - cmuL*alpha[ijk]*exKh[ijk]
+dalpha1*beta1[ijk] + dalpha2*beta2[ijk] + dalpha3*beta3[ijk] -
+  cmuL*alpha[ijk]*exKh[ijk]
 ;
 
 dtbeta1[ijk]
 =
-beta1[ijk]*(-ceta + dbeta11[ijk]) + beta2[ijk]*dbeta21[ijk] +
-  beta3[ijk]*dbeta31[ijk] + cmuS*trGt1[ijk]
+(-ceta + dbeta11)*beta1[ijk] + dbeta21*beta2[ijk] + dbeta31*beta3[ijk] +
+  cmuS*trGt1[ijk]
 ;
 
 dtbeta2[ijk]
 =
-beta1[ijk]*dbeta12[ijk] + beta2[ijk]*(-ceta + dbeta22[ijk]) +
-  beta3[ijk]*dbeta32[ijk] + cmuS*trGt2[ijk]
+dbeta12*beta1[ijk] + (-ceta + dbeta22)*beta2[ijk] + dbeta32*beta3[ijk] +
+  cmuS*trGt2[ijk]
 ;
 
 dtbeta3[ijk]
 =
-beta1[ijk]*dbeta13[ijk] + beta2[ijk]*dbeta23[ijk] +
-  beta3[ijk]*(-ceta + dbeta33[ijk]) + cmuS*trGt3[ijk]
+dbeta13*beta1[ijk] + dbeta23*beta2[ijk] - ceta*beta3[ijk] +
+  dbeta33*beta3[ijk] + cmuS*trGt3[ijk]
 ;
 
 
