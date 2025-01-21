@@ -40,7 +40,7 @@ EvolVarlist =
 (*************************)
 
 dEvolVarlist =
-  GridTensors[
+  TempTensors[
     {dW[-k], PrintAs -> "\[PartialD]W"},
     {dgamt[-k, -i, -j], Symmetric[{-i, -j}], PrintAs -> "\[PartialD]\!\(\*OverscriptBox[\(\[Gamma]\), \(~\)]\)"},
     {dexKh[-k], PrintAs -> "\[PartialD]\!\(\*OverscriptBox[\(K\), \(^\)]\)"},
@@ -52,7 +52,7 @@ dEvolVarlist =
   ];
 
 ddEvolVarlist =
-  GridTensors[
+  TempTensors[
     {ddW[-i, -j], Symmetric[{-i, -j}], PrintAs -> "\[PartialD]\[PartialD]W"},
     {ddgamt[-l, -m, -i, -j], GenSet[Cycles[{1, 2}], Cycles[{3, 4}]], PrintAs -> "\[PartialD]\[PartialD]\!\(\*OverscriptBox[\(\[Gamma]\), \(~\)]\)"},
     {ddalpha[-i, -j], Symmetric[{-i, -j}], PrintAs -> "\[PartialD]\[PartialD]\[Alpha]"},
