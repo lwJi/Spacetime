@@ -6,14 +6,13 @@
 
 template <typename T>
 inline T fd_1st(const cGH *GH, T *gf, int i, int j, int k, int dir) {
-  const int ijkm2 = CCTK_GFINDEX3D(GH, ((dir == 1) ? i-2 : i), ((dir == 2) ? j-2 : j), ((dir == 3) ? j-2 : k));
-  const int ijkm1 = CCTK_GFINDEX3D(GH, ((dir == 1) ? i-1 : i), ((dir == 2) ? j-1 : j), ((dir == 3) ? j-1 : k));
-  const int ijkc0 = CCTK_GFINDEX3D(GH, i, j, k);
-  const int ijkp1 = CCTK_GFINDEX3D(GH, ((dir == 1) ? i+1 : i), ((dir == 2) ? j+1 : j), ((dir == 3) ? j+1 : k));
-  const int ijkp2 = CCTK_GFINDEX3D(GH, ((dir == 1) ? i+2 : i), ((dir == 2) ? j+2 : j), ((dir == 3) ? j+2 : k));
-  const int ijk = CCTK_GFINDEX3D(GH, i, j, k);
+  const int ijkm2 = CCTK_GFINDEX3D(GH, i + (dir == 1 ? -2 : 0), j + (dir == 2 ? -2 : 0), j + (dir == 3 ? -2 : 0));
+  const int ijkm1 = CCTK_GFINDEX3D(GH, i + (dir == 1 ? -1 : 0), j + (dir == 2 ? -1 : 0), j + (dir == 3 ? -1 : 0));
+  const int ijkp1 = CCTK_GFINDEX3D(GH, i + (dir == 1 ? 1 : 0), j + (dir == 2 ? 1 : 0), j + (dir == 3 ? 1 : 0));
+  const int ijkp2 = CCTK_GFINDEX3D(GH, i + (dir == 1 ? 2 : 0), j + (dir == 2 ? 2 : 0), j + (dir == 3 ? 2 : 0));
+
   return
-;
+    (-8*gf[ijkm1] + gf[ijkm2] + 8*gf[ijkp1] - gf[ijkp2])/12.;
 }
 
 #endif // #ifndef DERIVSINLINE_HXX

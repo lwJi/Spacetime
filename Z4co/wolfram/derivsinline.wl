@@ -37,18 +37,20 @@ GetGFIndexName[index_?IntegerQ] :=
     Return[gfindex]
   ];
 
-PrintIndexes3D[ord_?IntegerQ] :=
-  Module[{stencils, index, buf},
-    stencils = GetCenteringStencils[ord];
+PrintIndexes3D[accuracyord_?IntegerQ, fdord_?IntegerQ] :=
+  Module[{stencils, solution, index, buf},
+    stencils = GetCenteringStencils[accuracyord];
+    solution = GetFiniteDifferenceCoefficients[stencils, fdord];
     Do[
       index = stencils[[i]];
+      If[(Subscript[c, index] /. solution) == 0, Continue[]];
       If[index == 0,
         buf = "  const int " <> ToString[GetGFIndexName[index]] <> " = CCTK_GFINDEX3D(GH, i, j, k);"
         ,
         buf = "  const int " <> ToString[GetGFIndexName[index]] <> " = CCTK_GFINDEX3D(GH, "
-          <> "((dir == 1) ? i" <> If[index == 0, "", If[index < 0, ToString[index], "+" <> ToString[index]]] <> " : i), "
-          <> "((dir == 2) ? j" <> If[index == 0, "", If[index < 0, ToString[index], "+" <> ToString[index]]] <> " : j), "
-          <> "((dir == 3) ? j" <> If[index == 0, "", If[index < 0, ToString[index], "+" <> ToString[index]]] <> " : k));"
+          <> "i + (dir == 1 ? " <> ToString[index] <> " : 0), "
+          <> "j + (dir == 2 ? " <> ToString[index] <> " : 0), "
+          <> "j + (dir == 3 ? " <> ToString[index] <> " : 0));"
       ];
       pr[buf];
       ,
@@ -56,14 +58,22 @@ PrintIndexes3D[ord_?IntegerQ] :=
     ];
   ];
 
+PrintFDExpression[accuracyord_?IntegerQ, fdord_?IntegerQ] :=
+  Module[{stencils, solution, buf},
+    stencils = GetCenteringStencils[accuracyord];
+    solution = GetFiniteDifferenceCoefficients[stencils, fdord];
+    buf = "    " <> ToString[CForm[Sum[index = stencils[[i]]; (Subscript[c, index] /. solution) gf[[GetGFIndexName[index]]], {i, 1, Length[stencils]}]//Simplify]] <> ";";
+    pr[buf]
+  ];
+
 $MainPrint[] :=
   Module[{},
     pr["template <typename T>"];
     pr["inline T fd_1st(const cGH *GH, T *gf, int i, int j, int k, int dir) {"];
-    PrintIndexes3D[4];
-    pr["  const int ijk = CCTK_GFINDEX3D(GH, i, j, k);"];
+    PrintIndexes3D[4, 1];
+    pr[];
     pr["  return"];
-    pr[";"];
+    PrintFDExpression[4, 1];
     pr["}"];
   ];
 
