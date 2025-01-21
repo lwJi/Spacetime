@@ -62,14 +62,18 @@ PrintFDExpression[accuracyord_?IntegerQ, fdord_?IntegerQ] :=
   Module[{stencils, solution, buf},
     stencils = GetCenteringStencils[accuracyord];
     solution = GetFiniteDifferenceCoefficients[stencils, fdord];
-    buf = "    " <> ToString[CForm[Sum[index = stencils[[i]]; (Subscript[c, index] /. solution) gf[[GetGFIndexName[index]]], {i, 1, Length[stencils]}]//Simplify]] <> ";";
+    buf = "    " <> ToString[CForm[
+      Sum[index = stencils[[i]]; (Subscript[c, index] /. solution) gf[[GetGFIndexName[index]]], {i, 1, Length[stencils]}]
+      Product[idx[[dir-1]], {i, 1, fdord}]
+      (*// Simplify*)
+    ]] <> ";";
     pr[buf]
   ];
 
 $MainPrint[] :=
   Module[{},
     pr["template <typename T>"];
-    pr["inline T fd_1st(const cGH *GH, T *gf, int i, int j, int k, int dir) {"];
+    pr["inline T fd_1st(const cGH *GH, T *gf, T *idx, int i, int j, int k, int dir) {"];
     PrintIndexes3D[4, 1];
     pr["  return"];
     PrintFDExpression[4, 1];
@@ -77,7 +81,7 @@ $MainPrint[] :=
     pr[];
 
     pr["template <typename T>"];
-    pr["inline T fd_2nd(const cGH *GH, T *gf, int i, int j, int k, int dir) {"];
+    pr["inline T fd_2nd(const cGH *GH, T *gf, T *idx, int i, int j, int k, int dir) {"];
     PrintIndexes3D[4, 2];
     pr["  return"];
     PrintFDExpression[4, 2];
