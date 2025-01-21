@@ -9,855 +9,998 @@ for (k=kstart; k<kend; k++) {
     for (i=istart; i<iend; i++) {
     const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);
 
-const auto dW1 = fd_1st(W, ijk, 1);
-const auto dW2 = fd_1st(W, ijk, 2);
-const auto dW3 = fd_1st(W, ijk, 3);
-const auto dgamt111 = fd_1st(gamt11, ijk, 1);
-const auto dgamt112 = fd_1st(gamt12, ijk, 1);
-const auto dgamt113 = fd_1st(gamt13, ijk, 1);
-const auto dgamt122 = fd_1st(gamt22, ijk, 1);
-const auto dgamt123 = fd_1st(gamt23, ijk, 1);
-const auto dgamt133 = fd_1st(gamt33, ijk, 1);
-const auto dgamt211 = fd_1st(gamt11, ijk, 2);
-const auto dgamt212 = fd_1st(gamt12, ijk, 2);
-const auto dgamt213 = fd_1st(gamt13, ijk, 2);
-const auto dgamt222 = fd_1st(gamt22, ijk, 2);
-const auto dgamt223 = fd_1st(gamt23, ijk, 2);
-const auto dgamt233 = fd_1st(gamt33, ijk, 2);
-const auto dgamt311 = fd_1st(gamt11, ijk, 3);
-const auto dgamt312 = fd_1st(gamt12, ijk, 3);
-const auto dgamt313 = fd_1st(gamt13, ijk, 3);
-const auto dgamt322 = fd_1st(gamt22, ijk, 3);
-const auto dgamt323 = fd_1st(gamt23, ijk, 3);
-const auto dgamt333 = fd_1st(gamt33, ijk, 3);
-const auto dexKh1 = fd_1st(exKh, ijk, 1);
-const auto dexKh2 = fd_1st(exKh, ijk, 2);
-const auto dexKh3 = fd_1st(exKh, ijk, 3);
-const auto dexAt111 = fd_1st(exAt11, ijk, 1);
-const auto dexAt112 = fd_1st(exAt12, ijk, 1);
-const auto dexAt113 = fd_1st(exAt13, ijk, 1);
-const auto dexAt122 = fd_1st(exAt22, ijk, 1);
-const auto dexAt123 = fd_1st(exAt23, ijk, 1);
-const auto dexAt133 = fd_1st(exAt33, ijk, 1);
-const auto dexAt211 = fd_1st(exAt11, ijk, 2);
-const auto dexAt212 = fd_1st(exAt12, ijk, 2);
-const auto dexAt213 = fd_1st(exAt13, ijk, 2);
-const auto dexAt222 = fd_1st(exAt22, ijk, 2);
-const auto dexAt223 = fd_1st(exAt23, ijk, 2);
-const auto dexAt233 = fd_1st(exAt33, ijk, 2);
-const auto dexAt311 = fd_1st(exAt11, ijk, 3);
-const auto dexAt312 = fd_1st(exAt12, ijk, 3);
-const auto dexAt313 = fd_1st(exAt13, ijk, 3);
-const auto dexAt322 = fd_1st(exAt22, ijk, 3);
-const auto dexAt323 = fd_1st(exAt23, ijk, 3);
-const auto dexAt333 = fd_1st(exAt33, ijk, 3);
-const auto dtrGt11 = fd_1st(trGt1, ijk, 1);
-const auto dtrGt12 = fd_1st(trGt2, ijk, 1);
-const auto dtrGt13 = fd_1st(trGt3, ijk, 1);
-const auto dtrGt21 = fd_1st(trGt1, ijk, 2);
-const auto dtrGt22 = fd_1st(trGt2, ijk, 2);
-const auto dtrGt23 = fd_1st(trGt3, ijk, 2);
-const auto dtrGt31 = fd_1st(trGt1, ijk, 3);
-const auto dtrGt32 = fd_1st(trGt2, ijk, 3);
-const auto dtrGt33 = fd_1st(trGt3, ijk, 3);
-const auto dTheta1 = fd_1st(Theta, ijk, 1);
-const auto dTheta2 = fd_1st(Theta, ijk, 2);
-const auto dTheta3 = fd_1st(Theta, ijk, 3);
-const auto dalpha1 = fd_1st(alpha, ijk, 1);
-const auto dalpha2 = fd_1st(alpha, ijk, 2);
-const auto dalpha3 = fd_1st(alpha, ijk, 3);
-const auto dbeta11 = fd_1st(beta1, ijk, 1);
-const auto dbeta12 = fd_1st(beta2, ijk, 1);
-const auto dbeta13 = fd_1st(beta3, ijk, 1);
-const auto dbeta21 = fd_1st(beta1, ijk, 2);
-const auto dbeta22 = fd_1st(beta2, ijk, 2);
-const auto dbeta23 = fd_1st(beta3, ijk, 2);
-const auto dbeta31 = fd_1st(beta1, ijk, 3);
-const auto dbeta32 = fd_1st(beta2, ijk, 3);
-const auto dbeta33 = fd_1st(beta3, ijk, 3);
-const auto ddW11 = fd_2nd(W, ijk, 1, 1);
-const auto ddW12 = fd_2nd(W, ijk, 1, 2);
-const auto ddW13 = fd_2nd(W, ijk, 1, 3);
-const auto ddW22 = fd_2nd(W, ijk, 2, 2);
-const auto ddW23 = fd_2nd(W, ijk, 2, 3);
-const auto ddW33 = fd_2nd(W, ijk, 3, 3);
-const auto ddgamt1111 = fd_2nd(gamt11, ijk, 1, 1);
-const auto ddgamt1112 = fd_2nd(gamt12, ijk, 1, 1);
-const auto ddgamt1113 = fd_2nd(gamt13, ijk, 1, 1);
-const auto ddgamt1122 = fd_2nd(gamt22, ijk, 1, 1);
-const auto ddgamt1123 = fd_2nd(gamt23, ijk, 1, 1);
-const auto ddgamt1133 = fd_2nd(gamt33, ijk, 1, 1);
-const auto ddgamt1211 = fd_2nd(gamt11, ijk, 1, 2);
-const auto ddgamt1212 = fd_2nd(gamt12, ijk, 1, 2);
-const auto ddgamt1213 = fd_2nd(gamt13, ijk, 1, 2);
-const auto ddgamt1222 = fd_2nd(gamt22, ijk, 1, 2);
-const auto ddgamt1223 = fd_2nd(gamt23, ijk, 1, 2);
-const auto ddgamt1233 = fd_2nd(gamt33, ijk, 1, 2);
-const auto ddgamt1311 = fd_2nd(gamt11, ijk, 1, 3);
-const auto ddgamt1312 = fd_2nd(gamt12, ijk, 1, 3);
-const auto ddgamt1313 = fd_2nd(gamt13, ijk, 1, 3);
-const auto ddgamt1322 = fd_2nd(gamt22, ijk, 1, 3);
-const auto ddgamt1323 = fd_2nd(gamt23, ijk, 1, 3);
-const auto ddgamt1333 = fd_2nd(gamt33, ijk, 1, 3);
-const auto ddgamt2211 = fd_2nd(gamt11, ijk, 2, 2);
-const auto ddgamt2212 = fd_2nd(gamt12, ijk, 2, 2);
-const auto ddgamt2213 = fd_2nd(gamt13, ijk, 2, 2);
-const auto ddgamt2222 = fd_2nd(gamt22, ijk, 2, 2);
-const auto ddgamt2223 = fd_2nd(gamt23, ijk, 2, 2);
-const auto ddgamt2233 = fd_2nd(gamt33, ijk, 2, 2);
-const auto ddgamt2311 = fd_2nd(gamt11, ijk, 2, 3);
-const auto ddgamt2312 = fd_2nd(gamt12, ijk, 2, 3);
-const auto ddgamt2313 = fd_2nd(gamt13, ijk, 2, 3);
-const auto ddgamt2322 = fd_2nd(gamt22, ijk, 2, 3);
-const auto ddgamt2323 = fd_2nd(gamt23, ijk, 2, 3);
-const auto ddgamt2333 = fd_2nd(gamt33, ijk, 2, 3);
-const auto ddgamt3311 = fd_2nd(gamt11, ijk, 3, 3);
-const auto ddgamt3312 = fd_2nd(gamt12, ijk, 3, 3);
-const auto ddgamt3313 = fd_2nd(gamt13, ijk, 3, 3);
-const auto ddgamt3322 = fd_2nd(gamt22, ijk, 3, 3);
-const auto ddgamt3323 = fd_2nd(gamt23, ijk, 3, 3);
-const auto ddgamt3333 = fd_2nd(gamt33, ijk, 3, 3);
-const auto ddalpha11 = fd_2nd(alpha, ijk, 1, 1);
-const auto ddalpha12 = fd_2nd(alpha, ijk, 1, 2);
-const auto ddalpha13 = fd_2nd(alpha, ijk, 1, 3);
-const auto ddalpha22 = fd_2nd(alpha, ijk, 2, 2);
-const auto ddalpha23 = fd_2nd(alpha, ijk, 2, 3);
-const auto ddalpha33 = fd_2nd(alpha, ijk, 3, 3);
-const auto ddbeta111 = fd_2nd(beta1, ijk, 1, 1);
-const auto ddbeta112 = fd_2nd(beta2, ijk, 1, 1);
-const auto ddbeta113 = fd_2nd(beta3, ijk, 1, 1);
-const auto ddbeta121 = fd_2nd(beta1, ijk, 1, 2);
-const auto ddbeta122 = fd_2nd(beta2, ijk, 1, 2);
-const auto ddbeta123 = fd_2nd(beta3, ijk, 1, 2);
-const auto ddbeta131 = fd_2nd(beta1, ijk, 1, 3);
-const auto ddbeta132 = fd_2nd(beta2, ijk, 1, 3);
-const auto ddbeta133 = fd_2nd(beta3, ijk, 1, 3);
-const auto ddbeta221 = fd_2nd(beta1, ijk, 2, 2);
-const auto ddbeta222 = fd_2nd(beta2, ijk, 2, 2);
-const auto ddbeta223 = fd_2nd(beta3, ijk, 2, 2);
-const auto ddbeta231 = fd_2nd(beta1, ijk, 2, 3);
-const auto ddbeta232 = fd_2nd(beta2, ijk, 2, 3);
-const auto ddbeta233 = fd_2nd(beta3, ijk, 2, 3);
-const auto ddbeta331 = fd_2nd(beta1, ijk, 3, 3);
-const auto ddbeta332 = fd_2nd(beta2, ijk, 3, 3);
-const auto ddbeta333 = fd_2nd(beta3, ijk, 3, 3);
+const auto dW1 = fd_1st(W, i, j, k, 1);
+const auto dW2 = fd_1st(W, i, j, k, 2);
+const auto dW3 = fd_1st(W, i, j, k, 3);
+const auto dgamt111 = fd_1st(gamt11, i, j, k, 1);
+const auto dgamt112 = fd_1st(gamt12, i, j, k, 1);
+const auto dgamt113 = fd_1st(gamt13, i, j, k, 1);
+const auto dgamt122 = fd_1st(gamt22, i, j, k, 1);
+const auto dgamt123 = fd_1st(gamt23, i, j, k, 1);
+const auto dgamt133 = fd_1st(gamt33, i, j, k, 1);
+const auto dgamt211 = fd_1st(gamt11, i, j, k, 2);
+const auto dgamt212 = fd_1st(gamt12, i, j, k, 2);
+const auto dgamt213 = fd_1st(gamt13, i, j, k, 2);
+const auto dgamt222 = fd_1st(gamt22, i, j, k, 2);
+const auto dgamt223 = fd_1st(gamt23, i, j, k, 2);
+const auto dgamt233 = fd_1st(gamt33, i, j, k, 2);
+const auto dgamt311 = fd_1st(gamt11, i, j, k, 3);
+const auto dgamt312 = fd_1st(gamt12, i, j, k, 3);
+const auto dgamt313 = fd_1st(gamt13, i, j, k, 3);
+const auto dgamt322 = fd_1st(gamt22, i, j, k, 3);
+const auto dgamt323 = fd_1st(gamt23, i, j, k, 3);
+const auto dgamt333 = fd_1st(gamt33, i, j, k, 3);
+const auto dexKh1 = fd_1st(exKh, i, j, k, 1);
+const auto dexKh2 = fd_1st(exKh, i, j, k, 2);
+const auto dexKh3 = fd_1st(exKh, i, j, k, 3);
+const auto dexAt111 = fd_1st(exAt11, i, j, k, 1);
+const auto dexAt112 = fd_1st(exAt12, i, j, k, 1);
+const auto dexAt113 = fd_1st(exAt13, i, j, k, 1);
+const auto dexAt122 = fd_1st(exAt22, i, j, k, 1);
+const auto dexAt123 = fd_1st(exAt23, i, j, k, 1);
+const auto dexAt133 = fd_1st(exAt33, i, j, k, 1);
+const auto dexAt211 = fd_1st(exAt11, i, j, k, 2);
+const auto dexAt212 = fd_1st(exAt12, i, j, k, 2);
+const auto dexAt213 = fd_1st(exAt13, i, j, k, 2);
+const auto dexAt222 = fd_1st(exAt22, i, j, k, 2);
+const auto dexAt223 = fd_1st(exAt23, i, j, k, 2);
+const auto dexAt233 = fd_1st(exAt33, i, j, k, 2);
+const auto dexAt311 = fd_1st(exAt11, i, j, k, 3);
+const auto dexAt312 = fd_1st(exAt12, i, j, k, 3);
+const auto dexAt313 = fd_1st(exAt13, i, j, k, 3);
+const auto dexAt322 = fd_1st(exAt22, i, j, k, 3);
+const auto dexAt323 = fd_1st(exAt23, i, j, k, 3);
+const auto dexAt333 = fd_1st(exAt33, i, j, k, 3);
+const auto dtrGt11 = fd_1st(trGt1, i, j, k, 1);
+const auto dtrGt12 = fd_1st(trGt2, i, j, k, 1);
+const auto dtrGt13 = fd_1st(trGt3, i, j, k, 1);
+const auto dtrGt21 = fd_1st(trGt1, i, j, k, 2);
+const auto dtrGt22 = fd_1st(trGt2, i, j, k, 2);
+const auto dtrGt23 = fd_1st(trGt3, i, j, k, 2);
+const auto dtrGt31 = fd_1st(trGt1, i, j, k, 3);
+const auto dtrGt32 = fd_1st(trGt2, i, j, k, 3);
+const auto dtrGt33 = fd_1st(trGt3, i, j, k, 3);
+const auto dTheta1 = fd_1st(Theta, i, j, k, 1);
+const auto dTheta2 = fd_1st(Theta, i, j, k, 2);
+const auto dTheta3 = fd_1st(Theta, i, j, k, 3);
+const auto dalpha1 = fd_1st(alpha, i, j, k, 1);
+const auto dalpha2 = fd_1st(alpha, i, j, k, 2);
+const auto dalpha3 = fd_1st(alpha, i, j, k, 3);
+const auto dbeta11 = fd_1st(beta1, i, j, k, 1);
+const auto dbeta12 = fd_1st(beta2, i, j, k, 1);
+const auto dbeta13 = fd_1st(beta3, i, j, k, 1);
+const auto dbeta21 = fd_1st(beta1, i, j, k, 2);
+const auto dbeta22 = fd_1st(beta2, i, j, k, 2);
+const auto dbeta23 = fd_1st(beta3, i, j, k, 2);
+const auto dbeta31 = fd_1st(beta1, i, j, k, 3);
+const auto dbeta32 = fd_1st(beta2, i, j, k, 3);
+const auto dbeta33 = fd_1st(beta3, i, j, k, 3);
+const auto ddW11 = fd_2nd(W, i, j, k, 1, 1);
+const auto ddW12 = fd_2nd(W, i, j, k, 1, 2);
+const auto ddW13 = fd_2nd(W, i, j, k, 1, 3);
+const auto ddW22 = fd_2nd(W, i, j, k, 2, 2);
+const auto ddW23 = fd_2nd(W, i, j, k, 2, 3);
+const auto ddW33 = fd_2nd(W, i, j, k, 3, 3);
+const auto ddgamt1111 = fd_2nd(gamt11, i, j, k, 1, 1);
+const auto ddgamt1112 = fd_2nd(gamt12, i, j, k, 1, 1);
+const auto ddgamt1113 = fd_2nd(gamt13, i, j, k, 1, 1);
+const auto ddgamt1122 = fd_2nd(gamt22, i, j, k, 1, 1);
+const auto ddgamt1123 = fd_2nd(gamt23, i, j, k, 1, 1);
+const auto ddgamt1133 = fd_2nd(gamt33, i, j, k, 1, 1);
+const auto ddgamt1211 = fd_2nd(gamt11, i, j, k, 1, 2);
+const auto ddgamt1212 = fd_2nd(gamt12, i, j, k, 1, 2);
+const auto ddgamt1213 = fd_2nd(gamt13, i, j, k, 1, 2);
+const auto ddgamt1222 = fd_2nd(gamt22, i, j, k, 1, 2);
+const auto ddgamt1223 = fd_2nd(gamt23, i, j, k, 1, 2);
+const auto ddgamt1233 = fd_2nd(gamt33, i, j, k, 1, 2);
+const auto ddgamt1311 = fd_2nd(gamt11, i, j, k, 1, 3);
+const auto ddgamt1312 = fd_2nd(gamt12, i, j, k, 1, 3);
+const auto ddgamt1313 = fd_2nd(gamt13, i, j, k, 1, 3);
+const auto ddgamt1322 = fd_2nd(gamt22, i, j, k, 1, 3);
+const auto ddgamt1323 = fd_2nd(gamt23, i, j, k, 1, 3);
+const auto ddgamt1333 = fd_2nd(gamt33, i, j, k, 1, 3);
+const auto ddgamt2211 = fd_2nd(gamt11, i, j, k, 2, 2);
+const auto ddgamt2212 = fd_2nd(gamt12, i, j, k, 2, 2);
+const auto ddgamt2213 = fd_2nd(gamt13, i, j, k, 2, 2);
+const auto ddgamt2222 = fd_2nd(gamt22, i, j, k, 2, 2);
+const auto ddgamt2223 = fd_2nd(gamt23, i, j, k, 2, 2);
+const auto ddgamt2233 = fd_2nd(gamt33, i, j, k, 2, 2);
+const auto ddgamt2311 = fd_2nd(gamt11, i, j, k, 2, 3);
+const auto ddgamt2312 = fd_2nd(gamt12, i, j, k, 2, 3);
+const auto ddgamt2313 = fd_2nd(gamt13, i, j, k, 2, 3);
+const auto ddgamt2322 = fd_2nd(gamt22, i, j, k, 2, 3);
+const auto ddgamt2323 = fd_2nd(gamt23, i, j, k, 2, 3);
+const auto ddgamt2333 = fd_2nd(gamt33, i, j, k, 2, 3);
+const auto ddgamt3311 = fd_2nd(gamt11, i, j, k, 3, 3);
+const auto ddgamt3312 = fd_2nd(gamt12, i, j, k, 3, 3);
+const auto ddgamt3313 = fd_2nd(gamt13, i, j, k, 3, 3);
+const auto ddgamt3322 = fd_2nd(gamt22, i, j, k, 3, 3);
+const auto ddgamt3323 = fd_2nd(gamt23, i, j, k, 3, 3);
+const auto ddgamt3333 = fd_2nd(gamt33, i, j, k, 3, 3);
+const auto ddalpha11 = fd_2nd(alpha, i, j, k, 1, 1);
+const auto ddalpha12 = fd_2nd(alpha, i, j, k, 1, 2);
+const auto ddalpha13 = fd_2nd(alpha, i, j, k, 1, 3);
+const auto ddalpha22 = fd_2nd(alpha, i, j, k, 2, 2);
+const auto ddalpha23 = fd_2nd(alpha, i, j, k, 2, 3);
+const auto ddalpha33 = fd_2nd(alpha, i, j, k, 3, 3);
+const auto ddbeta111 = fd_2nd(beta1, i, j, k, 1, 1);
+const auto ddbeta112 = fd_2nd(beta2, i, j, k, 1, 1);
+const auto ddbeta113 = fd_2nd(beta3, i, j, k, 1, 1);
+const auto ddbeta121 = fd_2nd(beta1, i, j, k, 1, 2);
+const auto ddbeta122 = fd_2nd(beta2, i, j, k, 1, 2);
+const auto ddbeta123 = fd_2nd(beta3, i, j, k, 1, 2);
+const auto ddbeta131 = fd_2nd(beta1, i, j, k, 1, 3);
+const auto ddbeta132 = fd_2nd(beta2, i, j, k, 1, 3);
+const auto ddbeta133 = fd_2nd(beta3, i, j, k, 1, 3);
+const auto ddbeta221 = fd_2nd(beta1, i, j, k, 2, 2);
+const auto ddbeta222 = fd_2nd(beta2, i, j, k, 2, 2);
+const auto ddbeta223 = fd_2nd(beta3, i, j, k, 2, 2);
+const auto ddbeta231 = fd_2nd(beta1, i, j, k, 2, 3);
+const auto ddbeta232 = fd_2nd(beta2, i, j, k, 2, 3);
+const auto ddbeta233 = fd_2nd(beta3, i, j, k, 2, 3);
+const auto ddbeta331 = fd_2nd(beta1, i, j, k, 3, 3);
+const auto ddbeta332 = fd_2nd(beta2, i, j, k, 3, 3);
+const auto ddbeta333 = fd_2nd(beta3, i, j, k, 3, 3);
 
-auto dlnW1
+const auto
+dlnW1
 =
 dW1/W[ijk]
 ;
 
-auto dlnW2
+const auto
+dlnW2
 =
 dW2/W[ijk]
 ;
 
-auto dlnW3
+const auto
+dlnW3
 =
 dW3/W[ijk]
 ;
 
-auto invgamt11
+const auto
+invgamt11
 =
 -Power(gamt23[ijk],2) + gamt22[ijk]*gamt33[ijk]
 ;
 
-auto invgamt12
+const auto
+invgamt12
 =
 gamt13[ijk]*gamt23[ijk] - gamt12[ijk]*gamt33[ijk]
 ;
 
-auto invgamt13
+const auto
+invgamt13
 =
 -(gamt13[ijk]*gamt22[ijk]) + gamt12[ijk]*gamt23[ijk]
 ;
 
-auto invgamt22
+const auto
+invgamt22
 =
 -Power(gamt13[ijk],2) + gamt11[ijk]*gamt33[ijk]
 ;
 
-auto invgamt23
+const auto
+invgamt23
 =
 gamt12[ijk]*gamt13[ijk] - gamt11[ijk]*gamt23[ijk]
 ;
 
-auto invgamt33
+const auto
+invgamt33
 =
 -Power(gamt12[ijk],2) + gamt11[ijk]*gamt22[ijk]
 ;
 
-auto invgam11
+const auto
+invgam11
 =
 invgamt11*Power(W[ijk],2)
 ;
 
-auto invgam12
+const auto
+invgam12
 =
 invgamt12*Power(W[ijk],2)
 ;
 
-auto invgam13
+const auto
+invgam13
 =
 invgamt13*Power(W[ijk],2)
 ;
 
-auto invgam22
+const auto
+invgam22
 =
 invgamt22*Power(W[ijk],2)
 ;
 
-auto invgam23
+const auto
+invgam23
 =
 invgamt23*Power(W[ijk],2)
 ;
 
-auto invgam33
+const auto
+invgam33
 =
 invgamt33*Power(W[ijk],2)
 ;
 
-auto gam11
+const auto
+gam11
 =
 gamt11[ijk]/Power(W[ijk],2)
 ;
 
-auto gam12
+const auto
+gam12
 =
 gamt12[ijk]/Power(W[ijk],2)
 ;
 
-auto gam13
+const auto
+gam13
 =
 gamt13[ijk]/Power(W[ijk],2)
 ;
 
-auto gam22
+const auto
+gam22
 =
 gamt22[ijk]/Power(W[ijk],2)
 ;
 
-auto gam23
+const auto
+gam23
 =
 gamt23[ijk]/Power(W[ijk],2)
 ;
 
-auto gam33
+const auto
+gam33
 =
 gamt33[ijk]/Power(W[ijk],2)
 ;
 
-auto GtDDD111
+const auto
+GtDDD111
 =
 dgamt111/2.
 ;
 
-auto GtDDD112
+const auto
+GtDDD112
 =
 dgamt211/2.
 ;
 
-auto GtDDD113
+const auto
+GtDDD113
 =
 dgamt311/2.
 ;
 
-auto GtDDD122
+const auto
+GtDDD122
 =
 -0.5*dgamt122 + dgamt212
 ;
 
-auto GtDDD123
+const auto
+GtDDD123
 =
 (-dgamt123 + dgamt213 + dgamt312)/2.
 ;
 
-auto GtDDD133
+const auto
+GtDDD133
 =
 -0.5*dgamt133 + dgamt313
 ;
 
-auto GtDDD211
+const auto
+GtDDD211
 =
 dgamt112 - dgamt211/2.
 ;
 
-auto GtDDD212
+const auto
+GtDDD212
 =
 dgamt122/2.
 ;
 
-auto GtDDD213
+const auto
+GtDDD213
 =
 (dgamt123 - dgamt213 + dgamt312)/2.
 ;
 
-auto GtDDD222
+const auto
+GtDDD222
 =
 dgamt222/2.
 ;
 
-auto GtDDD223
+const auto
+GtDDD223
 =
 dgamt322/2.
 ;
 
-auto GtDDD233
+const auto
+GtDDD233
 =
 -0.5*dgamt233 + dgamt323
 ;
 
-auto GtDDD311
+const auto
+GtDDD311
 =
 dgamt113 - dgamt311/2.
 ;
 
-auto GtDDD312
+const auto
+GtDDD312
 =
 (dgamt123 + dgamt213 - dgamt312)/2.
 ;
 
-auto GtDDD313
+const auto
+GtDDD313
 =
 dgamt133/2.
 ;
 
-auto GtDDD322
+const auto
+GtDDD322
 =
 dgamt223 - dgamt322/2.
 ;
 
-auto GtDDD323
+const auto
+GtDDD323
 =
 dgamt233/2.
 ;
 
-auto GtDDD333
+const auto
+GtDDD333
 =
 dgamt333/2.
 ;
 
-auto GtDDU111
+const auto
+GtDDU111
 =
 GtDDD111*invgamt11 + GtDDD112*invgamt12 + GtDDD113*invgamt13
 ;
 
-auto GtDDU112
+const auto
+GtDDU112
 =
 GtDDD111*invgamt12 + GtDDD112*invgamt22 + GtDDD113*invgamt23
 ;
 
-auto GtDDU113
+const auto
+GtDDU113
 =
 GtDDD111*invgamt13 + GtDDD112*invgamt23 + GtDDD113*invgamt33
 ;
 
-auto GtDDU121
+const auto
+GtDDU121
 =
 GtDDD112*invgamt11 + GtDDD122*invgamt12 + GtDDD123*invgamt13
 ;
 
-auto GtDDU122
+const auto
+GtDDU122
 =
 GtDDD112*invgamt12 + GtDDD122*invgamt22 + GtDDD123*invgamt23
 ;
 
-auto GtDDU123
+const auto
+GtDDU123
 =
 GtDDD112*invgamt13 + GtDDD122*invgamt23 + GtDDD123*invgamt33
 ;
 
-auto GtDDU131
+const auto
+GtDDU131
 =
 GtDDD113*invgamt11 + GtDDD123*invgamt12 + GtDDD133*invgamt13
 ;
 
-auto GtDDU132
+const auto
+GtDDU132
 =
 GtDDD113*invgamt12 + GtDDD123*invgamt22 + GtDDD133*invgamt23
 ;
 
-auto GtDDU133
+const auto
+GtDDU133
 =
 GtDDD113*invgamt13 + GtDDD123*invgamt23 + GtDDD133*invgamt33
 ;
 
-auto GtDDU211
+const auto
+GtDDU211
 =
 GtDDD211*invgamt11 + GtDDD212*invgamt12 + GtDDD213*invgamt13
 ;
 
-auto GtDDU212
+const auto
+GtDDU212
 =
 GtDDD211*invgamt12 + GtDDD212*invgamt22 + GtDDD213*invgamt23
 ;
 
-auto GtDDU213
+const auto
+GtDDU213
 =
 GtDDD211*invgamt13 + GtDDD212*invgamt23 + GtDDD213*invgamt33
 ;
 
-auto GtDDU221
+const auto
+GtDDU221
 =
 GtDDD212*invgamt11 + GtDDD222*invgamt12 + GtDDD223*invgamt13
 ;
 
-auto GtDDU222
+const auto
+GtDDU222
 =
 GtDDD212*invgamt12 + GtDDD222*invgamt22 + GtDDD223*invgamt23
 ;
 
-auto GtDDU223
+const auto
+GtDDU223
 =
 GtDDD212*invgamt13 + GtDDD222*invgamt23 + GtDDD223*invgamt33
 ;
 
-auto GtDDU231
+const auto
+GtDDU231
 =
 GtDDD213*invgamt11 + GtDDD223*invgamt12 + GtDDD233*invgamt13
 ;
 
-auto GtDDU232
+const auto
+GtDDU232
 =
 GtDDD213*invgamt12 + GtDDD223*invgamt22 + GtDDD233*invgamt23
 ;
 
-auto GtDDU233
+const auto
+GtDDU233
 =
 GtDDD213*invgamt13 + GtDDD223*invgamt23 + GtDDD233*invgamt33
 ;
 
-auto GtDDU311
+const auto
+GtDDU311
 =
 GtDDD311*invgamt11 + GtDDD312*invgamt12 + GtDDD313*invgamt13
 ;
 
-auto GtDDU312
+const auto
+GtDDU312
 =
 GtDDD311*invgamt12 + GtDDD312*invgamt22 + GtDDD313*invgamt23
 ;
 
-auto GtDDU313
+const auto
+GtDDU313
 =
 GtDDD311*invgamt13 + GtDDD312*invgamt23 + GtDDD313*invgamt33
 ;
 
-auto GtDDU321
+const auto
+GtDDU321
 =
 GtDDD312*invgamt11 + GtDDD322*invgamt12 + GtDDD323*invgamt13
 ;
 
-auto GtDDU322
+const auto
+GtDDU322
 =
 GtDDD312*invgamt12 + GtDDD322*invgamt22 + GtDDD323*invgamt23
 ;
 
-auto GtDDU323
+const auto
+GtDDU323
 =
 GtDDD312*invgamt13 + GtDDD322*invgamt23 + GtDDD323*invgamt33
 ;
 
-auto GtDDU331
+const auto
+GtDDU331
 =
 GtDDD313*invgamt11 + GtDDD323*invgamt12 + GtDDD333*invgamt13
 ;
 
-auto GtDDU332
+const auto
+GtDDU332
 =
 GtDDD313*invgamt12 + GtDDD323*invgamt22 + GtDDD333*invgamt23
 ;
 
-auto GtDDU333
+const auto
+GtDDU333
 =
 GtDDD313*invgamt13 + GtDDD323*invgamt23 + GtDDD333*invgamt33
 ;
 
-auto Gt111
+const auto
+Gt111
 =
 GtDDD111*invgamt11 + GtDDD211*invgamt12 + GtDDD311*invgamt13
 ;
 
-auto Gt112
+const auto
+Gt112
 =
 GtDDD112*invgamt11 + GtDDD212*invgamt12 + GtDDD312*invgamt13
 ;
 
-auto Gt113
+const auto
+Gt113
 =
 GtDDD113*invgamt11 + GtDDD213*invgamt12 + GtDDD313*invgamt13
 ;
 
-auto Gt122
+const auto
+Gt122
 =
 GtDDD122*invgamt11 + GtDDD222*invgamt12 + GtDDD322*invgamt13
 ;
 
-auto Gt123
+const auto
+Gt123
 =
 GtDDD123*invgamt11 + GtDDD223*invgamt12 + GtDDD323*invgamt13
 ;
 
-auto Gt133
+const auto
+Gt133
 =
 GtDDD133*invgamt11 + GtDDD233*invgamt12 + GtDDD333*invgamt13
 ;
 
-auto Gt211
+const auto
+Gt211
 =
 GtDDD111*invgamt12 + GtDDD211*invgamt22 + GtDDD311*invgamt23
 ;
 
-auto Gt212
+const auto
+Gt212
 =
 GtDDD112*invgamt12 + GtDDD212*invgamt22 + GtDDD312*invgamt23
 ;
 
-auto Gt213
+const auto
+Gt213
 =
 GtDDD113*invgamt12 + GtDDD213*invgamt22 + GtDDD313*invgamt23
 ;
 
-auto Gt222
+const auto
+Gt222
 =
 GtDDD122*invgamt12 + GtDDD222*invgamt22 + GtDDD322*invgamt23
 ;
 
-auto Gt223
+const auto
+Gt223
 =
 GtDDD123*invgamt12 + GtDDD223*invgamt22 + GtDDD323*invgamt23
 ;
 
-auto Gt233
+const auto
+Gt233
 =
 GtDDD133*invgamt12 + GtDDD233*invgamt22 + GtDDD333*invgamt23
 ;
 
-auto Gt311
+const auto
+Gt311
 =
 GtDDD111*invgamt13 + GtDDD211*invgamt23 + GtDDD311*invgamt33
 ;
 
-auto Gt312
+const auto
+Gt312
 =
 GtDDD112*invgamt13 + GtDDD212*invgamt23 + GtDDD312*invgamt33
 ;
 
-auto Gt313
+const auto
+Gt313
 =
 GtDDD113*invgamt13 + GtDDD213*invgamt23 + GtDDD313*invgamt33
 ;
 
-auto Gt322
+const auto
+Gt322
 =
 GtDDD122*invgamt13 + GtDDD222*invgamt23 + GtDDD322*invgamt33
 ;
 
-auto Gt323
+const auto
+Gt323
 =
 GtDDD123*invgamt13 + GtDDD223*invgamt23 + GtDDD323*invgamt33
 ;
 
-auto Gt333
+const auto
+Gt333
 =
 GtDDD133*invgamt13 + GtDDD233*invgamt23 + GtDDD333*invgamt33
 ;
 
-auto trGtd1
+const auto
+trGtd1
 =
 Gt111*invgamt11 + 2*Gt112*invgamt12 + 2*Gt113*invgamt13 + Gt122*invgamt22 +
   2*Gt123*invgamt23 + Gt133*invgamt33
 ;
 
-auto trGtd2
+const auto
+trGtd2
 =
 Gt211*invgamt11 + 2*Gt212*invgamt12 + 2*Gt213*invgamt13 + Gt222*invgamt22 +
   2*Gt223*invgamt23 + Gt233*invgamt33
 ;
 
-auto trGtd3
+const auto
+trGtd3
 =
 Gt311*invgamt11 + 2*Gt312*invgamt12 + 2*Gt313*invgamt13 + Gt322*invgamt22 +
   2*Gt323*invgamt23 + Gt333*invgamt33
 ;
 
-auto dgam111
+const auto
+dgam111
 =
 (dgamt111 - 2*dlnW1*gamt11[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam112
+const auto
+dgam112
 =
 (dgamt112 - 2*dlnW1*gamt12[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam113
+const auto
+dgam113
 =
 (dgamt113 - 2*dlnW1*gamt13[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam122
+const auto
+dgam122
 =
 (dgamt122 - 2*dlnW1*gamt22[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam123
+const auto
+dgam123
 =
 (dgamt123 - 2*dlnW1*gamt23[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam133
+const auto
+dgam133
 =
 (dgamt133 - 2*dlnW1*gamt33[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam211
+const auto
+dgam211
 =
 (dgamt211 - 2*dlnW2*gamt11[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam212
+const auto
+dgam212
 =
 (dgamt212 - 2*dlnW2*gamt12[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam213
+const auto
+dgam213
 =
 (dgamt213 - 2*dlnW2*gamt13[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam222
+const auto
+dgam222
 =
 (dgamt222 - 2*dlnW2*gamt22[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam223
+const auto
+dgam223
 =
 (dgamt223 - 2*dlnW2*gamt23[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam233
+const auto
+dgam233
 =
 (dgamt233 - 2*dlnW2*gamt33[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam311
+const auto
+dgam311
 =
 (dgamt311 - 2*dlnW3*gamt11[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam312
+const auto
+dgam312
 =
 (dgamt312 - 2*dlnW3*gamt12[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam313
+const auto
+dgam313
 =
 (dgamt313 - 2*dlnW3*gamt13[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam322
+const auto
+dgam322
 =
 (dgamt322 - 2*dlnW3*gamt22[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam323
+const auto
+dgam323
 =
 (dgamt323 - 2*dlnW3*gamt23[ijk])/Power(W[ijk],2)
 ;
 
-auto dgam333
+const auto
+dgam333
 =
 (dgamt333 - 2*dlnW3*gamt33[ijk])/Power(W[ijk],2)
 ;
 
-auto GamDDD111
+const auto
+GamDDD111
 =
 dgam111/2.
 ;
 
-auto GamDDD112
+const auto
+GamDDD112
 =
 dgam211/2.
 ;
 
-auto GamDDD113
+const auto
+GamDDD113
 =
 dgam311/2.
 ;
 
-auto GamDDD122
+const auto
+GamDDD122
 =
 -0.5*dgam122 + dgam212
 ;
 
-auto GamDDD123
+const auto
+GamDDD123
 =
 (-dgam123 + dgam213 + dgam312)/2.
 ;
 
-auto GamDDD133
+const auto
+GamDDD133
 =
 -0.5*dgam133 + dgam313
 ;
 
-auto GamDDD211
+const auto
+GamDDD211
 =
 dgam112 - dgam211/2.
 ;
 
-auto GamDDD212
+const auto
+GamDDD212
 =
 dgam122/2.
 ;
 
-auto GamDDD213
+const auto
+GamDDD213
 =
 (dgam123 - dgam213 + dgam312)/2.
 ;
 
-auto GamDDD222
+const auto
+GamDDD222
 =
 dgam222/2.
 ;
 
-auto GamDDD223
+const auto
+GamDDD223
 =
 dgam322/2.
 ;
 
-auto GamDDD233
+const auto
+GamDDD233
 =
 -0.5*dgam233 + dgam323
 ;
 
-auto GamDDD311
+const auto
+GamDDD311
 =
 dgam113 - dgam311/2.
 ;
 
-auto GamDDD312
+const auto
+GamDDD312
 =
 (dgam123 + dgam213 - dgam312)/2.
 ;
 
-auto GamDDD313
+const auto
+GamDDD313
 =
 dgam133/2.
 ;
 
-auto GamDDD322
+const auto
+GamDDD322
 =
 dgam223 - dgam322/2.
 ;
 
-auto GamDDD323
+const auto
+GamDDD323
 =
 dgam233/2.
 ;
 
-auto GamDDD333
+const auto
+GamDDD333
 =
 dgam333/2.
 ;
 
-auto Gam111
+const auto
+Gam111
 =
 GamDDD111*invgam11 + GamDDD211*invgam12 + GamDDD311*invgam13
 ;
 
-auto Gam112
+const auto
+Gam112
 =
 GamDDD112*invgam11 + GamDDD212*invgam12 + GamDDD312*invgam13
 ;
 
-auto Gam113
+const auto
+Gam113
 =
 GamDDD113*invgam11 + GamDDD213*invgam12 + GamDDD313*invgam13
 ;
 
-auto Gam122
+const auto
+Gam122
 =
 GamDDD122*invgam11 + GamDDD222*invgam12 + GamDDD322*invgam13
 ;
 
-auto Gam123
+const auto
+Gam123
 =
 GamDDD123*invgam11 + GamDDD223*invgam12 + GamDDD323*invgam13
 ;
 
-auto Gam133
+const auto
+Gam133
 =
 GamDDD133*invgam11 + GamDDD233*invgam12 + GamDDD333*invgam13
 ;
 
-auto Gam211
+const auto
+Gam211
 =
 GamDDD111*invgam12 + GamDDD211*invgam22 + GamDDD311*invgam23
 ;
 
-auto Gam212
+const auto
+Gam212
 =
 GamDDD112*invgam12 + GamDDD212*invgam22 + GamDDD312*invgam23
 ;
 
-auto Gam213
+const auto
+Gam213
 =
 GamDDD113*invgam12 + GamDDD213*invgam22 + GamDDD313*invgam23
 ;
 
-auto Gam222
+const auto
+Gam222
 =
 GamDDD122*invgam12 + GamDDD222*invgam22 + GamDDD322*invgam23
 ;
 
-auto Gam223
+const auto
+Gam223
 =
 GamDDD123*invgam12 + GamDDD223*invgam22 + GamDDD323*invgam23
 ;
 
-auto Gam233
+const auto
+Gam233
 =
 GamDDD133*invgam12 + GamDDD233*invgam22 + GamDDD333*invgam23
 ;
 
-auto Gam311
+const auto
+Gam311
 =
 GamDDD111*invgam13 + GamDDD211*invgam23 + GamDDD311*invgam33
 ;
 
-auto Gam312
+const auto
+Gam312
 =
 GamDDD112*invgam13 + GamDDD212*invgam23 + GamDDD312*invgam33
 ;
 
-auto Gam313
+const auto
+Gam313
 =
 GamDDD113*invgam13 + GamDDD213*invgam23 + GamDDD313*invgam33
 ;
 
-auto Gam322
+const auto
+Gam322
 =
 GamDDD122*invgam13 + GamDDD222*invgam23 + GamDDD322*invgam33
 ;
 
-auto Gam323
+const auto
+Gam323
 =
 GamDDD123*invgam13 + GamDDD223*invgam23 + GamDDD323*invgam33
 ;
 
-auto Gam333
+const auto
+Gam333
 =
 GamDDD133*invgam13 + GamDDD233*invgam23 + GamDDD333*invgam33
 ;
 
-auto exAtUU11
+const auto
+exAtUU11
 =
 Power(invgamt11,2)*exAt11[ijk] + 2*invgamt11*invgamt12*exAt12[ijk] +
   2*invgamt11*invgamt13*exAt13[ijk] + Power(invgamt12,2)*exAt22[ijk] +
   2*invgamt12*invgamt13*exAt23[ijk] + Power(invgamt13,2)*exAt33[ijk]
 ;
 
-auto exAtUU12
+const auto
+exAtUU12
 =
 invgamt11*invgamt12*exAt11[ijk] +
   (Power(invgamt12,2) + invgamt11*invgamt22)*exAt12[ijk] +
@@ -866,7 +1009,8 @@ invgamt11*invgamt12*exAt11[ijk] +
   invgamt12*invgamt23*exAt23[ijk] + invgamt13*invgamt23*exAt33[ijk]
 ;
 
-auto exAtUU13
+const auto
+exAtUU13
 =
 invgamt11*invgamt13*exAt11[ijk] +
   (invgamt12*invgamt13 + invgamt11*invgamt23)*exAt12[ijk] +
@@ -875,14 +1019,16 @@ invgamt11*invgamt13*exAt11[ijk] +
   invgamt12*invgamt33*exAt23[ijk] + invgamt13*invgamt33*exAt33[ijk]
 ;
 
-auto exAtUU22
+const auto
+exAtUU22
 =
 Power(invgamt12,2)*exAt11[ijk] + 2*invgamt12*invgamt22*exAt12[ijk] +
   2*invgamt12*invgamt23*exAt13[ijk] + Power(invgamt22,2)*exAt22[ijk] +
   2*invgamt22*invgamt23*exAt23[ijk] + Power(invgamt23,2)*exAt33[ijk]
 ;
 
-auto exAtUU23
+const auto
+exAtUU23
 =
 invgamt12*invgamt13*exAt11[ijk] +
   (invgamt13*invgamt22 + invgamt12*invgamt23)*exAt12[ijk] +
@@ -891,74 +1037,88 @@ invgamt12*invgamt13*exAt11[ijk] +
   invgamt22*invgamt33*exAt23[ijk] + invgamt23*invgamt33*exAt33[ijk]
 ;
 
-auto exAtUU33
+const auto
+exAtUU33
 =
 Power(invgamt13,2)*exAt11[ijk] + 2*invgamt13*invgamt23*exAt12[ijk] +
   2*invgamt13*invgamt33*exAt13[ijk] + Power(invgamt23,2)*exAt22[ijk] +
   2*invgamt23*invgamt33*exAt23[ijk] + Power(invgamt33,2)*exAt33[ijk]
 ;
 
-auto tDtDW11
+const auto
+tDtDW11
 =
 ddW11 - dW1*Gt111 - dW2*Gt211 - dW3*Gt311
 ;
 
-auto tDtDW12
+const auto
+tDtDW12
 =
 ddW12 - dW1*Gt112 - dW2*Gt212 - dW3*Gt312
 ;
 
-auto tDtDW13
+const auto
+tDtDW13
 =
 ddW13 - dW1*Gt113 - dW2*Gt213 - dW3*Gt313
 ;
 
-auto tDtDW22
+const auto
+tDtDW22
 =
 ddW22 - dW1*Gt122 - dW2*Gt222 - dW3*Gt322
 ;
 
-auto tDtDW23
+const auto
+tDtDW23
 =
 ddW23 - dW1*Gt123 - dW2*Gt223 - dW3*Gt323
 ;
 
-auto tDtDW33
+const auto
+tDtDW33
 =
 ddW33 - dW1*Gt133 - dW2*Gt233 - dW3*Gt333
 ;
 
-auto DDalpha11
+const auto
+DDalpha11
 =
 ddalpha11 - dalpha1*Gam111 - dalpha2*Gam211 - dalpha3*Gam311
 ;
 
-auto DDalpha12
+const auto
+DDalpha12
 =
 ddalpha12 - dalpha1*Gam112 - dalpha2*Gam212 - dalpha3*Gam312
 ;
 
-auto DDalpha13
+const auto
+DDalpha13
 =
 ddalpha13 - dalpha1*Gam113 - dalpha2*Gam213 - dalpha3*Gam313
 ;
 
-auto DDalpha22
+const auto
+DDalpha22
 =
 ddalpha22 - dalpha1*Gam122 - dalpha2*Gam222 - dalpha3*Gam322
 ;
 
-auto DDalpha23
+const auto
+DDalpha23
 =
 ddalpha23 - dalpha1*Gam123 - dalpha2*Gam223 - dalpha3*Gam323
 ;
 
-auto DDalpha33
+const auto
+DDalpha33
 =
 ddalpha33 - dalpha1*Gam133 - dalpha2*Gam233 - dalpha3*Gam333
 ;
 
-auto RtW11
+const auto
+RtW11
 =
 (tDtDW11 + gamt11[ijk]*(invgamt11*tDtDW11 + 2*invgamt12*tDtDW12 +
        2*invgamt13*tDtDW13 + invgamt22*tDtDW22 + 2*invgamt23*tDtDW23 +
@@ -968,7 +1128,8 @@ auto RtW11
           Power(dlnW3,2)*invgamt33)*W[ijk]))/W[ijk]
 ;
 
-auto RtW12
+const auto
+RtW12
 =
 (tDtDW12 + gamt12[ijk]*(invgamt11*tDtDW11 + 2*invgamt12*tDtDW12 +
        2*invgamt13*tDtDW13 + invgamt22*tDtDW22 + 2*invgamt23*tDtDW23 +
@@ -978,7 +1139,8 @@ auto RtW12
           Power(dlnW3,2)*invgamt33)*W[ijk]))/W[ijk]
 ;
 
-auto RtW13
+const auto
+RtW13
 =
 (tDtDW13 + gamt13[ijk]*(invgamt11*tDtDW11 + 2*invgamt12*tDtDW12 +
        2*invgamt13*tDtDW13 + invgamt22*tDtDW22 + 2*invgamt23*tDtDW23 +
@@ -988,7 +1150,8 @@ auto RtW13
           Power(dlnW3,2)*invgamt33)*W[ijk]))/W[ijk]
 ;
 
-auto RtW22
+const auto
+RtW22
 =
 (tDtDW22 + gamt22[ijk]*(invgamt11*tDtDW11 + 2*invgamt12*tDtDW12 +
        2*invgamt13*tDtDW13 + invgamt22*tDtDW22 + 2*invgamt23*tDtDW23 +
@@ -998,7 +1161,8 @@ auto RtW22
           Power(dlnW3,2)*invgamt33)*W[ijk]))/W[ijk]
 ;
 
-auto RtW23
+const auto
+RtW23
 =
 (tDtDW23 + gamt23[ijk]*(invgamt11*tDtDW11 + 2*invgamt12*tDtDW12 +
        2*invgamt13*tDtDW13 + invgamt22*tDtDW22 + 2*invgamt23*tDtDW23 +
@@ -1008,7 +1172,8 @@ auto RtW23
           Power(dlnW3,2)*invgamt33)*W[ijk]))/W[ijk]
 ;
 
-auto RtW33
+const auto
+RtW33
 =
 (tDtDW33 + gamt33[ijk]*(invgamt11*tDtDW11 + 2*invgamt12*tDtDW12 +
        2*invgamt13*tDtDW13 + invgamt22*tDtDW22 + 2*invgamt23*tDtDW23 +
@@ -1018,7 +1183,8 @@ auto RtW33
           Power(dlnW3,2)*invgamt33)*W[ijk]))/W[ijk]
 ;
 
-auto Rt11
+const auto
+Rt11
 =
 3*Gt111*GtDDU111 + 3*Gt112*GtDDU112 + 3*Gt113*GtDDU113 + 2*Gt211*GtDDU121 +
   2*Gt212*GtDDU122 + 2*Gt213*GtDDU123 + 2*Gt311*GtDDU131 +
@@ -1031,7 +1197,8 @@ auto Rt11
   dtrGt13*gamt13[ijk]
 ;
 
-auto Rt12
+const auto
+Rt12
 =
 (2*Gt112*GtDDU111 + 2*Gt122*GtDDU112 + 2*Gt123*GtDDU113 +
     2*Gt111*GtDDU121 + 2*Gt212*GtDDU121 + 2*Gt112*GtDDU122 +
@@ -1050,7 +1217,8 @@ auto Rt12
     dtrGt12*gamt22[ijk] + dtrGt13*gamt23[ijk])/2.
 ;
 
-auto Rt13
+const auto
+Rt13
 =
 (2*Gt113*GtDDU111 + 2*Gt123*GtDDU112 + 2*Gt133*GtDDU113 +
     2*Gt213*GtDDU121 + 2*Gt223*GtDDU122 + 2*Gt233*GtDDU123 +
@@ -1069,7 +1237,8 @@ auto Rt13
     dtrGt13*gamt33[ijk])/2.
 ;
 
-auto Rt22
+const auto
+Rt22
 =
 Gt112*GtDDU121 + Gt122*GtDDU122 + Gt123*GtDDU123 + 2*Gt112*GtDDU211 +
   2*Gt122*GtDDU212 + 2*Gt123*GtDDU213 + 3*Gt212*GtDDU221 +
@@ -1082,7 +1251,8 @@ Gt112*GtDDU121 + Gt122*GtDDU122 + Gt123*GtDDU123 + 2*Gt112*GtDDU211 +
   dtrGt23*gamt23[ijk]
 ;
 
-auto Rt23
+const auto
+Rt23
 =
 (2*Gt112*GtDDU131 + 2*Gt122*GtDDU132 + 2*Gt123*GtDDU133 +
     2*Gt113*GtDDU211 + 2*Gt123*GtDDU212 + 2*Gt133*GtDDU213 +
@@ -1101,7 +1271,8 @@ auto Rt23
     dtrGt23*gamt33[ijk])/2.
 ;
 
-auto Rt33
+const auto
+Rt33
 =
 Gt113*GtDDU131 + Gt123*GtDDU132 + Gt133*GtDDU133 + Gt213*GtDDU231 +
   Gt223*GtDDU232 + Gt233*GtDDU233 + 2*Gt113*GtDDU311 + 2*Gt123*GtDDU312 +
@@ -1114,43 +1285,51 @@ Gt113*GtDDU131 + Gt123*GtDDU132 + Gt133*GtDDU133 + Gt213*GtDDU231 +
   dtrGt33*gamt33[ijk]
 ;
 
-auto R11
+const auto
+R11
 =
 Rt11 + RtW11
 ;
 
-auto R12
+const auto
+R12
 =
 Rt12 + RtW12
 ;
 
-auto R13
+const auto
+R13
 =
 Rt13 + RtW13
 ;
 
-auto R22
+const auto
+R22
 =
 Rt22 + RtW22
 ;
 
-auto R23
+const auto
+R23
 =
 Rt23 + RtW23
 ;
 
-auto R33
+const auto
+R33
 =
 Rt33 + RtW33
 ;
 
-auto trR
+const auto
+trR
 =
 invgam11*R11 + 2*invgam12*R12 + 2*invgam13*R13 + invgam22*R22 +
   2*invgam23*R23 + invgam33*R33
 ;
 
-auto rho
+const auto
+rho
 =
 (Power(beta1[ijk],2)*eT11[ijk] + Power(beta2[ijk],2)*eT22[ijk] +
     Power(beta3[ijk],2)*eT33[ijk] +
@@ -1159,55 +1338,65 @@ auto rho
     2*beta3[ijk]*eTt3[ijk] + eTtt[ijk])/Power(alpha[ijk],2)
 ;
 
-auto Sm1
+const auto
+Sm1
 =
 (beta1[ijk]*eT11[ijk] + beta2[ijk]*eT12[ijk] + beta3[ijk]*eT13[ijk] -
     eTt1[ijk])/alpha[ijk]
 ;
 
-auto Sm2
+const auto
+Sm2
 =
 (beta1[ijk]*eT12[ijk] + beta2[ijk]*eT22[ijk] + beta3[ijk]*eT23[ijk] -
     eTt2[ijk])/alpha[ijk]
 ;
 
-auto Sm3
+const auto
+Sm3
 =
 (beta1[ijk]*eT13[ijk] + beta2[ijk]*eT23[ijk] + beta3[ijk]*eT33[ijk] -
     eTt3[ijk])/alpha[ijk]
 ;
 
-auto Ss11
+const auto
+Ss11
 =
 eT11[ijk]
 ;
 
-auto Ss12
+const auto
+Ss12
 =
 eT12[ijk]
 ;
 
-auto Ss13
+const auto
+Ss13
 =
 eT13[ijk]
 ;
 
-auto Ss22
+const auto
+Ss22
 =
 eT22[ijk]
 ;
 
-auto Ss23
+const auto
+Ss23
 =
 eT23[ijk]
 ;
 
-auto Ss33
+const auto
+Ss33
 =
 eT33[ijk]
 ;
 
-auto trSs
+const auto
+trSs
 =
 invgam11*Ss11 + 2*invgam12*Ss12 + 2*invgam13*Ss13 + invgam22*Ss22 +
   2*invgam23*Ss23 + invgam33*Ss33
