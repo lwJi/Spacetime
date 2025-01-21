@@ -42,8 +42,12 @@ $MainPrint[] :=
     pr["    const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);"];
     pr[];
 
+    (*
     PrintInitializations[{Mode -> "MainIn"}, TmunuVarlist];
     PrintInitializations[{Mode -> "MainIn"}, EvolVarlist];
+    pr[];
+    *)
+
     PrintInitializations[{Mode -> "Derivs1st"}, dEvolVarlist];
     PrintInitializations[{Mode -> "Derivs2nd"}, ddEvolVarlist];
     pr[];
