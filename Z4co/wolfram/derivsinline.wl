@@ -1,6 +1,6 @@
 (* ::Package:: *)
 
-(* Z4co_set_rhs.wl *)
+(* derivsinline.wl *)
 
 (* (c) Liwei Ji, 07/2024 *)
 
@@ -23,20 +23,19 @@ DefChart[cart, M3, {1, 2, 3}, {X[], Y[], Z[]}, ChartColor -> Blue];
 
 SetOutputFile[FileNameJoin[{Directory[], "derivsinline.hxx"}]];
 
+(* Function to get GF index name *)
 GetGFIndexName[index_?IntegerQ] :=
   Module[{gfindex},
-    If[index == 0,
-      gfindex = ToExpression["ijkc0"]
-      ,
-      If[index > 0,
-        gfindex = ToExpression["ijkp" <> ToString[index]]
-        ,
-        gfindex = ToExpression["ijkm" <> ToString[Abs[index]]]
-      ]
-    ];
-    Return[gfindex]
+    gfindex =
+      Which[
+        index > 0, "ijkp" <> ToString[index],
+        index < 0, "ijkm" <> ToString[Abs[index]],
+        True, "ijkc0"
+      ];
+    ToExpression[gfindex]
   ];
 
+(* Function to print 3D indexes *)
 PrintIndexes3D[accuracyord_?IntegerQ, fdord_?IntegerQ] :=
   Module[{stencils, solution, index, buf},
     stencils = GetCenteringStencils[accuracyord];
@@ -44,30 +43,36 @@ PrintIndexes3D[accuracyord_?IntegerQ, fdord_?IntegerQ] :=
     Do[
       index = stencils[[i]];
       If[(Subscript[c, index] /. solution) == 0, Continue[]];
+
+      buf = "  const int " <> ToString[GetGFIndexName[index]] <>
       If[index == 0,
-        buf = "  const int " <> ToString[GetGFIndexName[index]] <> " = CCTK_GFINDEX3D(GH, i, j, k);"
+        " = CCTK_GFINDEX3D(GH, i, j, k);"
         ,
-        buf = "  const int " <> ToString[GetGFIndexName[index]] <> " = CCTK_GFINDEX3D(GH, "
+        " = CCTK_GFINDEX3D(GH, "
           <> "i + (dir == 1 ? " <> ToString[index] <> " : 0), "
           <> "j + (dir == 2 ? " <> ToString[index] <> " : 0), "
           <> "j + (dir == 3 ? " <> ToString[index] <> " : 0));"
       ];
-      pr[buf];
+      pr[buf]
       ,
       {i, 1, Length[stencils]}
     ];
   ];
 
+(* Function to print FD expression *)
 PrintFDExpression[accuracyord_?IntegerQ, fdord_?IntegerQ] :=
   Module[{stencils, solution, buf},
     stencils = GetCenteringStencils[accuracyord];
     solution = GetFiniteDifferenceCoefficients[stencils, fdord];
+
     buf = "    " <> ToString[CForm[
-      Sum[index = stencils[[i]]; (Subscript[c, index] /. solution) gf[[GetGFIndexName[index]]], {i, 1, Length[stencils]}]
+      Sum[
+        index = stencils[[i]];
+        (Subscript[c, index] /. solution) gf[[GetGFIndexName[index]]], {i, 1, Length[stencils]}]
       Product[idx[[dir-1]], {i, 1, fdord}]
       (*// Simplify*)
     ]] <> ";";
-    pr[buf]
+    pr[buf];
   ];
 
 $MainPrint[] :=
