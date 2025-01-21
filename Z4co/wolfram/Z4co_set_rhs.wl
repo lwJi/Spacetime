@@ -19,6 +19,8 @@ DefManifold[M3, 3, IndexRange[a, z]];
 
 DefChart[cart, M3, {1, 2, 3}, {X[], Y[], Z[]}, ChartColor -> Blue];
 
+(* Derivatives *)
+
 (* Define Variables *)
 
 <<wl/Z4c_vars.wl
@@ -36,6 +38,22 @@ SetOutputFile[FileNameJoin[{Directory[], "Z4co_set_rhs.hxx"}]];
 
 $MainPrint[] :=
   Module[{},
+    (* Define lambdas for taking derivs *)
+    pr["const auto fd_1st = [&] (T *gf, int i, int j, int k, int dir) inline {"];
+    PrintIndexes3D[4, 1];
+    pr["  return"];
+    PrintFDExpression[4, 1];
+    pr["};"];
+    pr[];
+
+    pr["const auto fd_2nd = [&] (T *gf, int i, int j, int k, int dir) inline {"];
+    PrintIndexes3D[4, 2];
+    pr["  return"];
+    PrintFDExpression[4, 2];
+    pr["};"];
+    pr[];
+
+    (* Loops *)
     pr["for (k=kstart; k<kend; k++) {"];
     pr["  for (j=jstart; j<jend; j++) {"];
     pr["    for (i=istart; i<iend; i++) {"];
