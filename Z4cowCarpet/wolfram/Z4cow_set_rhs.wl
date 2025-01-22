@@ -1,6 +1,6 @@
 (* ::Package:: *)
 
-(* Z4co_set_rhs.wl *)
+(* Z4cow_set_rhs.wl *)
 
 (* (c) Liwei Ji, 07/2024 *)
 
@@ -34,7 +34,7 @@ Module[{Mat, invMat},
   SetEQNDelayed[invgamt[i_, j_], invMat[[i[[1]], j[[1]]]] // Simplify]
 ];
 
-SetOutputFile[FileNameJoin[{Directory[], "Z4co_set_rhs.hxx"}]];
+SetOutputFile[FileNameJoin[{Directory[], "Z4cow_set_rhs.hxx"}]];
 
 $MainPrint[] :=
   Module[{},
