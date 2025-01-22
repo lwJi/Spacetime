@@ -53,6 +53,13 @@ $MainPrint[] :=
     pr["};"];
     pr[];
 
+    pr["const auto fd_2nd_mix = [&] (T *gf, int i, int j, int k, int dir1, int dir2) inline {"];
+    PrintIndexes3D[4, 2];
+    pr["  return"];
+    PrintFDExpression2D[4];
+    pr["};"];
+    pr[];
+
     (* Loops *)
     pr["for (k=kstart; k<kend; k++) {"];
     pr["  for (j=jstart; j<jend; j++) {"];
