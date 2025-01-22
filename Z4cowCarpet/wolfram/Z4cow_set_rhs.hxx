@@ -1,48 +1,8 @@
 /* Z4cow_set_rhs.hxx */
-/* Produced with Mathematica */
+/* Produced with Generato */
 
 #ifndef Z4COW_SET_RHS_HXX
 #define Z4COW_SET_RHS_HXX
-
-const auto fd_1st = [&] (T *gf, int i, int j, int k, int dir) inline {
-  const int m2 = CCTK_GFINDEX3D(cctkGH, i + (dir == 1 ? -2 : 0), j + (dir == 2 ? -2 : 0), k + (dir == 3 ? -2 : 0));
-  const int m1 = CCTK_GFINDEX3D(cctkGH, i + (dir == 1 ? -1 : 0), j + (dir == 2 ? -1 : 0), k + (dir == 3 ? -1 : 0));
-  const int p1 = CCTK_GFINDEX3D(cctkGH, i + (dir == 1 ? 1 : 0), j + (dir == 2 ? 1 : 0), k + (dir == 3 ? 1 : 0));
-  const int p2 = CCTK_GFINDEX3D(cctkGH, i + (dir == 1 ? 2 : 0), j + (dir == 2 ? 2 : 0), k + (dir == 3 ? 2 : 0));
-  return
-    ((-8*gf[m1] + gf[m2] + 8*gf[p1] - gf[p2])*idx[-1 + dir])/12.;
-};
-
-const auto fd_2nd = [&] (T *gf, int i, int j, int k, int dir) inline {
-  const int m2 = CCTK_GFINDEX3D(cctkGH, i + (dir == 1 ? -2 : 0), j + (dir == 2 ? -2 : 0), k + (dir == 3 ? -2 : 0));
-  const int m1 = CCTK_GFINDEX3D(cctkGH, i + (dir == 1 ? -1 : 0), j + (dir == 2 ? -1 : 0), k + (dir == 3 ? -1 : 0));
-  const int c0 = CCTK_GFINDEX3D(cctkGH, i, j, k);
-  const int p1 = CCTK_GFINDEX3D(cctkGH, i + (dir == 1 ? 1 : 0), j + (dir == 2 ? 1 : 0), k + (dir == 3 ? 1 : 0));
-  const int p2 = CCTK_GFINDEX3D(cctkGH, i + (dir == 1 ? 2 : 0), j + (dir == 2 ? 2 : 0), k + (dir == 3 ? 2 : 0));
-  return
-    ((-30*gf[c0] + 16*gf[m1] - gf[m2] + 16*gf[p1] - gf[p2])*Power(idx[-1 + dir],2))/12.;
-};
-
-const auto fd_2nd_mix = [&] (T *gf, int i, int j, int k, int dir1, int dir2) inline {
-  const int m2m2 = CCTK_GFINDEX3D(cctkGH, i + (dir1 != 1 && dir2 != 1 ? 0 : -2), j + (dir1 != 2 && dir2 != 2 ? 0 : -2), k + (dir1 != 3 && dir2 != 3 ? 0 : -2));
-  const int m2m1
-  const int m2p1
-  const int m2p2
-  const int m1m2
-  const int m1m1 = CCTK_GFINDEX3D(cctkGH, i + (dir1 != 1 && dir2 != 1 ? 0 : -1), j + (dir1 != 2 && dir2 != 2 ? 0 : -1), k + (dir1 != 3 && dir2 != 3 ? 0 : -1));
-  const int m1p1
-  const int m1p2
-  const int p1m2
-  const int p1m1
-  const int p1p1 = CCTK_GFINDEX3D(cctkGH, i + (dir1 != 1 && dir2 != 1 ? 0 : 1), j + (dir1 != 2 && dir2 != 2 ? 0 : 1), k + (dir1 != 3 && dir2 != 3 ? 0 : 1));
-  const int p1p2
-  const int p2m2
-  const int p2m1
-  const int p2p1
-  const int p2p2 = CCTK_GFINDEX3D(cctkGH, i + (dir1 != 1 && dir2 != 1 ? 0 : 2), j + (dir1 != 2 && dir2 != 2 ? 0 : 2), k + (dir1 != 3 && dir2 != 3 ? 0 : 2));
-  return
-    ((64*gf[m1m1] - 8*gf[m1m2] - 64*gf[m1p1] + 8*gf[m1p2] - 8*gf[m2m1] + gf[m2m2] + 8*gf[m2p1] - gf[m2p2] - 64*gf[p1m1] + 8*gf[p1m2] + 64*gf[p1p1] - 8*gf[p1p2] + 8*gf[p2m1] - gf[p2m2] - 8*gf[p2p1] + gf[p2p2])*idx[-1 + dir1]*idx[-1 + dir2])/144.;
-};
 
 for (k=kstart; k<kend; k++) {
   for (j=jstart; j<jend; j++) {
@@ -115,72 +75,72 @@ const auto dbeta23 = fd_1st(beta3, i, j, k, 2);
 const auto dbeta31 = fd_1st(beta1, i, j, k, 3);
 const auto dbeta32 = fd_1st(beta2, i, j, k, 3);
 const auto dbeta33 = fd_1st(beta3, i, j, k, 3);
-const auto ddW11 = fd_2nd(W, i, j, k, 1, 1);
-const auto ddW12 = fd_2nd(W, i, j, k, 1, 2);
-const auto ddW13 = fd_2nd(W, i, j, k, 1, 3);
-const auto ddW22 = fd_2nd(W, i, j, k, 2, 2);
-const auto ddW23 = fd_2nd(W, i, j, k, 2, 3);
-const auto ddW33 = fd_2nd(W, i, j, k, 3, 3);
-const auto ddgamt1111 = fd_2nd(gamt11, i, j, k, 1, 1);
-const auto ddgamt1112 = fd_2nd(gamt12, i, j, k, 1, 1);
-const auto ddgamt1113 = fd_2nd(gamt13, i, j, k, 1, 1);
-const auto ddgamt1122 = fd_2nd(gamt22, i, j, k, 1, 1);
-const auto ddgamt1123 = fd_2nd(gamt23, i, j, k, 1, 1);
-const auto ddgamt1133 = fd_2nd(gamt33, i, j, k, 1, 1);
-const auto ddgamt1211 = fd_2nd(gamt11, i, j, k, 1, 2);
-const auto ddgamt1212 = fd_2nd(gamt12, i, j, k, 1, 2);
-const auto ddgamt1213 = fd_2nd(gamt13, i, j, k, 1, 2);
-const auto ddgamt1222 = fd_2nd(gamt22, i, j, k, 1, 2);
-const auto ddgamt1223 = fd_2nd(gamt23, i, j, k, 1, 2);
-const auto ddgamt1233 = fd_2nd(gamt33, i, j, k, 1, 2);
-const auto ddgamt1311 = fd_2nd(gamt11, i, j, k, 1, 3);
-const auto ddgamt1312 = fd_2nd(gamt12, i, j, k, 1, 3);
-const auto ddgamt1313 = fd_2nd(gamt13, i, j, k, 1, 3);
-const auto ddgamt1322 = fd_2nd(gamt22, i, j, k, 1, 3);
-const auto ddgamt1323 = fd_2nd(gamt23, i, j, k, 1, 3);
-const auto ddgamt1333 = fd_2nd(gamt33, i, j, k, 1, 3);
-const auto ddgamt2211 = fd_2nd(gamt11, i, j, k, 2, 2);
-const auto ddgamt2212 = fd_2nd(gamt12, i, j, k, 2, 2);
-const auto ddgamt2213 = fd_2nd(gamt13, i, j, k, 2, 2);
-const auto ddgamt2222 = fd_2nd(gamt22, i, j, k, 2, 2);
-const auto ddgamt2223 = fd_2nd(gamt23, i, j, k, 2, 2);
-const auto ddgamt2233 = fd_2nd(gamt33, i, j, k, 2, 2);
-const auto ddgamt2311 = fd_2nd(gamt11, i, j, k, 2, 3);
-const auto ddgamt2312 = fd_2nd(gamt12, i, j, k, 2, 3);
-const auto ddgamt2313 = fd_2nd(gamt13, i, j, k, 2, 3);
-const auto ddgamt2322 = fd_2nd(gamt22, i, j, k, 2, 3);
-const auto ddgamt2323 = fd_2nd(gamt23, i, j, k, 2, 3);
-const auto ddgamt2333 = fd_2nd(gamt33, i, j, k, 2, 3);
-const auto ddgamt3311 = fd_2nd(gamt11, i, j, k, 3, 3);
-const auto ddgamt3312 = fd_2nd(gamt12, i, j, k, 3, 3);
-const auto ddgamt3313 = fd_2nd(gamt13, i, j, k, 3, 3);
-const auto ddgamt3322 = fd_2nd(gamt22, i, j, k, 3, 3);
-const auto ddgamt3323 = fd_2nd(gamt23, i, j, k, 3, 3);
-const auto ddgamt3333 = fd_2nd(gamt33, i, j, k, 3, 3);
-const auto ddalpha11 = fd_2nd(alpha, i, j, k, 1, 1);
-const auto ddalpha12 = fd_2nd(alpha, i, j, k, 1, 2);
-const auto ddalpha13 = fd_2nd(alpha, i, j, k, 1, 3);
-const auto ddalpha22 = fd_2nd(alpha, i, j, k, 2, 2);
-const auto ddalpha23 = fd_2nd(alpha, i, j, k, 2, 3);
-const auto ddalpha33 = fd_2nd(alpha, i, j, k, 3, 3);
-const auto ddbeta111 = fd_2nd(beta1, i, j, k, 1, 1);
-const auto ddbeta112 = fd_2nd(beta2, i, j, k, 1, 1);
-const auto ddbeta113 = fd_2nd(beta3, i, j, k, 1, 1);
-const auto ddbeta121 = fd_2nd(beta1, i, j, k, 1, 2);
-const auto ddbeta122 = fd_2nd(beta2, i, j, k, 1, 2);
-const auto ddbeta123 = fd_2nd(beta3, i, j, k, 1, 2);
-const auto ddbeta131 = fd_2nd(beta1, i, j, k, 1, 3);
-const auto ddbeta132 = fd_2nd(beta2, i, j, k, 1, 3);
-const auto ddbeta133 = fd_2nd(beta3, i, j, k, 1, 3);
-const auto ddbeta221 = fd_2nd(beta1, i, j, k, 2, 2);
-const auto ddbeta222 = fd_2nd(beta2, i, j, k, 2, 2);
-const auto ddbeta223 = fd_2nd(beta3, i, j, k, 2, 2);
-const auto ddbeta231 = fd_2nd(beta1, i, j, k, 2, 3);
-const auto ddbeta232 = fd_2nd(beta2, i, j, k, 2, 3);
-const auto ddbeta233 = fd_2nd(beta3, i, j, k, 2, 3);
-const auto ddbeta331 = fd_2nd(beta1, i, j, k, 3, 3);
-const auto ddbeta332 = fd_2nd(beta2, i, j, k, 3, 3);
-const auto ddbeta333 = fd_2nd(beta3, i, j, k, 3, 3);
+const auto ddW11 = fd_2nd<1><1>(cctkGH, W, i, j, k);
+const auto ddW12 = fd_2nd<1><2>(cctkGH, W, i, j, k);
+const auto ddW13 = fd_2nd<1><3>(cctkGH, W, i, j, k);
+const auto ddW22 = fd_2nd<2><2>(cctkGH, W, i, j, k);
+const auto ddW23 = fd_2nd<2><3>(cctkGH, W, i, j, k);
+const auto ddW33 = fd_2nd<3><3>(cctkGH, W, i, j, k);
+const auto ddgamt1111 = fd_2nd<1><1>(cctkGH, gamt11, i, j, k);
+const auto ddgamt1112 = fd_2nd<1><1>(cctkGH, gamt12, i, j, k);
+const auto ddgamt1113 = fd_2nd<1><1>(cctkGH, gamt13, i, j, k);
+const auto ddgamt1122 = fd_2nd<1><1>(cctkGH, gamt22, i, j, k);
+const auto ddgamt1123 = fd_2nd<1><1>(cctkGH, gamt23, i, j, k);
+const auto ddgamt1133 = fd_2nd<1><1>(cctkGH, gamt33, i, j, k);
+const auto ddgamt1211 = fd_2nd<1><2>(cctkGH, gamt11, i, j, k);
+const auto ddgamt1212 = fd_2nd<1><2>(cctkGH, gamt12, i, j, k);
+const auto ddgamt1213 = fd_2nd<1><2>(cctkGH, gamt13, i, j, k);
+const auto ddgamt1222 = fd_2nd<1><2>(cctkGH, gamt22, i, j, k);
+const auto ddgamt1223 = fd_2nd<1><2>(cctkGH, gamt23, i, j, k);
+const auto ddgamt1233 = fd_2nd<1><2>(cctkGH, gamt33, i, j, k);
+const auto ddgamt1311 = fd_2nd<1><3>(cctkGH, gamt11, i, j, k);
+const auto ddgamt1312 = fd_2nd<1><3>(cctkGH, gamt12, i, j, k);
+const auto ddgamt1313 = fd_2nd<1><3>(cctkGH, gamt13, i, j, k);
+const auto ddgamt1322 = fd_2nd<1><3>(cctkGH, gamt22, i, j, k);
+const auto ddgamt1323 = fd_2nd<1><3>(cctkGH, gamt23, i, j, k);
+const auto ddgamt1333 = fd_2nd<1><3>(cctkGH, gamt33, i, j, k);
+const auto ddgamt2211 = fd_2nd<2><2>(cctkGH, gamt11, i, j, k);
+const auto ddgamt2212 = fd_2nd<2><2>(cctkGH, gamt12, i, j, k);
+const auto ddgamt2213 = fd_2nd<2><2>(cctkGH, gamt13, i, j, k);
+const auto ddgamt2222 = fd_2nd<2><2>(cctkGH, gamt22, i, j, k);
+const auto ddgamt2223 = fd_2nd<2><2>(cctkGH, gamt23, i, j, k);
+const auto ddgamt2233 = fd_2nd<2><2>(cctkGH, gamt33, i, j, k);
+const auto ddgamt2311 = fd_2nd<2><3>(cctkGH, gamt11, i, j, k);
+const auto ddgamt2312 = fd_2nd<2><3>(cctkGH, gamt12, i, j, k);
+const auto ddgamt2313 = fd_2nd<2><3>(cctkGH, gamt13, i, j, k);
+const auto ddgamt2322 = fd_2nd<2><3>(cctkGH, gamt22, i, j, k);
+const auto ddgamt2323 = fd_2nd<2><3>(cctkGH, gamt23, i, j, k);
+const auto ddgamt2333 = fd_2nd<2><3>(cctkGH, gamt33, i, j, k);
+const auto ddgamt3311 = fd_2nd<3><3>(cctkGH, gamt11, i, j, k);
+const auto ddgamt3312 = fd_2nd<3><3>(cctkGH, gamt12, i, j, k);
+const auto ddgamt3313 = fd_2nd<3><3>(cctkGH, gamt13, i, j, k);
+const auto ddgamt3322 = fd_2nd<3><3>(cctkGH, gamt22, i, j, k);
+const auto ddgamt3323 = fd_2nd<3><3>(cctkGH, gamt23, i, j, k);
+const auto ddgamt3333 = fd_2nd<3><3>(cctkGH, gamt33, i, j, k);
+const auto ddalpha11 = fd_2nd<1><1>(cctkGH, alpha, i, j, k);
+const auto ddalpha12 = fd_2nd<1><2>(cctkGH, alpha, i, j, k);
+const auto ddalpha13 = fd_2nd<1><3>(cctkGH, alpha, i, j, k);
+const auto ddalpha22 = fd_2nd<2><2>(cctkGH, alpha, i, j, k);
+const auto ddalpha23 = fd_2nd<2><3>(cctkGH, alpha, i, j, k);
+const auto ddalpha33 = fd_2nd<3><3>(cctkGH, alpha, i, j, k);
+const auto ddbeta111 = fd_2nd<1><1>(cctkGH, beta1, i, j, k);
+const auto ddbeta112 = fd_2nd<1><1>(cctkGH, beta2, i, j, k);
+const auto ddbeta113 = fd_2nd<1><1>(cctkGH, beta3, i, j, k);
+const auto ddbeta121 = fd_2nd<1><2>(cctkGH, beta1, i, j, k);
+const auto ddbeta122 = fd_2nd<1><2>(cctkGH, beta2, i, j, k);
+const auto ddbeta123 = fd_2nd<1><2>(cctkGH, beta3, i, j, k);
+const auto ddbeta131 = fd_2nd<1><3>(cctkGH, beta1, i, j, k);
+const auto ddbeta132 = fd_2nd<1><3>(cctkGH, beta2, i, j, k);
+const auto ddbeta133 = fd_2nd<1><3>(cctkGH, beta3, i, j, k);
+const auto ddbeta221 = fd_2nd<2><2>(cctkGH, beta1, i, j, k);
+const auto ddbeta222 = fd_2nd<2><2>(cctkGH, beta2, i, j, k);
+const auto ddbeta223 = fd_2nd<2><2>(cctkGH, beta3, i, j, k);
+const auto ddbeta231 = fd_2nd<2><3>(cctkGH, beta1, i, j, k);
+const auto ddbeta232 = fd_2nd<2><3>(cctkGH, beta2, i, j, k);
+const auto ddbeta233 = fd_2nd<2><3>(cctkGH, beta3, i, j, k);
+const auto ddbeta331 = fd_2nd<3><3>(cctkGH, beta1, i, j, k);
+const auto ddbeta332 = fd_2nd<3><3>(cctkGH, beta2, i, j, k);
+const auto ddbeta333 = fd_2nd<3><3>(cctkGH, beta3, i, j, k);
 
 const auto
 dlnW1

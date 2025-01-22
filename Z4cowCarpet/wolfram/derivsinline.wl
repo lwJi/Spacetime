@@ -35,19 +35,23 @@ $MainPrint[] :=
     pr["};"];
     pr[];
 
-    pr["template <int D, typename T>"];
-    pr["inline T fd_2nd(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) inline {"];
-    PrintIndexes3D[4, 2];
-    pr["  return"];
-    PrintFDExpression[4, 2];
-    pr["};"];
-    pr[];
-
     pr["template <int D1, int D2, typename T>"];
-    pr["inline T fd_2nd_mix(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) inline {"];
+    pr["inline T fd_2nd(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) inline {"];
+    pr[];
+    pr["  if constexpr (D1 == D2) {"];
+    pr[];
+    pr["  constexpr int D = D1;"];
+    PrintIndexes3D[4, 2];
+    pr["    return"];
+    PrintFDExpression[4, 2];
+    pr[];
+    pr["  } else {"];
+    pr[];
     PrintIndexes3DMix2nd[4];
-    pr["  return"];
+    pr["    return"];
     PrintFDExpressionMix2nd[4];
+    pr[];
+    pr["  }"];
     pr["};"];
     pr[];
 

@@ -38,28 +38,6 @@ SetOutputFile[FileNameJoin[{Directory[], "Z4cow_set_rhs.hxx"}]];
 
 $MainPrint[] :=
   Module[{},
-    (* Define lambdas for taking derivs *)
-    pr["const auto fd_1st = [&] (T *gf, int i, int j, int k, int dir) inline {"];
-    PrintIndexes3D[4, 1];
-    pr["  return"];
-    PrintFDExpression[4, 1];
-    pr["};"];
-    pr[];
-
-    pr["const auto fd_2nd = [&] (T *gf, int i, int j, int k, int dir) inline {"];
-    PrintIndexes3D[4, 2];
-    pr["  return"];
-    PrintFDExpression[4, 2];
-    pr["};"];
-    pr[];
-
-    pr["const auto fd_2nd_mix = [&] (T *gf, int i, int j, int k, int dir1, int dir2) inline {"];
-    PrintIndexes3DMix[4];
-    pr["  return"];
-    PrintFDExpressionMix[4];
-    pr["};"];
-    pr[];
-
     (* Loops *)
     pr["for (k=kstart; k<kend; k++) {"];
     pr["  for (j=jstart; j<jend; j++) {"];
