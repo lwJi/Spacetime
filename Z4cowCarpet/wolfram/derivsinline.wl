@@ -43,14 +43,14 @@ $MainPrint[] :=
     pr["};"];
     pr[];
 
-    (*
-    pr["const auto fd_2nd_mix = [&] (T *gf, int i, int j, int k, int dir1, int dir2) inline {"];
-    PrintIndexes3DMix[4];
+    pr["template <int D1, int D2, typename T>"];
+    pr["inline T fd_2nd_mix(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) inline {"];
+    PrintIndexes3DMix2nd[4];
     pr["  return"];
-    PrintFDExpressionMix[4];
+    PrintFDExpressionMix2nd[4];
     pr["};"];
     pr[];
-    *)
+
   ];
 
 Import[FileNameJoin[{Environment["GENERATO"], "codes/Carpet.wl"}]];
