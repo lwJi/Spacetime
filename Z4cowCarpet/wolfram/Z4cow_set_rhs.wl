@@ -13,6 +13,8 @@ SetPrintDate[False];
 
 SetGridPointIndex["[[ijk]]"];
 
+SetUseLetterForTensorComponet[True];
+
 SetTempVariableType["auto"];
 
 DefManifold[M3, 3, IndexRange[a, z]];
