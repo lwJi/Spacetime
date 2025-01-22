@@ -53,7 +53,7 @@ $MainPrint[] :=
     pr["    const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);"];
     pr[];
 
-    PrintInitializations[{Mode -> "Derivs1st"}, Extract[dEvolVarlist, {{1}, {2}, {-2}, {-1}}]];
+    PrintInitializations[{Mode -> "Derivs1st"}, dEvolVarlist];
     pr[];
 
     pr["    }"];
