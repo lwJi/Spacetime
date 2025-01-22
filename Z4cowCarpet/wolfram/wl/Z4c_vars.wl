@@ -40,7 +40,7 @@ EvolVarlist =
 (*************************)
 
 dEvolVarlist =
-  GridTensors[
+  TempTensors[
     {dW[-k], PrintAs -> "\[PartialD]W"},
     {dgamt[-k, -i, -j], Symmetric[{-i, -j}], PrintAs -> "\[PartialD]\!\(\*OverscriptBox[\(\[Gamma]\), \(~\)]\)"},
     {dexKh[-k], PrintAs -> "\[PartialD]\!\(\*OverscriptBox[\(K\), \(^\)]\)"},
