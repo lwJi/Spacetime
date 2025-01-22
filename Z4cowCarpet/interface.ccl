@@ -1,0 +1,81 @@
+# Interface definition for thorn Z4cowCarpet
+# $Header$
+
+implements: wavemol
+
+USES INCLUDE: Symmetry.h
+
+CCTK_INT FUNCTION MoLRegisterEvolvedGroup(CCTK_INT IN EvolvedIndex, \
+                                          CCTK_INT IN RHSIndex)
+CCTK_INT FUNCTION MoLRegisterConstrained(CCTK_INT IN ConstrainedIndex)
+
+REQUIRES FUNCTION MoLRegisterEvolvedGroup
+REQUIRES FUNCTION MoLRegisterConstrained
+
+CCTK_INT FUNCTION Boundary_SelectGroupForBC(CCTK_POINTER_TO_CONST IN cctkGH,
+  CCTK_INT IN faces, CCTK_INT IN width, CCTK_INT IN table_handle,
+  CCTK_STRING IN var_name, CCTK_STRING IN bc_name)
+USES FUNCTION Boundary_SelectGroupForBC
+
+CCTK_INT FUNCTION Driver_SelectGroupForBC(CCTK_POINTER_TO_CONST IN cctkGH,
+  CCTK_INT IN faces, CCTK_INT IN width, CCTK_INT IN table_handle,
+  CCTK_STRING IN var_name, CCTK_STRING IN bc_name)
+USES FUNCTION Driver_SelectGroupForBC
+
+public:
+
+# Evolution variables
+
+CCTK_REAL W TYPE=gf TIMELEVELS=4 TAGS='' "W"
+
+CCTK_REAL gamma_tilde TYPE=gf TIMELEVELS=4 TAGS=''
+{
+  gammatxx gammatxy gammatxz gammatyy gammatyz gammatzz
+} "gamma-tilde"
+
+CCTK_REAL K_hat TYPE=gf TIMELEVELS=4 TAGS='' { Kh } "K-hat"
+
+CCTK_REAL A_tilde TYPE=gf TIMELEVELS=4 TAGS=''
+{
+  Atxx Atxy Atxz Atyy Atyz Atzz
+} "A-tilde"
+
+CCTK_REAL Gam_tilde TYPE=gf TIMELEVELS=4 TAGS=''
+{
+  Gamtx Gamty Gamtz
+} "Gamma-tilde"
+
+CCTK_REAL Theta TYPE=gf TIMELEVELS=4 TAGS='' "Theta"
+
+CCTK_REAL alphaG TYPE=gf TIMELEVELS=4 TAGS='' "alpha"
+
+CCTK_REAL betaG TYPE=gf TIMELEVELS=4 TAGS=''
+{
+  betaGx betaGy betaGz
+} "beta"
+
+# Aux varilabes
+
+CCTK_REAL dW TYPE=gf TIMELEVELS=1 TAGS='checkpoint="no"'
+{
+  dWx dWy dWz
+} "dW"
+
+CCTK_REAL dgamma_tilde TYPE=gf TIMELEVELS=1 TAGS='checkpoint="no"'
+{
+  dgammatxxx dgammatxxy dgammatxxz dgammatxyy dgammatxyz dgammatxzz
+  dgammatyxx dgammatyxy dgammatyxz dgammatyyy dgammatyyz dgammatyzz
+  dgammatzxx dgammatzxy dgammatzxz dgammatzyy dgammatzyz dgammatzzz
+} "dgamma-tilde"
+
+CCTK_REAL dalphaG TYPE=gf TIMELEVELS=1 TAGS='checkpoint="no"'
+{
+  dalphaGx dalphaGy dalphaGz
+} "dalphaG"
+
+CCTK_REAL dbetaG TYPE=gf TIMELEVELS=1 TAGS='checkpoint="no"'
+{
+  dbetaGxx dbetaGxy dbetaGxz
+  dbetaGyx dbetaGyy dbetaGyz
+  dbetaGzx dbetaGzy dbetaGzz
+} "dbetaG"
