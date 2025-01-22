@@ -48,8 +48,6 @@ $MainPrint[] :=
     PrintFDExpressionMix2nd[4];
     pr["  }"];
     pr["};"];
-    pr[];
-
   ];
 
 Import[FileNameJoin[{Environment["GENERATO"], "codes/Carpet.wl"}]];

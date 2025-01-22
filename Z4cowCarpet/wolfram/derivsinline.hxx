@@ -99,7 +99,6 @@ inline T fd_2nd(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) in
   }
 };
 
-
 #endif // #ifndef DERIVSINLINE_HXX
 
 /* derivsinline.hxx */
