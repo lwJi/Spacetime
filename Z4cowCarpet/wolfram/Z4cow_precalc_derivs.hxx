@@ -1,8 +1,8 @@
-/* Z4cow_set_rhs.hxx */
+/* Z4cow_precalc_derivs.hxx */
 /* Produced with Mathematica */
 
-#ifndef Z4COW_SET_RHS_HXX
-#define Z4COW_SET_RHS_HXX
+#ifndef Z4COW_PRECALC_DERIVS_HXX
+#define Z4COW_PRECALC_DERIVS_HXX
 
 const auto fd_1st = [&] (T *gf, int i, int j, int k, int dir) inline {
   const int ijkm2 = CCTK_GFINDEX3D(cctkGH, i + (dir == 1 ? -2 : 0), j + (dir == 2 ? -2 : 0), j + (dir == 3 ? -2 : 0));
@@ -56,6 +56,6 @@ const auto dbeta33 = fd_1st(beta3, i, j, k, 3);
   }
 }
 
-#endif // #ifndef Z4COW_SET_RHS_HXX
+#endif // #ifndef Z4COW_PRECALC_DERIVS_HXX
 
-/* Z4cow_set_rhs.hxx */
+/* Z4cow_precalc_derivs.hxx */
