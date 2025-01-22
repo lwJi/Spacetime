@@ -56,7 +56,7 @@ $MainPrint[] :=
     pr["const auto fd_2nd_mix = [&] (T *gf, int i, int j, int k, int dir1, int dir2) inline {"];
     PrintIndexes3D[4, 2];
     pr["  return"];
-    PrintFDExpression2D[4];
+    PrintFDExpressionMix[4];
     pr["};"];
     pr[];
 
