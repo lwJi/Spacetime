@@ -25,29 +25,28 @@ DefChart[cart, M3, {1, 2, 3}, {X[], Y[], Z[]}, ChartColor -> Blue];
 
 SetOutputFile[FileNameJoin[{Directory[], "derivsinline.hxx"}]];
 
-$MainPrint[] :=
-  Module[{},
-    pr["template <int D, typename T>"];
-    pr["inline T fd_1st(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) inline {"];
-    PrintIndexes3D[4, 1];
-    pr["  return"];
-    PrintFDExpression[4, 1];
-    pr["};"];
-    pr[];
+SetMainPrint[
+  pr["template <int D, typename T>"];
+  pr["inline T fd_1st(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) {"];
+  PrintIndexes3D[4, 1];
+  pr["  return"];
+  PrintFDExpression[4, 1];
+  pr["};"];
+  pr[];
 
-    pr["template <int D1, int D2, typename T>"];
-    pr["inline T fd_2nd(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) inline {"];
-    pr["  if constexpr (D1 == D2) {"];
-    pr["  constexpr int D = D1;"];
-    PrintIndexes3D[4, 2];
-    pr["    return"];
-    PrintFDExpression[4, 2];
-    pr["  } else {"];
-    PrintIndexes3DMix2nd[4];
-    pr["    return"];
-    PrintFDExpressionMix2nd[4];
-    pr["  }"];
-    pr["};"];
-  ];
+  pr["template <int D1, int D2, typename T>"];
+  pr["inline T fd_2nd(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) {"];
+  pr["  if constexpr (D1 == D2) {"];
+  pr["  constexpr int D = D1;"];
+  PrintIndexes3D[4, 2];
+  pr["    return"];
+  PrintFDExpression[4, 2];
+  pr["  } else {"];
+  PrintIndexes3DMix2nd[4];
+  pr["    return"];
+  PrintFDExpressionMix2nd[4];
+  pr["  }"];
+  pr["};"];
+];
 
 Import[FileNameJoin[{Environment["GENERATO"], "codes/Carpet.wl"}]];

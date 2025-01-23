@@ -5,7 +5,7 @@
 #define DERIVSINLINE_HXX
 
 template <int D, typename T>
-inline T fd_1st(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) inline {
+inline T fd_1st(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) {
   constexpr int DI = D - 1;
   const int m2 = CCTK_GFINDEX3D(cctkGH, i + (D == 1 ? -2 : 0),
                                         j + (D == 2 ? -2 : 0),
@@ -24,7 +24,7 @@ inline T fd_1st(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) in
 };
 
 template <int D1, int D2, typename T>
-inline T fd_2nd(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) inline {
+inline T fd_2nd(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) {
   if constexpr (D1 == D2) {
   constexpr int D = D1;
   constexpr int DI = D - 1;
