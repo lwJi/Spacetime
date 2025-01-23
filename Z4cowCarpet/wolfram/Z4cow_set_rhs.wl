@@ -38,37 +38,36 @@ Module[{Mat, invMat},
 
 SetOutputFile[FileNameJoin[{Directory[], "Z4cow_set_rhs.hxx"}]];
 
-$MainPrint[] :=
-  Module[{},
-    (* Loops *)
-    pr["for (k=kstart; k<kend; k++) {"];
-    pr["  for (j=jstart; j<jend; j++) {"];
-    pr["    for (i=istart; i<iend; i++) {"];
-    pr["    const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);"];
-    pr[];
+SetMainPrint[
+  (* Loops *)
+  pr["for (k=kstart; k<kend; k++) {"];
+  pr["  for (j=jstart; j<jend; j++) {"];
+  pr["    for (i=istart; i<iend; i++) {"];
+  pr["    const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);"];
+  pr[];
 
-    (*
-    PrintInitializations[{Mode -> "MainIn"}, TmunuVarlist];
-    PrintInitializations[{Mode -> "MainIn"}, EvolVarlist];
-    pr[];
-    *)
+  (*
+  PrintInitializations[{Mode -> "MainIn"}, TmunuVarlist];
+  PrintInitializations[{Mode -> "MainIn"}, EvolVarlist];
+  pr[];
+  *)
 
-    PrintInitializations[{Mode -> "Derivs1st"}, dEvolVarlist];
-    PrintInitializations[{Mode -> "Derivs2nd"}, ddEvolVarlist];
-    pr[];
+  PrintInitializations[{Mode -> "Derivs1st"}, dEvolVarlist];
+  PrintInitializations[{Mode -> "Derivs2nd"}, ddEvolVarlist];
+  pr[];
 
-    PrintEquations[{Mode -> "Temp"}, IntermediateVarlist];
-    PrintEquations[{Mode -> "Temp"}, DDVarlist];
-    PrintEquations[{Mode -> "Temp"}, RVarlist];
-    PrintEquations[{Mode -> "Temp"}, MatterVarlist];
-    pr[];
+  PrintEquations[{Mode -> "Temp"}, IntermediateVarlist];
+  PrintEquations[{Mode -> "Temp"}, DDVarlist];
+  PrintEquations[{Mode -> "Temp"}, RVarlist];
+  PrintEquations[{Mode -> "Temp"}, MatterVarlist];
+  pr[];
 
-    PrintEquations[{Mode -> "Main"}, dtEvolVarlist];
-    pr[];
+  PrintEquations[{Mode -> "Main"}, dtEvolVarlist];
+  pr[];
 
-    pr["    }"];
-    pr["  }"];
-    pr["}"];
-  ];
+  pr["    }"];
+  pr["  }"];
+  pr["}"];
+];
 
 Import[FileNameJoin[{Environment["GENERATO"], "codes/Carpet.wl"}]];
