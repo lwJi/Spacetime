@@ -27,15 +27,6 @@ const auto &dtbetax = gf_dtbeta[0];
 const auto &dtbetay = gf_dtbeta[1];
 const auto &dtbetaz = gf_dtbeta[2];
 
-const auto &eTtx = gf_eTt[0];
-const auto &eTty = gf_eTt[1];
-const auto &eTtz = gf_eTt[2];
-const auto &eTxx = gf_eT[0];
-const auto &eTxy = gf_eT[1];
-const auto &eTxz = gf_eT[2];
-const auto &eTyy = gf_eT[3];
-const auto &eTyz = gf_eT[4];
-const auto &eTzz = gf_eT[5];
 const auto &gamtxx = gf_gamt[0];
 const auto &gamtxy = gf_gamt[1];
 const auto &gamtxz = gf_gamt[2];
