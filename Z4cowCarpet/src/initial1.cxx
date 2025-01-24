@@ -16,10 +16,6 @@ using namespace std;
 extern "C" void Z4cowCarpet_Initial1(CCTK_ARGUMENTS) {
   DECLARE_CCTK_ARGUMENTS_Z4cowCarpet_Initial1;
 
-  const array<CCTK_REAL, 3> idx{1. / CCTK_DELTA_SPACE(0),
-                                1. / CCTK_DELTA_SPACE(1),
-                                1. / CCTK_DELTA_SPACE(2)};
-
   const int istart = 1;
   const int jstart = 1;
   const int kstart = 1;
