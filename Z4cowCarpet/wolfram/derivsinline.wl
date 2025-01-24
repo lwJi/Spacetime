@@ -27,6 +27,16 @@ SetOutputFile[FileNameJoin[{Directory[], "derivsinline.hxx"}]];
 
 SetMainPrint[
   pr["#include <array>"];
+  pr["#include <cmath>"];
+  pr[];
+
+  pr["namespace Z4cowCarpet {"];
+  pr[];
+
+  pr["template <typename T>"];
+  pr["inline T Power(T x, int y) {"];
+  pr["  return pow(x, y);"];
+  pr["}"];
   pr[];
 
   pr["template <int D, typename T>"];
@@ -50,6 +60,8 @@ SetMainPrint[
   PrintFDExpressionMix2nd[4];
   pr["  }"];
   pr["};"];
+
+  pr["} // namespace Z4cowCarpet"];
 ];
 
 Import[FileNameJoin[{Environment["GENERATO"], "codes/Carpet.wl"}]];
