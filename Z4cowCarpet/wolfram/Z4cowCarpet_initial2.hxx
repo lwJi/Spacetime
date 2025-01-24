@@ -15,6 +15,7 @@ const auto &gamt22 = gf_gamt[3];
 const auto &gamt23 = gf_gamt[4];
 const auto &gamt33 = gf_gamt[5];
 
+pragma omp parallel collapse(3)
 for (int k=kstart; k<kend; k++) {
   for (int j=jstart; j<jend; j++) {
     for (int i=istart; i<iend; i++) {

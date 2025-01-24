@@ -39,6 +39,7 @@ const auto &ADMbeta1 = gf_ADMbeta[0];
 const auto &ADMbeta2 = gf_ADMbeta[1];
 const auto &ADMbeta3 = gf_ADMbeta[2];
 
+pragma omp parallel collapse(3)
 for (int k=kstart; k<kend; k++) {
   for (int j=jstart; j<jend; j++) {
     for (int i=istart; i<iend; i++) {
