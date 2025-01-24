@@ -4,8 +4,10 @@
 #ifndef DERIVSINLINE_HXX
 #define DERIVSINLINE_HXX
 
+#include <array>
+
 template <int D, typename T>
-inline T fd_1st(const cGH *restrict const cctkGH, T *gf, int i, int j, int k, const vector<T, 3> idx) {
+inline T fd_1st(const cGH *restrict const cctkGH, T *gf, int i, int j, int k, const std::array<T, 3> idx) {
   constexpr int DI = D - 1;
   const int m2 = CCTK_GFINDEX3D(cctkGH, i + (D == 1 ? -2 : 0),
                                         j + (D == 2 ? -2 : 0),
@@ -24,7 +26,7 @@ inline T fd_1st(const cGH *restrict const cctkGH, T *gf, int i, int j, int k, co
 };
 
 template <int D1, int D2, typename T>
-inline T fd_2nd(const cGH *restrict const cctkGH, T *gf, int i, int j, int k, const vector<T, 3> idx) {
+inline T fd_2nd(const cGH *restrict const cctkGH, T *gf, int i, int j, int k, const std::array<T, 3> idx) {
   if constexpr (D1 == D2) {
   constexpr int D = D1;
   constexpr int DI = D - 1;
