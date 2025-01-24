@@ -39,6 +39,12 @@ Module[{Mat, invMat},
 SetOutputFile[FileNameJoin[{Directory[], "Z4cowCarpet_set_rhs.hxx"}]];
 
 SetMainPrint[
+  (*
+  PrintInitializations[{Mode -> "MainIn"}, TmunuVarlist];
+  PrintInitializations[{Mode -> "MainIn"}, EvolVarlist];
+  pr[];
+  *)
+
   (* Loops *)
   pr["for (k=kstart; k<kend; k++) {"];
   pr["  for (j=jstart; j<jend; j++) {"];
@@ -46,14 +52,8 @@ SetMainPrint[
   pr["    const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);"];
   pr[];
 
-  (*
-  PrintInitializations[{Mode -> "MainIn"}, TmunuVarlist];
-  PrintInitializations[{Mode -> "MainIn"}, EvolVarlist];
-  pr[];
-  *)
-
-  PrintInitializations[{Mode -> "Derivs1st"}, dEvolVarlist];
-  PrintInitializations[{Mode -> "Derivs2nd"}, ddEvolVarlist];
+  PrintInitializations[{Mode -> "Derivs1st", TensorType -> "Vect"}, dEvolVarlist];
+  PrintInitializations[{Mode -> "Derivs2nd", TensorType -> "Smat"}, ddEvolVarlist];
   pr[];
 
   PrintEquations[{Mode -> "Temp"}, IntermediateVarlist];
