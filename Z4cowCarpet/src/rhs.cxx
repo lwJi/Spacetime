@@ -44,28 +44,24 @@ extern "C" void Z4cowCarpet_RHS(CCTK_ARGUMENTS) {
 
   // Input grid functions
   const array<const CCTK_REAL *, 6> gf_gamt{gammatxx, gammatxy, gammatxz,
-                                      gammatyy, gammatyz, gammatzz};
+                                            gammatyy, gammatyz, gammatzz};
   const CCTK_REAL *gf_exKh = Kh;
   const array<const CCTK_REAL *, 6> gf_exAt{Atxx, Atxy, Atxz, Atyy, Atyz, Atzz};
   const array<const CCTK_REAL *, 3> gf_trGt{Gamtx, Gamty, Gamtz};
   const CCTK_REAL *gf_alpha = alphaG;
   const array<const CCTK_REAL *, 3> gf_beta{betaGx, betaGy, betaGz};
 
-  // More input grid functions
-  const array<const CCTK_REAL *, 3> gf_eTt{eTtx, eTty, eTtz};
-  const array<const CCTK_REAL *, 6> gf_eT{eTxx, eTxy, eTxz, eTyy, eTyz, eTzz};
-
   // Output grid functions
-  const CCTK_REAL *gf_dtW = W_rhs;
+  CCTK_REAL *gf_dtW = W_rhs;
   const array<CCTK_REAL *, 6> gf_dtgamt{gammatxx_rhs, gammatxy_rhs,
                                         gammatxz_rhs, gammatyy_rhs,
                                         gammatyz_rhs, gammatzz_rhs};
-  const CCTK_REAL *gf_dtexKh = Kh_rhs;
+  CCTK_REAL *gf_dtexKh = Kh_rhs;
   const array<CCTK_REAL *, 6> gf_dtexAt{Atxx_rhs, Atxy_rhs, Atxz_rhs,
                                         Atyy_rhs, Atyz_rhs, Atzz_rhs};
   const array<CCTK_REAL *, 3> gf_dttrGt{Gamtx_rhs, Gamty_rhs, Gamtz_rhs};
-  const CCTK_REAL *gf_dtTheta = Theta_rhs;
-  const CCTK_REAL *gf_dtalpha = alphaG_rhs;
+  CCTK_REAL *gf_dtTheta = Theta_rhs;
+  CCTK_REAL *gf_dtalpha = alphaG_rhs;
   const array<CCTK_REAL *, 3> gf_dtbeta{betaGx_rhs, betaGy_rhs, betaGz_rhs};
 
   // parameters
