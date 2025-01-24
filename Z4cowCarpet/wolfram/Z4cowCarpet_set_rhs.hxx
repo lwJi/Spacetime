@@ -57,9 +57,9 @@ const auto &betax = gf_beta[0];
 const auto &betay = gf_beta[1];
 const auto &betaz = gf_beta[2];
 
-for (k=kstart; k<kend; k++) {
-  for (j=jstart; j<jend; j++) {
-    for (i=istart; i<iend; i++) {
+for (int k=kstart; k<kend; k++) {
+  for (int j=jstart; j<jend; j++) {
+    for (int i=istart; i<iend; i++) {
     const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);
 
 const auto dWx = fd_1st<1>(cctkGH, W, i, j, k, idx);

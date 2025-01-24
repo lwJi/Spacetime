@@ -49,9 +49,9 @@ SetMainPrint[
 
 
   (* Loops *)
-  pr["for (k=kstart; k<kend; k++) {"];
-  pr["  for (j=jstart; j<jend; j++) {"];
-  pr["    for (i=istart; i<iend; i++) {"];
+  pr["for (int k=kstart; k<kend; k++) {"];
+  pr["  for (int j=jstart; j<jend; j++) {"];
+  pr["    for (int i=istart; i<iend; i++) {"];
   pr["    const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);"];
   pr[];
 

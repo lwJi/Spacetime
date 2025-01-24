@@ -39,9 +39,9 @@ const auto &ADMbeta1 = gf_ADMbeta[0];
 const auto &ADMbeta2 = gf_ADMbeta[1];
 const auto &ADMbeta3 = gf_ADMbeta[2];
 
-for (k=kstart; k<kend; k++) {
-  for (j=jstart; j<jend; j++) {
-    for (i=istart; i<iend; i++) {
+for (int k=kstart; k<kend; k++) {
+  for (int j=jstart; j<jend; j++) {
+    for (int i=istart; i<iend; i++) {
     const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);
 
 const auto
