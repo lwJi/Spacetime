@@ -1,0 +1,82 @@
+# Schedule definitions for thorn Z4cowGPU
+
+STORAGE: W
+STORAGE: gamma_tilde
+STORAGE: K_hat
+STORAGE: A_tilde
+STORAGE: Gam_tilde
+STORAGE: Theta
+STORAGE: alphaG
+STORAGE: betaG
+
+STORAGE: ZtC
+STORAGE: HC
+STORAGE: MtC
+STORAGE: allC
+
+STORAGE: W_rhs
+STORAGE: gamma_tilde_rhs
+STORAGE: K_hat_rhs
+STORAGE: A_tilde_rhs
+STORAGE: Gam_tilde_rhs
+STORAGE: Theta_rhs
+STORAGE: alphaG_rhs
+STORAGE: betaG_rhs
+
+
+
+
+SCHEDULE GROUP Z4cowGPU_InitialGroup AT initial AFTER ADMBase_PostInitial
+{
+} "Convert ADM to Z4c variables"
+
+
+
+
+SCHEDULE Z4cowGPU_Initial1 IN Z4cowGPU_InitialGroup
+{
+  LANG: C
+  READS: ADMBaseX::metric(interior)
+  READS: ADMBaseX::curv(interior)
+  READS: ADMBaseX::lapse(interior)
+  READS: ADMBaseX::shift(interior)
+  WRITES: W(interior)
+  WRITES: gamma_tilde(interior)
+  WRITES: K_hat(interior)
+  WRITES: A_tilde(interior)
+  WRITES: Theta(interior)
+  WRITES: alphaG(interior)
+  WRITES: betaG(interior)
+  SYNC: gamma_tilde
+} "Convert ADM to Z4c variables, part 1"
+
+SCHEDULE Z4cowGPU_Initial2 IN Z4cowGPU_InitialGroup AFTER Z4cowGPU_Initial1
+{
+  LANG: C
+  READS: gamma_tilde(everywhere)
+  WRITES: Gam_tilde(interior)
+} "Convert ADM to Z4c variables, part 2"
+
+SCHEDULE Z4cowGPU_RHS IN MoL_CalcRHS
+{
+  LANG: C
+  READS: W(everywhere)
+  READS: gamma_tilde(everywhere)
+  READS: K_hat(everywhere)
+  READS: A_tilde(everywhere)
+  READS: Gam_tilde(everywhere)
+  READS: Theta(everywhere)
+  READS: alphaG(everywhere)
+  READS: betaG(everywhere)
+  READS: TmunuBaseX::eTtt(interior)
+  READS: TmunuBaseX::eTti(interior)
+  READS: TmunuBaseX::eTij(interior)
+  WRITES: W_rhs(interior)
+  WRITES: gamma_tilde_rhs(interior)
+  WRITES: K_hat_rhs(interior)
+  WRITES: A_tilde_rhs(interior)
+  WRITES: Gam_tilde_rhs(interior)
+  WRITES: Theta_rhs(interior)
+  WRITES: alphaG_rhs(interior)
+  WRITES: betaG_rhs(interior)
+} "Calculate Z4c RHS"
