@@ -1,118 +1,35 @@
- /*@@
-   @file      WaveMoLRegister.c
-   @date      Fri Nov  9 13:47:07 2001
-   @author    Ian Hawke
-   @desc 
-   Routine to register the variables with the MoL thorn.
-   @enddesc 
- @@*/
-
 #include "cctk.h"
 #include "cctk_Arguments.h"
-#include "cctk_Functions.h"
 #include "cctk_Parameters.h"
 
-static const char *rcsid = "$Header$";
-
-CCTK_FILEVERSION(CactusExamples_WaveMoL_WaveMoLRegister_c)
-
-/*
-#ifndef DEBUG_MOL
-#define DEBUG_MOL
-#endif
-*/
-
-void WaveMoL_RegisterVars(CCTK_ARGUMENTS);
-
- /*@@
-   @routine    WaveMoL_RegisterVars
-   @date       Fri Nov  9 13:47:41 2001
-   @author     Ian Hawke
-   @desc 
-   The registration routine.
-   @enddesc 
-   @calls     
-   @calledby   
-   @history 
- 
-   @endhistory 
-
-@@*/
-
-void WaveMoL_RegisterVars(CCTK_ARGUMENTS)
+extern "C" void Z4cowCarpet_RegisterVars(CCTK_ARGUMENTS)
 {
-
-  DECLARE_CCTK_ARGUMENTS_WaveMoL_RegisterVars;
-  DECLARE_CCTK_PARAMETERS;
-
-  CCTK_INT ierr = 0, group, rhs, var;
-
-  group = CCTK_GroupIndex("wavemol::scalarevolvemol_scalar");
-  rhs = CCTK_GroupIndex("wavemol::scalarrhsmol_scalar");
-
-  if (CCTK_IsFunctionAliased("MoLRegisterEvolvedGroup"))
-  {
-    ierr += MoLRegisterEvolvedGroup(group, rhs);
-  }
-  else
-  {
-    CCTK_WARN(0, "MoL function not aliased");
-    ierr++;
-  }
-
-  group = CCTK_GroupIndex("wavemol::scalarevolvemol_vector");
-  rhs = CCTK_GroupIndex("wavemol::scalarrhsmol_vector");
-
-  if (CCTK_IsFunctionAliased("MoLRegisterEvolvedGroup"))
-  {
-    ierr += MoLRegisterEvolvedGroup(group, rhs);
-  }
-  else
-  {
-    CCTK_WARN(0, "MoL function MoLRegisterEvolvedGroup not aliased");
-    ierr++;
-  }
-
-  var = CCTK_VarIndex("wavemol::energy");
-
-  if (CCTK_IsFunctionAliased("MoLRegisterConstrained"))
-  {
-    ierr += MoLRegisterConstrained(var);
-  }
-  else
-  {
-    CCTK_WARN(0, "MoL function MoLRegisterConstrained not aliased");
-    ierr++;
-  }      
+  DECLARE_CCTK_ARGUMENTS;
   
-  if (ierr) CCTK_WARN(0,"Problems registering with MoL");
-
-#ifdef DEBUG_MOL
-  printf("If we've got this far, then we've done with wavetoy registration.\n");
-#endif  
-}
-
-void WaveMoL_SelectDriverBC(CCTK_ARGUMENTS)
-{
-  DECLARE_CCTK_ARGUMENTS_WaveMoL_SelectDriverBC;
-  DECLARE_CCTK_PARAMETERS;
-
-  int ierr;
-
-  /* Uses all default arguments, so invalid table handle -1 can be passed */
-  ierr = Driver_SelectGroupForBC
-    (cctkGH, CCTK_ALL_FACES, 1, -1, "wavemol::scalarevolvemol_scalar", bound);
-
-  if (ierr < 0)
-  {
-    CCTK_ERROR("Failed to register bound BC for wavemol::scalarevolvemol_scalar!");
-  }
-
-  ierr = Driver_SelectGroupForBC
-    (cctkGH, CCTK_ALL_FACES, 1, -1, "wavemol::scalarevolvemol_vector", bound);
-
-  if (ierr < 0)
-  {
-    CCTK_ERROR("Failed to register bound BC for wavemol::scalarevolvemol_vector!");
-  }
+  CCTK_INT ierr CCTK_ATTRIBUTE_UNUSED = 0;
+  /* Register all the evolved grid functions with MoL */
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::W"),  CCTK_VarIndex("Z4cowCarpet::W_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::gammatxx"),  CCTK_VarIndex("Z4cowCarpet::gammatxx_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::gammatxy"),  CCTK_VarIndex("Z4cowCarpet::gammatxy_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::gammatxz"),  CCTK_VarIndex("Z4cowCarpet::gammatxz_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::gammatyy"),  CCTK_VarIndex("Z4cowCarpet::gammatyy_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::gammatyz"),  CCTK_VarIndex("Z4cowCarpet::gammatyz_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::gammatzz"),  CCTK_VarIndex("Z4cowCarpet::gammatzz_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::Kh"),  CCTK_VarIndex("Z4cowCarpet::Kh_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::Atxx"),  CCTK_VarIndex("Z4cowCarpet::Atxx_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::Atxy"),  CCTK_VarIndex("Z4cowCarpet::Atxy_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::Atxz"),  CCTK_VarIndex("Z4cowCarpet::Atxz_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::Atyy"),  CCTK_VarIndex("Z4cowCarpet::Atyy_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::Atyz"),  CCTK_VarIndex("Z4cowCarpet::Atyz_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::Atzz"),  CCTK_VarIndex("Z4cowCarpet::Atzz_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::Gamtx"),  CCTK_VarIndex("Z4cowCarpet::Gamtx_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::Gamty"),  CCTK_VarIndex("Z4cowCarpet::Gamty_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::Gamtz"),  CCTK_VarIndex("Z4cowCarpet::Gamtz_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::Theta"),  CCTK_VarIndex("Z4cowCarpet::Theta_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::alphaG"),  CCTK_VarIndex("Z4cowCarpet::alphaG_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::betaGx"),  CCTK_VarIndex("Z4cowCarpet::betaGx_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::betaGy"),  CCTK_VarIndex("Z4cowCarpet::betaGy_rhs"));
+  ierr += MoLRegisterEvolved(CCTK_VarIndex("Z4cowCarpet::betaGz"),  CCTK_VarIndex("Z4cowCarpet::betaGz_rhs"));
+  /* Register all the evolved Array functions with MoL */
+  return;
 }
