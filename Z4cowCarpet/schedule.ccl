@@ -1,27 +1,27 @@
 # Schedule definitions for thorn Z4cowCarpet
 
-STORAGE: W
-STORAGE: gamma_tilde
-STORAGE: K_hat
-STORAGE: A_tilde
-STORAGE: Gam_tilde
-STORAGE: Theta
-STORAGE: alphaG
-STORAGE: betaG
+STORAGE: W[3]
+STORAGE: gamma_tilde[3]
+STORAGE: K_hat[3]
+STORAGE: A_tilde[3]
+STORAGE: Gam_tilde[3]
+STORAGE: Theta[3]
+STORAGE: alphaG[3]
+STORAGE: betaG[3]
 
-STORAGE: ZtC
-STORAGE: HC
-STORAGE: MtC
-STORAGE: allC
+#STORAGE: ZtC[1]
+#STORAGE: HC[1]
+#STORAGE: MtC[1]
+#STORAGE: allC[1]
 
-STORAGE: W_rhs
-STORAGE: gamma_tilde_rhs
-STORAGE: K_hat_rhs
-STORAGE: A_tilde_rhs
-STORAGE: Gam_tilde_rhs
-STORAGE: Theta_rhs
-STORAGE: alphaG_rhs
-STORAGE: betaG_rhs
+STORAGE: W_rhs[1]
+STORAGE: gamma_tilde_rhs[1]
+STORAGE: K_hat_rhs[1]
+STORAGE: A_tilde_rhs[1]
+STORAGE: Gam_tilde_rhs[1]
+STORAGE: Theta_rhs[1]
+STORAGE: alphaG_rhs[1]
+STORAGE: betaG_rhs[1]
 
 
 
@@ -68,9 +68,9 @@ SCHEDULE Z4cowCarpet_RHS IN MoL_CalcRHS
   READS: Theta(everywhere)
   READS: alphaG(everywhere)
   READS: betaG(everywhere)
-  READS: TmunuBaseX::eTtt(interior)
-  READS: TmunuBaseX::eTti(interior)
-  READS: TmunuBaseX::eTij(interior)
+  READS: TmunuBase::stress_energy_scalar(interior)
+  READS: TmunuBase::stress_energy_vector(interior)
+  READS: TmunuBase::stress_energy_tensor(interior)
   WRITES: W_rhs(interior)
   WRITES: gamma_tilde_rhs(interior)
   WRITES: K_hat_rhs(interior)
