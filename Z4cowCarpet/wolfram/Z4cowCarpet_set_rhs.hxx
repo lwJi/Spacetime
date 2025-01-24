@@ -4,6 +4,59 @@
 #ifndef Z4COWCARPET_SET_RHS_HXX
 #define Z4COWCARPET_SET_RHS_HXX
 
+const auto &dtW = gf_dtW;
+const auto &dtgamtxx = gf_dtgamt[0];
+const auto &dtgamtxy = gf_dtgamt[1];
+const auto &dtgamtxz = gf_dtgamt[2];
+const auto &dtgamtyy = gf_dtgamt[3];
+const auto &dtgamtyz = gf_dtgamt[4];
+const auto &dtgamtzz = gf_dtgamt[5];
+const auto &dtexKh = gf_dtexKh;
+const auto &dtexAtxx = gf_dtexAt[0];
+const auto &dtexAtxy = gf_dtexAt[1];
+const auto &dtexAtxz = gf_dtexAt[2];
+const auto &dtexAtyy = gf_dtexAt[3];
+const auto &dtexAtyz = gf_dtexAt[4];
+const auto &dtexAtzz = gf_dtexAt[5];
+const auto &dttrGtx = gf_dttrGt[0];
+const auto &dttrGty = gf_dttrGt[1];
+const auto &dttrGtz = gf_dttrGt[2];
+const auto &dtTheta = gf_dtTheta;
+const auto &dtalpha = gf_dtalpha;
+const auto &dtbetax = gf_dtbeta[0];
+const auto &dtbetay = gf_dtbeta[1];
+const auto &dtbetaz = gf_dtbeta[2];
+
+const auto &eTtx = gf_eTt[0];
+const auto &eTty = gf_eTt[1];
+const auto &eTtz = gf_eTt[2];
+const auto &eTxx = gf_eT[0];
+const auto &eTxy = gf_eT[1];
+const auto &eTxz = gf_eT[2];
+const auto &eTyy = gf_eT[3];
+const auto &eTyz = gf_eT[4];
+const auto &eTzz = gf_eT[5];
+const auto &gamtxx = gf_gamt[0];
+const auto &gamtxy = gf_gamt[1];
+const auto &gamtxz = gf_gamt[2];
+const auto &gamtyy = gf_gamt[3];
+const auto &gamtyz = gf_gamt[4];
+const auto &gamtzz = gf_gamt[5];
+const auto &exKh = gf_exKh;
+const auto &exAtxx = gf_exAt[0];
+const auto &exAtxy = gf_exAt[1];
+const auto &exAtxz = gf_exAt[2];
+const auto &exAtyy = gf_exAt[3];
+const auto &exAtyz = gf_exAt[4];
+const auto &exAtzz = gf_exAt[5];
+const auto &trGtx = gf_trGt[0];
+const auto &trGty = gf_trGt[1];
+const auto &trGtz = gf_trGt[2];
+const auto &alpha = gf_alpha;
+const auto &betax = gf_beta[0];
+const auto &betay = gf_beta[1];
+const auto &betaz = gf_beta[2];
+
 for (k=kstart; k<kend; k++) {
   for (j=jstart; j<jend; j++) {
     for (i=istart; i<iend; i++) {
