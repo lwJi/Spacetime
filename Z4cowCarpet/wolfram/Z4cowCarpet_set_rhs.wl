@@ -49,8 +49,7 @@ SetMainPrint[
 
 
   (* Loops *)
-  pr["#pragma omp parallel collapse(3)"];
-  pr[];
+  pr["#pragma omp parallel for collapse(3)"];
   pr["for (int k=kstart; k<kend; k++) {"];
   pr["  for (int j=jstart; j<jend; j++) {"];
   pr["    for (int i=istart; i<iend; i++) {"];
