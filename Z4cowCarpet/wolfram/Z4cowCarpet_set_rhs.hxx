@@ -48,7 +48,8 @@ const auto &betax = gf_beta[0];
 const auto &betay = gf_beta[1];
 const auto &betaz = gf_beta[2];
 
-pragma omp parallel collapse(3)
+#pragma omp parallel collapse(3)
+
 for (int k=kstart; k<kend; k++) {
   for (int j=jstart; j<jend; j++) {
     for (int i=istart; i<iend; i++) {
