@@ -1,0 +1,15 @@
+# Main make.code.defn file for thorn Z4c
+
+# Source files in this directory
+SRCS = \
+	initial1.cxx \
+	initial2.cxx \
+	rhs.cxx
+  #adm.cxx \
+	#constraint.cxx \
+	#enforce.cxx	\
+	#initiallapse.cxx \
+	#newradx.cxx \
+
+# Subdirectories containing source files
+SUBDIRS =
