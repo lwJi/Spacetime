@@ -15,9 +15,10 @@ const auto &gamt22 = gf_gamt[3];
 const auto &gamt23 = gf_gamt[4];
 const auto &gamt33 = gf_gamt[5];
 
-noinline([&]() __attribute__((__flatten__, __hot__)) {
-  grid.loop_int_device<0, 0, 0>(
-    grid.nghostzones, [=] ARITH_DEVICE(const PointDesc &p) ARITH_INLINE {
+for (k=kstart; k<kend; k++) {
+  for (j=jstart; j<jend; j++) {
+    for (i=istart; i<iend; i++) {
+    const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);
 
 const auto dgamt111 = fd_1st<1>(cctkGH, gamt11, i, j, k, idx);
 const auto dgamt112 = fd_1st<1>(cctkGH, gamt12, i, j, k, idx);
@@ -223,8 +224,9 @@ Gt111*invgamt11*invgamt13 + 2*Gt112*invgamt12*invgamt13 +
 ;
 
 
-  });
-});
+    }
+  }
+}
 
 #endif // #ifndef Z4COWCARPET_INITIAL2_HXX
 

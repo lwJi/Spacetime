@@ -49,9 +49,10 @@ SetMainPrint[
   pr[];
 
   (* Loops *)
-  pr["noinline([&]() __attribute__((__flatten__, __hot__)) {"];
-  pr["  grid.loop_int_device<0, 0, 0>("];
-  pr["    grid.nghostzones, [=] ARITH_DEVICE(const PointDesc &p) ARITH_INLINE {"];
+  pr["for (k=kstart; k<kend; k++) {"];
+  pr["  for (j=jstart; j<jend; j++) {"];
+  pr["    for (i=istart; i<iend; i++) {"];
+  pr["    const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);"];
   pr[];
 
   PrintEquations[{Mode -> "Temp"}, Drop[ADMTempVarlist, -2]];
@@ -63,8 +64,9 @@ SetMainPrint[
   PrintEquations[{Mode -> "Main"}, Drop[EvolVarlist, {5}]];
   pr[];
 
-  pr["  });"];
-  pr["});"];
+  pr["    }"];
+  pr["  }"];
+  pr["}"];
 ];
 
 Import[FileNameJoin[{Environment["GENERATO"], "codes/Carpet.wl"}]];

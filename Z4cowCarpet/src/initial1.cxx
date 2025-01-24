@@ -14,7 +14,19 @@ namespace Z4cowCarpet {
 using namespace std;
 
 extern "C" void Z4cowCarpet_Initial1(CCTK_ARGUMENTS) {
-  DECLARE_CCTK_ARGUMENTS;
+  DECLARE_CCTK_ARGUMENTS_Z4cowCarpet_Initial1;
+
+  const vector<CCTK_REAL, 3> idx{1. / CCTK_DELTA_SPACE(0),
+                                 1. / CCTK_DELTA_SPACE(1),
+                                 1. / CCTK_DELTA_SPACE(2)};
+
+  istart = 1;
+  jstart = 1;
+  kstart = 1;
+
+  iend = cctk_lsh[0] - 1;
+  jend = cctk_lsh[1] - 1;
+  kend = cctk_lsh[2] - 1;
 
   // Input grid functions
   const array<CCTK_REAL *, 6> gf_ADMgam{gxx, gxy, gxz, gyy, gyz, gzz};
