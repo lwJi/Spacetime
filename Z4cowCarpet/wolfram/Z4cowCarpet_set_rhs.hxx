@@ -1,8 +1,8 @@
-/* Z4cow_set_rhs.hxx */
+/* Z4cowCarpet_set_rhs.hxx */
 /* Produced with Generato */
 
-#ifndef Z4COW_SET_RHS_HXX
-#define Z4COW_SET_RHS_HXX
+#ifndef Z4COWCARPET_SET_RHS_HXX
+#define Z4COWCARPET_SET_RHS_HXX
 
 for (k=kstart; k<kend; k++) {
   for (j=jstart; j<jend; j++) {
@@ -1784,6 +1784,6 @@ dbetaxz*betax[ijk] + dbetayz*betay[ijk] - ceta*betaz[ijk] +
   }
 }
 
-#endif // #ifndef Z4COW_SET_RHS_HXX
+#endif // #ifndef Z4COWCARPET_SET_RHS_HXX
 
-/* Z4cow_set_rhs.hxx */
+/* Z4cowCarpet_set_rhs.hxx */
