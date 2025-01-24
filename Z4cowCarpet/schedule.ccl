@@ -36,10 +36,10 @@ SCHEDULE GROUP Z4cowCarpet_InitialGroup AT initial AFTER ADMBase_PostInitial
 SCHEDULE Z4cowCarpet_Initial1 IN Z4cowCarpet_InitialGroup
 {
   LANG: C
-  READS: ADMBaseX::metric(interior)
-  READS: ADMBaseX::curv(interior)
-  READS: ADMBaseX::lapse(interior)
-  READS: ADMBaseX::shift(interior)
+  READS: ADMBase::metric(interior)
+  READS: ADMBase::curv(interior)
+  READS: ADMBase::lapse(interior)
+  READS: ADMBase::shift(interior)
   WRITES: W(interior)
   WRITES: gamma_tilde(interior)
   WRITES: K_hat(interior)
@@ -85,15 +85,14 @@ schedule Z4cowCarpet_SelectBoundConds in MoL_PostStep
 {
   LANG: C
   OPTIONS: level
-  SYNC: ML_log_confac
-  SYNC: ML_metric
-  SYNC: ML_Gamma
-  SYNC: ML_trace_curv
-  SYNC: ML_curv
-  SYNC: ML_lapse
-  SYNC: ML_dtlapse
-  SYNC: ML_shift
-  SYNC: ML_dtshift
+  SYNC: W
+  SYNC: gamma_tilde
+  SYNC: K_hat
+  SYNC: A_tilde
+  SYNC: Gam_tilde
+  SYNC: Theta
+  SYNC: alphaG
+  SYNC: betaG
 } "select boundary conditions"
 
 schedule group ApplyBCs as Z4cowCarpet_ApplyBCs in MoL_PostStep after Z4cowCarpet_SelectBoundConds
