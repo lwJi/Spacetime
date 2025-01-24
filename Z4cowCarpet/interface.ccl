@@ -54,28 +54,3 @@ CCTK_REAL betaG TYPE=gf TIMELEVELS=4 TAGS=''
   betaGx betaGy betaGz
 } "beta"
 
-# Aux varilabes
-
-CCTK_REAL dW TYPE=gf TIMELEVELS=1 TAGS='checkpoint="no"'
-{
-  dWx dWy dWz
-} "dW"
-
-CCTK_REAL dgamma_tilde TYPE=gf TIMELEVELS=1 TAGS='checkpoint="no"'
-{
-  dgammatxxx dgammatxxy dgammatxxz dgammatxyy dgammatxyz dgammatxzz
-  dgammatyxx dgammatyxy dgammatyxz dgammatyyy dgammatyyz dgammatyzz
-  dgammatzxx dgammatzxy dgammatzxz dgammatzyy dgammatzyz dgammatzzz
-} "dgamma-tilde"
-
-CCTK_REAL dalphaG TYPE=gf TIMELEVELS=1 TAGS='checkpoint="no"'
-{
-  dalphaGx dalphaGy dalphaGz
-} "dalphaG"
-
-CCTK_REAL dbetaG TYPE=gf TIMELEVELS=1 TAGS='checkpoint="no"'
-{
-  dbetaGxx dbetaGxy dbetaGxz
-  dbetaGyx dbetaGyy dbetaGyz
-  dbetaGzx dbetaGzy dbetaGzz
-} "dbetaG"
