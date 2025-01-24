@@ -3,6 +3,8 @@
 
 implements: Z4cowCarpet
 
+inherits:   ADMBase Boundary GenericFD Grid TmunuBase
+
 USES INCLUDE: Symmetry.h
 
 CCTK_INT FUNCTION MoLRegisterEvolvedGroup(CCTK_INT IN EvolvedIndex, \
@@ -22,30 +24,19 @@ public:
 # Evolution variables
 
 CCTK_REAL W TYPE=gf TIMELEVELS=4 TAGS='' "W"
-
-CCTK_REAL gamma_tilde TYPE=gf TIMELEVELS=4 TAGS=''
-{
-  gammatxx gammatxy gammatxz gammatyy gammatyz gammatzz
-} "gamma-tilde"
-
+CCTK_REAL gamma_tilde TYPE=gf TIMELEVELS=4 TAGS='' { gammatxx gammatxy gammatxz gammatyy gammatyz gammatzz } "gamma-tilde"
 CCTK_REAL K_hat TYPE=gf TIMELEVELS=4 TAGS='' { Kh } "K-hat"
-
-CCTK_REAL A_tilde TYPE=gf TIMELEVELS=4 TAGS=''
-{
-  Atxx Atxy Atxz Atyy Atyz Atzz
-} "A-tilde"
-
-CCTK_REAL Gam_tilde TYPE=gf TIMELEVELS=4 TAGS=''
-{
-  Gamtx Gamty Gamtz
-} "Gamma-tilde"
-
+CCTK_REAL A_tilde TYPE=gf TIMELEVELS=4 TAGS='' { Atxx Atxy Atxz Atyy Atyz Atzz } "A-tilde"
+CCTK_REAL Gam_tilde TYPE=gf TIMELEVELS=4 TAGS='' { Gamtx Gamty Gamtz } "Gamma-tilde"
 CCTK_REAL Theta TYPE=gf TIMELEVELS=4 TAGS='' "Theta"
-
 CCTK_REAL alphaG TYPE=gf TIMELEVELS=4 TAGS='' "alpha"
+CCTK_REAL betaG TYPE=gf TIMELEVELS=4 TAGS='' { betaGx betaGy betaGz } "beta"
 
-CCTK_REAL betaG TYPE=gf TIMELEVELS=4 TAGS=''
-{
-  betaGx betaGy betaGz
-} "beta"
-
+CCTK_REAL W_rhs TYPE=gf TAGS='checkpoint="no"' "W"
+CCTK_REAL gamma_tilde_rhs TYPE=gf TAGS='checkpoint="no"' { gammatxx_rhs gammatxy_rhs gammatxz_rhs gammatyy_rhs gammatyz_rhs gammatzz_rhs } "gamma-tilde"
+CCTK_REAL K_hat_rhs TYPE=gf TAGS='checkpoint="no"' { Kh_rhs } "K-hat"
+CCTK_REAL A_tilde_rhs TYPE=gf TAGS='checkpoint="no"' { Atxx_rhs Atxy_rhs Atxz_rhs Atyy_rhs Atyz_rhs Atzz_rhs } "A-tilde"
+CCTK_REAL Gam_tilde_rhs TYPE=gf TAGS='checkpoint="no"' { Gamtx_rhs Gamty_rhs Gamtz_rhs } "Gamma-tilde"
+CCTK_REAL Theta_rhs TYPE=gf TAGS='checkpoint="no"' "Theta"
+CCTK_REAL alphaG_rhs TYPE=gf TAGS='checkpoint="no"' "alpha"
+CCTK_REAL betaG_rhs TYPE=gf TAGS='checkpoint="no"' { betaGx_rhs betaGy_rhs betaGz_rhs } "beta"
