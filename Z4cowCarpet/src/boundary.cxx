@@ -14,9 +14,6 @@
 #include <nvtx3/nvToolsExt.h>
 #endif
 
-namespace Z4cowCarpet {
-using namespace std;
-
 void Z4cowCarpet_SelectBoundConds(CCTK_ARGUMENTS) {
   DECLARE_CCTK_ARGUMENTS_Z4cowCarpet_SelectBoundConds;
   DECLARE_CCTK_PARAMETERS;
@@ -66,5 +63,3 @@ void Z4cowCarpet_SelectBoundConds(CCTK_ARGUMENTS) {
 
   return;
 }
-
-} // namespace Z4cowCarpet
