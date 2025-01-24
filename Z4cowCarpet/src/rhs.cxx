@@ -10,12 +10,6 @@
 #endif
 #endif
 
-#include <derivs.hxx>
-#include <loop_device.hxx>
-#include <mat.hxx>
-#include <simd.hxx>
-#include <vec.hxx>
-
 #ifdef __CUDACC__
 #include <nvtx3/nvToolsExt.h>
 #endif
@@ -24,12 +18,10 @@
 
 #include "../wolfram/derivsinline.hxx"
 
-namespace Z4cowGPU {
-using namespace Arith;
-using namespace Loop;
+namespace Z4cowCarpet {
 
-extern "C" void Z4cowGPU_RHS(CCTK_ARGUMENTS) {
-  DECLARE_CCTK_ARGUMENTSX_Z4cowGPU_RHS;
+extern "C" void Z4cowCarpet_RHS(CCTK_ARGUMENTS) {
+  DECLARE_CCTK_ARGUMENTSX_Z4cowCarpet_RHS;
   DECLARE_CCTK_PARAMETERS;
 
   for (int d = 0; d < 3; ++d)
@@ -43,35 +35,30 @@ extern "C" void Z4cowGPU_RHS(CCTK_ARGUMENTS) {
   };
 
   // Input grid functions
-  // const GF3D2<const CCTK_REAL> &gf_W = W;
-  const smat<GF3D2<const CCTK_REAL>, 3> gf_gamt{gammatxx, gammatxy, gammatxz,
-                                                gammatyy, gammatyz, gammatzz};
-  const GF3D2<const CCTK_REAL> &gf_exKh = Kh;
-  const smat<GF3D2<const CCTK_REAL>, 3> gf_exAt{Atxx, Atxy, Atxz,
-                                                Atyy, Atyz, Atzz};
-  const vec<GF3D2<const CCTK_REAL>, 3> gf_trGt{Gamtx, Gamty, Gamtz};
-  // const GF3D2<const CCTK_REAL> &gf_Theta = Theta;
-  const GF3D2<const CCTK_REAL> &gf_alpha = alphaG;
-  const vec<GF3D2<const CCTK_REAL>, 3> gf_beta{betaGx, betaGy, betaGz};
+  const array<CCTK_REAL *, 6> gf_gamt{gammatxx, gammatxy, gammatxz,
+                                      gammatyy, gammatyz, gammatzz};
+  const CCTK_REAL *gf_exKh = Kh;
+  const array<CCTK_REAL *, 6> gf_exAt{Atxx, Atxy, Atxz, Atyy, Atyz, Atzz};
+  const array<CCTK_REAL *, 3> gf_trGt{Gamtx, Gamty, Gamtz};
+  const CCTK_REAL *gf_alpha = alphaG;
+  const array<CCTK_REAL *, 3> gf_beta{betaGx, betaGy, betaGz};
 
   // More input grid functions
-  // const GF3D2<const CCTK_REAL> &gf_eTtt = eTtt;
-  const vec<GF3D2<const CCTK_REAL>, 3> gf_eTt{eTtx, eTty, eTtz};
-  const smat<GF3D2<const CCTK_REAL>, 3> gf_eT{eTxx, eTxy, eTxz,
-                                              eTyy, eTyz, eTzz};
+  const array<CCTK_REAL *, 3> gf_eTt{eTtx, eTty, eTtz};
+  const array<CCTK_REAL *, 6> gf_eT{eTxx, eTxy, eTxz, eTyy, eTyz, eTzz};
 
   // Output grid functions
-  const GF3D2<CCTK_REAL> &gf_dtW = W_rhs;
-  const smat<GF3D2<CCTK_REAL>, 3> gf_dtgamt{gammatxx_rhs, gammatxy_rhs,
-                                            gammatxz_rhs, gammatyy_rhs,
-                                            gammatyz_rhs, gammatzz_rhs};
-  const GF3D2<CCTK_REAL> &gf_dtexKh = Kh_rhs;
-  const smat<GF3D2<CCTK_REAL>, 3> gf_dtexAt{Atxx_rhs, Atxy_rhs, Atxz_rhs,
-                                            Atyy_rhs, Atyz_rhs, Atzz_rhs};
-  const vec<GF3D2<CCTK_REAL>, 3> gf_dttrGt{Gamtx_rhs, Gamty_rhs, Gamtz_rhs};
-  const GF3D2<CCTK_REAL> &gf_dtTheta = Theta_rhs;
-  const GF3D2<CCTK_REAL> &gf_dtalpha = alphaG_rhs;
-  const vec<GF3D2<CCTK_REAL>, 3> gf_dtbeta{betaGx_rhs, betaGy_rhs, betaGz_rhs};
+  const CCTK_REAL *gf_dtW = W_rhs;
+  const array<CCTK_REAL *, 6> gf_dtgamt{gammatxx_rhs, gammatxy_rhs,
+                                        gammatxz_rhs, gammatyy_rhs,
+                                        gammatyz_rhs, gammatzz_rhs};
+  const CCTK_REAL *gf_dtexKh = Kh_rhs;
+  const array<CCTK_REAL *, 6> gf_dtexAt{Atxx_rhs, Atxy_rhs, Atxz_rhs,
+                                        Atyy_rhs, Atyz_rhs, Atzz_rhs};
+  const array<CCTK_REAL *, 3> gf_dttrGt{Gamtx_rhs, Gamty_rhs, Gamtz_rhs};
+  const CCTK_REAL *gf_dtTheta = Theta_rhs;
+  const CCTK_REAL *gf_dtalpha = alphaG_rhs;
+  const array<CCTK_REAL *, 3> gf_dtbeta{betaGx_rhs, betaGy_rhs, betaGz_rhs};
 
   // parameters
   const CCTK_REAL cpi = M_PI;
@@ -83,10 +70,10 @@ extern "C" void Z4cowGPU_RHS(CCTK_ARGUMENTS) {
 
   // Loop
 #ifdef __CUDACC__
-  const nvtxRangeId_t range = nvtxRangeStartA("Z4cowGPU_RHS::rhs");
+  const nvtxRangeId_t range = nvtxRangeStartA("Z4cowCarpet_RHS::rhs");
 #endif
 
-#include "../wolfram/Z4cowGPU_set_rhs.hxx"
+#include "../wolfram/Z4cowCarpet_set_rhs.hxx"
 
 #ifdef __CUDACC__
   nvtxRangeEnd(range);
@@ -169,8 +156,4 @@ extern "C" void Z4cowGPU_RHS(CCTK_ARGUMENTS) {
 #endif
 }
 
-extern "C" void Z4cowGPU_Sync(CCTK_ARGUMENTS) {
-  // do nothing
-}
-
-} // namespace Z4cowGPU
+} // namespace Z4cowCarpet
