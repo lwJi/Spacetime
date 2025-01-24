@@ -22,8 +22,8 @@
 namespace Z4cowCarpet {
 using namespace std;
 
-void Z4cowCarpet_Boundaries(CCTK_ARGUMENTS) {
-  DECLARE_CCTK_ARGUMENTS_Z4cowCarpet_Boundaries;
+void Z4cowCarpet_SelectBoundConds(CCTK_ARGUMENTS) {
+  DECLARE_CCTK_ARGUMENTS_Z4cowCarpet_SelectBoundConds;
   DECLARE_CCTK_PARAMETERS;
 
   int ierr = -1;

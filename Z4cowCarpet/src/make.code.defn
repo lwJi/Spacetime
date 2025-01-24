@@ -2,6 +2,7 @@
 
 # Source files in this directory
 SRCS = \
+  boundary.cxx \
 	initial1.cxx \
 	initial2.cxx \
 	rhs.cxx
