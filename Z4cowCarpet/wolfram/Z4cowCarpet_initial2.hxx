@@ -19,24 +19,24 @@ noinline([&]() __attribute__((__flatten__, __hot__)) {
   grid.loop_int_device<0, 0, 0>(
     grid.nghostzones, [=] ARITH_DEVICE(const PointDesc &p) ARITH_INLINE {
 
-const auto dgamt111 = fd_1st<1>(cctkGH, gamt11, i, j, k);
-const auto dgamt112 = fd_1st<1>(cctkGH, gamt12, i, j, k);
-const auto dgamt113 = fd_1st<1>(cctkGH, gamt13, i, j, k);
-const auto dgamt122 = fd_1st<1>(cctkGH, gamt22, i, j, k);
-const auto dgamt123 = fd_1st<1>(cctkGH, gamt23, i, j, k);
-const auto dgamt133 = fd_1st<1>(cctkGH, gamt33, i, j, k);
-const auto dgamt211 = fd_1st<2>(cctkGH, gamt11, i, j, k);
-const auto dgamt212 = fd_1st<2>(cctkGH, gamt12, i, j, k);
-const auto dgamt213 = fd_1st<2>(cctkGH, gamt13, i, j, k);
-const auto dgamt222 = fd_1st<2>(cctkGH, gamt22, i, j, k);
-const auto dgamt223 = fd_1st<2>(cctkGH, gamt23, i, j, k);
-const auto dgamt233 = fd_1st<2>(cctkGH, gamt33, i, j, k);
-const auto dgamt311 = fd_1st<3>(cctkGH, gamt11, i, j, k);
-const auto dgamt312 = fd_1st<3>(cctkGH, gamt12, i, j, k);
-const auto dgamt313 = fd_1st<3>(cctkGH, gamt13, i, j, k);
-const auto dgamt322 = fd_1st<3>(cctkGH, gamt22, i, j, k);
-const auto dgamt323 = fd_1st<3>(cctkGH, gamt23, i, j, k);
-const auto dgamt333 = fd_1st<3>(cctkGH, gamt33, i, j, k);
+const auto dgamt111 = fd_1st<1>(cctkGH, gamt11, i, j, k, idx);
+const auto dgamt112 = fd_1st<1>(cctkGH, gamt12, i, j, k, idx);
+const auto dgamt113 = fd_1st<1>(cctkGH, gamt13, i, j, k, idx);
+const auto dgamt122 = fd_1st<1>(cctkGH, gamt22, i, j, k, idx);
+const auto dgamt123 = fd_1st<1>(cctkGH, gamt23, i, j, k, idx);
+const auto dgamt133 = fd_1st<1>(cctkGH, gamt33, i, j, k, idx);
+const auto dgamt211 = fd_1st<2>(cctkGH, gamt11, i, j, k, idx);
+const auto dgamt212 = fd_1st<2>(cctkGH, gamt12, i, j, k, idx);
+const auto dgamt213 = fd_1st<2>(cctkGH, gamt13, i, j, k, idx);
+const auto dgamt222 = fd_1st<2>(cctkGH, gamt22, i, j, k, idx);
+const auto dgamt223 = fd_1st<2>(cctkGH, gamt23, i, j, k, idx);
+const auto dgamt233 = fd_1st<2>(cctkGH, gamt33, i, j, k, idx);
+const auto dgamt311 = fd_1st<3>(cctkGH, gamt11, i, j, k, idx);
+const auto dgamt312 = fd_1st<3>(cctkGH, gamt12, i, j, k, idx);
+const auto dgamt313 = fd_1st<3>(cctkGH, gamt13, i, j, k, idx);
+const auto dgamt322 = fd_1st<3>(cctkGH, gamt22, i, j, k, idx);
+const auto dgamt323 = fd_1st<3>(cctkGH, gamt23, i, j, k, idx);
+const auto dgamt333 = fd_1st<3>(cctkGH, gamt33, i, j, k, idx);
 
 const auto
 invgamt11

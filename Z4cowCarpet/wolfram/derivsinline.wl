@@ -27,7 +27,7 @@ SetOutputFile[FileNameJoin[{Directory[], "derivsinline.hxx"}]];
 
 SetMainPrint[
   pr["template <int D, typename T>"];
-  pr["inline T fd_1st(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) {"];
+  pr["inline T fd_1st(const cGH *restrict const cctkGH, T *gf, int i, int j, int k, const vector<T, 3> idx) {"];
   PrintIndexes3D[4, 1];
   pr["  return"];
   PrintFDExpression[4, 1];
@@ -35,7 +35,7 @@ SetMainPrint[
   pr[];
 
   pr["template <int D1, int D2, typename T>"];
-  pr["inline T fd_2nd(const cGH *restrict const cctkGH, T *gf, int i, int j, int k) {"];
+  pr["inline T fd_2nd(const cGH *restrict const cctkGH, T *gf, int i, int j, int k, const vector<T, 3> idx) {"];
   pr["  if constexpr (D1 == D2) {"];
   pr["  constexpr int D = D1;"];
   PrintIndexes3D[4, 2];
