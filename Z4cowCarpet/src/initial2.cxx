@@ -10,6 +10,7 @@
 #include "../wolfram/derivsinline.hxx"
 
 namespace Z4cowCarpet {
+using namespace std;
 
 extern "C" void Z4cowCarpet_Initial2(CCTK_ARGUMENTS) {
   DECLARE_CCTK_ARGUMENTS;

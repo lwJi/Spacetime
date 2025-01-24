@@ -20,6 +20,7 @@
 #include "../wolfram/derivsinline.hxx"
 
 namespace Z4cowCarpet {
+using namespace std;
 
 extern "C" void Z4cowCarpet_RHS(CCTK_ARGUMENTS) {
   DECLARE_CCTK_ARGUMENTS_Z4cowCarpet_RHS;
