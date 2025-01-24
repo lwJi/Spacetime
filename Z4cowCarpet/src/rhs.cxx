@@ -21,18 +21,24 @@
 namespace Z4cowCarpet {
 
 extern "C" void Z4cowCarpet_RHS(CCTK_ARGUMENTS) {
-  DECLARE_CCTK_ARGUMENTS;
+  DECLARE_CCTK_ARGUMENTS_Z4cowCarpet_RHS;
   DECLARE_CCTK_PARAMETERS;
 
   for (int d = 0; d < 3; ++d)
     if (cctk_nghostzones[d] < deriv_order / 2)
       CCTK_VERROR("Need at least %d ghost zones", deriv_order / 2);
 
-  const vect<CCTK_REAL, dim> dx{
-      CCTK_DELTA_SPACE(0),
-      CCTK_DELTA_SPACE(1),
-      CCTK_DELTA_SPACE(2),
-  };
+  const vector<CCTK_REAL, 3> idx{1. / CCTK_DELTA_SPACE(0),
+                                 1. / CCTK_DELTA_SPACE(1),
+                                 1. / CCTK_DELTA_SPACE(2)};
+
+  istart = 1;
+  jstart = 1;
+  kstart = 1;
+
+  iend = cctk_lsh[0] - 1;
+  jend = cctk_lsh[1] - 1;
+  kend = cctk_lsh[2] - 1;
 
   // Input grid functions
   const array<CCTK_REAL *, 6> gf_gamt{gammatxx, gammatxy, gammatxz,
