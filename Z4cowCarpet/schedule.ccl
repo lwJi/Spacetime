@@ -1,4 +1,4 @@
-# Schedule definitions for thorn Z4cowGPU
+# Schedule definitions for thorn Z4cowCarpet
 
 STORAGE: W
 STORAGE: gamma_tilde
@@ -26,14 +26,14 @@ STORAGE: betaG_rhs
 
 
 
-SCHEDULE GROUP Z4cowGPU_InitialGroup AT initial AFTER ADMBase_PostInitial
+SCHEDULE GROUP Z4cowCarpet_InitialGroup AT initial AFTER ADMBase_PostInitial
 {
 } "Convert ADM to Z4c variables"
 
 
 
 
-SCHEDULE Z4cowGPU_Initial1 IN Z4cowGPU_InitialGroup
+SCHEDULE Z4cowCarpet_Initial1 IN Z4cowCarpet_InitialGroup
 {
   LANG: C
   READS: ADMBaseX::metric(interior)
@@ -50,14 +50,14 @@ SCHEDULE Z4cowGPU_Initial1 IN Z4cowGPU_InitialGroup
   SYNC: gamma_tilde
 } "Convert ADM to Z4c variables, part 1"
 
-SCHEDULE Z4cowGPU_Initial2 IN Z4cowGPU_InitialGroup AFTER Z4cowGPU_Initial1
+SCHEDULE Z4cowCarpet_Initial2 IN Z4cowCarpet_InitialGroup AFTER Z4cowCarpet_Initial1
 {
   LANG: C
   READS: gamma_tilde(everywhere)
   WRITES: Gam_tilde(interior)
 } "Convert ADM to Z4c variables, part 2"
 
-SCHEDULE Z4cowGPU_RHS IN MoL_CalcRHS
+SCHEDULE Z4cowCarpet_RHS IN MoL_CalcRHS
 {
   LANG: C
   READS: W(everywhere)
@@ -80,3 +80,22 @@ SCHEDULE Z4cowGPU_RHS IN MoL_CalcRHS
   WRITES: alphaG_rhs(interior)
   WRITES: betaG_rhs(interior)
 } "Calculate Z4c RHS"
+
+schedule Z4cowCarpet_SelectBoundConds in MoL_PostStep
+{
+  LANG: C
+  OPTIONS: level
+  SYNC: ML_log_confac
+  SYNC: ML_metric
+  SYNC: ML_Gamma
+  SYNC: ML_trace_curv
+  SYNC: ML_curv
+  SYNC: ML_lapse
+  SYNC: ML_dtlapse
+  SYNC: ML_shift
+  SYNC: ML_dtshift
+} "select boundary conditions"
+
+schedule group ApplyBCs as Z4cowCarpet_ApplyBCs in MoL_PostStep after Z4cowCarpet_SelectBoundConds
+{
+} "Apply boundary conditions controlled by thorn Boundary"

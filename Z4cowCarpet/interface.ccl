@@ -1,7 +1,7 @@
 # Interface definition for thorn Z4cowCarpet
 # $Header$
 
-implements: wavemol
+implements: Z4cowCarpet
 
 USES INCLUDE: Symmetry.h
 
@@ -16,11 +16,6 @@ CCTK_INT FUNCTION Boundary_SelectGroupForBC(CCTK_POINTER_TO_CONST IN cctkGH,
   CCTK_INT IN faces, CCTK_INT IN width, CCTK_INT IN table_handle,
   CCTK_STRING IN var_name, CCTK_STRING IN bc_name)
 USES FUNCTION Boundary_SelectGroupForBC
-
-CCTK_INT FUNCTION Driver_SelectGroupForBC(CCTK_POINTER_TO_CONST IN cctkGH,
-  CCTK_INT IN faces, CCTK_INT IN width, CCTK_INT IN table_handle,
-  CCTK_STRING IN var_name, CCTK_STRING IN bc_name)
-USES FUNCTION Driver_SelectGroupForBC
 
 public:
 
