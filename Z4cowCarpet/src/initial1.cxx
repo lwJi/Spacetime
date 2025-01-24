@@ -37,9 +37,9 @@ extern "C" void Z4cowCarpet_Initial1(CCTK_ARGUMENTS) {
   // Output grid functions
   const array<CCTK_REAL *, 6> gf_gamt{gammatxx, gammatxy, gammatxz,
                                       gammatyy, gammatyz, gammatzz};
-  const CCTK_REAL *gf_exKh = Kh;
+  CCTK_REAL *gf_exKh = Kh;
   const array<CCTK_REAL *, 6> gf_exAt{Atxx, Atxy, Atxz, Atyy, Atyz, Atzz};
-  const CCTK_REAL *gf_alpha = alphaG;
+  CCTK_REAL *gf_alpha = alphaG;
   const array<CCTK_REAL *, 3> gf_beta{betaGx, betaGy, betaGz};
 
 #ifdef __CUDACC__
