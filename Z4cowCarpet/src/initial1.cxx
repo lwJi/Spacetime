@@ -12,7 +12,7 @@
 namespace Z4cowCarpet {
 
 extern "C" void Z4cowCarpet_Initial1(CCTK_ARGUMENTS) {
-  DECLARE_CCTK_ARGUMENTSX_Z4cowCarpet_Initial1;
+  DECLARE_CCTK_ARGUMENTS;
 
   // Input grid functions
   const array<CCTK_REAL *, 6> gf_ADMgam{gxx, gxy, gxz, gyy, gyz, gzz};

@@ -21,7 +21,7 @@
 namespace Z4cowCarpet {
 
 extern "C" void Z4cowCarpet_RHS(CCTK_ARGUMENTS) {
-  DECLARE_CCTK_ARGUMENTSX_Z4cowCarpet_RHS;
+  DECLARE_CCTK_ARGUMENTS;
   DECLARE_CCTK_PARAMETERS;
 
   for (int d = 0; d < 3; ++d)

@@ -10,7 +10,7 @@
 namespace Z4cowCarpet {
 
 extern "C" void Z4cowCarpet_Initial2(CCTK_ARGUMENTS) {
-  DECLARE_CCTK_ARGUMENTSX_Z4cowCarpet_Initial2;
+  DECLARE_CCTK_ARGUMENTS;
   DECLARE_CCTK_PARAMETERS;
 
   // Input grid functions
