@@ -30,9 +30,9 @@ extern "C" void Z4cowCarpet_RHS(CCTK_ARGUMENTS) {
     if (cctk_nghostzones[d] < deriv_order / 2)
       CCTK_VERROR("Need at least %d ghost zones", deriv_order / 2);
 
-  const vector<CCTK_REAL, 3> idx{1. / CCTK_DELTA_SPACE(0),
-                                 1. / CCTK_DELTA_SPACE(1),
-                                 1. / CCTK_DELTA_SPACE(2)};
+  const array<CCTK_REAL, 3> idx{1. / CCTK_DELTA_SPACE(0),
+                                1. / CCTK_DELTA_SPACE(1),
+                                1. / CCTK_DELTA_SPACE(2)};
 
   istart = 1;
   jstart = 1;
