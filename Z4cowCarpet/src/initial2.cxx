@@ -5,6 +5,8 @@
 #include <nvtx3/nvToolsExt.h>
 #endif
 
+#include <array>
+
 #include "../wolfram/derivsinline.hxx"
 
 namespace Z4cowCarpet {

@@ -14,6 +14,7 @@
 #include <nvtx3/nvToolsExt.h>
 #endif
 
+#include <array>
 #include <cmath>
 
 #include "../wolfram/derivsinline.hxx"
