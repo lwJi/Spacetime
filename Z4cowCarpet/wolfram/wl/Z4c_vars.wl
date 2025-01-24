@@ -29,7 +29,8 @@ EvolVarlist =
     {exKh[], PrintAs -> "\!\(\*OverscriptBox[\(K\), \(^\)]\)"},
     {exAt[-i, -j], Symmetric[{-i, -j}], PrintAs -> "\!\(\*OverscriptBox[\(A\), \(~\)]\)"},
     {trGt[i], PrintAs -> "\!\(\*OverscriptBox[\(\[CapitalGamma]\), \(~\)]\)"},
-    {Theta[], PrintAs -> "\[CapitalTheta]"}, {alpha[], PrintAs -> "\[Alpha]"},
+    {Theta[], PrintAs -> "\[CapitalTheta]"},
+    {alpha[], PrintAs -> "\[Alpha]"},
     {beta[i], PrintAs -> "\[Beta]"}
   ];
 

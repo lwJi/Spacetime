@@ -17,3 +17,12 @@ ADMVarlist =
     {ADMdtbeta[i], PrintAs -> "\!\(\*SubscriptBox[\(\[PartialD]\), \\(t\)]\)\!\(\*SuperscriptBox[\(\[Beta]\), \((ADM)\)]\)"}
     *)
   ];
+
+ADMTempVarlist =
+  TempTensors[
+    {invdetgamma [], PrintAs->"1/\[Gamma]"},
+    {invgamma[i, j], Symmetric[{i, j}], PrintAs->"\[Gamma]"},
+    {trexK       [], PrintAs -> "K"},
+    {Gt[-k, -i, -j], Symmetric[{-i, -j}], PrintAs->"\[CapitalGamma]"},
+    {tempW       [], PrintAs -> "W"}
+  ];
