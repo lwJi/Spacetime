@@ -91,6 +91,12 @@ invdetgamma*(-Power(ADMgam12[ijk],2) + ADMgam11[ijk]*ADMgam22[ijk])
 ;
 
 const auto
+tempTheta
+=
+0
+;
+
+const auto
 trexK
 =
 invgamma11*ADMK11[ijk] + 2*invgamma12*ADMK12[ijk] +
@@ -138,7 +144,7 @@ Power(tempW,2)*ADMgam33[ijk]
 
 exKh[ijk]
 =
-trexK - 2*Theta[ijk]
+-2*tempTheta + trexK
 ;
 
 exAt11[ijk]
@@ -173,7 +179,7 @@ Power(tempW,2)*(-0.3333333333333333*(trexK*ADMgam33[ijk]) + ADMK33[ijk])
 
 Theta[ijk]
 =
-0
+tempTheta
 ;
 
 alpha[ijk]
