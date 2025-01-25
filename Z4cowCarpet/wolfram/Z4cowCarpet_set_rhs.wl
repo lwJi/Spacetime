@@ -13,7 +13,7 @@ SetPrintDate[False];
 
 SetGridPointIndex["[[ijk]]"];
 
-SetUseLetterForTensorComponet[True];
+(*SetUseLetterForTensorComponet[True];*)
 
 SetTempVariableType["auto"];
 
@@ -56,8 +56,8 @@ SetMainPrint[
   pr["    const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);"];
   pr[];
 
-  PrintInitializations[{Mode -> "Derivs1st", TensorType -> "Vect"}, dEvolVarlist];
-  PrintInitializations[{Mode -> "Derivs2nd", TensorType -> "Smat"}, ddEvolVarlist];
+  PrintInitializations[{Mode -> "Derivs1st"}, dEvolVarlist];
+  PrintInitializations[{Mode -> "Derivs2nd"}, ddEvolVarlist];
   pr[];
 
   PrintEquations[{Mode -> "Temp"}, IntermediateVarlist];

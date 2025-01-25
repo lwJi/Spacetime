@@ -5,48 +5,48 @@
 #define Z4COWCARPET_SET_RHS_HXX
 
 const auto &dtW = gf_dtW;
-const auto &dtgamtxx = gf_dtgamt[0];
-const auto &dtgamtxy = gf_dtgamt[1];
-const auto &dtgamtxz = gf_dtgamt[2];
-const auto &dtgamtyy = gf_dtgamt[3];
-const auto &dtgamtyz = gf_dtgamt[4];
-const auto &dtgamtzz = gf_dtgamt[5];
+const auto &dtgamt11 = gf_dtgamt[0];
+const auto &dtgamt12 = gf_dtgamt[1];
+const auto &dtgamt13 = gf_dtgamt[2];
+const auto &dtgamt22 = gf_dtgamt[3];
+const auto &dtgamt23 = gf_dtgamt[4];
+const auto &dtgamt33 = gf_dtgamt[5];
 const auto &dtexKh = gf_dtexKh;
-const auto &dtexAtxx = gf_dtexAt[0];
-const auto &dtexAtxy = gf_dtexAt[1];
-const auto &dtexAtxz = gf_dtexAt[2];
-const auto &dtexAtyy = gf_dtexAt[3];
-const auto &dtexAtyz = gf_dtexAt[4];
-const auto &dtexAtzz = gf_dtexAt[5];
-const auto &dttrGtx = gf_dttrGt[0];
-const auto &dttrGty = gf_dttrGt[1];
-const auto &dttrGtz = gf_dttrGt[2];
+const auto &dtexAt11 = gf_dtexAt[0];
+const auto &dtexAt12 = gf_dtexAt[1];
+const auto &dtexAt13 = gf_dtexAt[2];
+const auto &dtexAt22 = gf_dtexAt[3];
+const auto &dtexAt23 = gf_dtexAt[4];
+const auto &dtexAt33 = gf_dtexAt[5];
+const auto &dttrGt1 = gf_dttrGt[0];
+const auto &dttrGt2 = gf_dttrGt[1];
+const auto &dttrGt3 = gf_dttrGt[2];
 const auto &dtTheta = gf_dtTheta;
 const auto &dtalpha = gf_dtalpha;
-const auto &dtbetax = gf_dtbeta[0];
-const auto &dtbetay = gf_dtbeta[1];
-const auto &dtbetaz = gf_dtbeta[2];
+const auto &dtbeta1 = gf_dtbeta[0];
+const auto &dtbeta2 = gf_dtbeta[1];
+const auto &dtbeta3 = gf_dtbeta[2];
 
-const auto &gamtxx = gf_gamt[0];
-const auto &gamtxy = gf_gamt[1];
-const auto &gamtxz = gf_gamt[2];
-const auto &gamtyy = gf_gamt[3];
-const auto &gamtyz = gf_gamt[4];
-const auto &gamtzz = gf_gamt[5];
+const auto &gamt11 = gf_gamt[0];
+const auto &gamt12 = gf_gamt[1];
+const auto &gamt13 = gf_gamt[2];
+const auto &gamt22 = gf_gamt[3];
+const auto &gamt23 = gf_gamt[4];
+const auto &gamt33 = gf_gamt[5];
 const auto &exKh = gf_exKh;
-const auto &exAtxx = gf_exAt[0];
-const auto &exAtxy = gf_exAt[1];
-const auto &exAtxz = gf_exAt[2];
-const auto &exAtyy = gf_exAt[3];
-const auto &exAtyz = gf_exAt[4];
-const auto &exAtzz = gf_exAt[5];
-const auto &trGtx = gf_trGt[0];
-const auto &trGty = gf_trGt[1];
-const auto &trGtz = gf_trGt[2];
+const auto &exAt11 = gf_exAt[0];
+const auto &exAt12 = gf_exAt[1];
+const auto &exAt13 = gf_exAt[2];
+const auto &exAt22 = gf_exAt[3];
+const auto &exAt23 = gf_exAt[4];
+const auto &exAt33 = gf_exAt[5];
+const auto &trGt1 = gf_trGt[0];
+const auto &trGt2 = gf_trGt[1];
+const auto &trGt3 = gf_trGt[2];
 const auto &alpha = gf_alpha;
-const auto &betax = gf_beta[0];
-const auto &betay = gf_beta[1];
-const auto &betaz = gf_beta[2];
+const auto &beta1 = gf_beta[0];
+const auto &beta2 = gf_beta[1];
+const auto &beta3 = gf_beta[2];
 
 #pragma omp parallel for collapse(3)
 for (int k=kstart; k<kend; k++) {
@@ -54,1774 +54,1773 @@ for (int k=kstart; k<kend; k++) {
     for (int i=istart; i<iend; i++) {
     const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);
 
-const auto dWx = fd_1st<1>(cctkGH, W, i, j, k, idx);
-const auto dWy = fd_1st<2>(cctkGH, W, i, j, k, idx);
-const auto dWz = fd_1st<3>(cctkGH, W, i, j, k, idx);
-const auto dgamtxxx = fd_1st<1>(cctkGH, gamtxx, i, j, k, idx);
-const auto dgamtxxy = fd_1st<1>(cctkGH, gamtxy, i, j, k, idx);
-const auto dgamtxxz = fd_1st<1>(cctkGH, gamtxz, i, j, k, idx);
-const auto dgamtxyy = fd_1st<1>(cctkGH, gamtyy, i, j, k, idx);
-const auto dgamtxyz = fd_1st<1>(cctkGH, gamtyz, i, j, k, idx);
-const auto dgamtxzz = fd_1st<1>(cctkGH, gamtzz, i, j, k, idx);
-const auto dgamtyxx = fd_1st<2>(cctkGH, gamtxx, i, j, k, idx);
-const auto dgamtyxy = fd_1st<2>(cctkGH, gamtxy, i, j, k, idx);
-const auto dgamtyxz = fd_1st<2>(cctkGH, gamtxz, i, j, k, idx);
-const auto dgamtyyy = fd_1st<2>(cctkGH, gamtyy, i, j, k, idx);
-const auto dgamtyyz = fd_1st<2>(cctkGH, gamtyz, i, j, k, idx);
-const auto dgamtyzz = fd_1st<2>(cctkGH, gamtzz, i, j, k, idx);
-const auto dgamtzxx = fd_1st<3>(cctkGH, gamtxx, i, j, k, idx);
-const auto dgamtzxy = fd_1st<3>(cctkGH, gamtxy, i, j, k, idx);
-const auto dgamtzxz = fd_1st<3>(cctkGH, gamtxz, i, j, k, idx);
-const auto dgamtzyy = fd_1st<3>(cctkGH, gamtyy, i, j, k, idx);
-const auto dgamtzyz = fd_1st<3>(cctkGH, gamtyz, i, j, k, idx);
-const auto dgamtzzz = fd_1st<3>(cctkGH, gamtzz, i, j, k, idx);
-const auto dexKhx = fd_1st<1>(cctkGH, exKh, i, j, k, idx);
-const auto dexKhy = fd_1st<2>(cctkGH, exKh, i, j, k, idx);
-const auto dexKhz = fd_1st<3>(cctkGH, exKh, i, j, k, idx);
-const auto dexAtxxx = fd_1st<1>(cctkGH, exAtxx, i, j, k, idx);
-const auto dexAtxxy = fd_1st<1>(cctkGH, exAtxy, i, j, k, idx);
-const auto dexAtxxz = fd_1st<1>(cctkGH, exAtxz, i, j, k, idx);
-const auto dexAtxyy = fd_1st<1>(cctkGH, exAtyy, i, j, k, idx);
-const auto dexAtxyz = fd_1st<1>(cctkGH, exAtyz, i, j, k, idx);
-const auto dexAtxzz = fd_1st<1>(cctkGH, exAtzz, i, j, k, idx);
-const auto dexAtyxx = fd_1st<2>(cctkGH, exAtxx, i, j, k, idx);
-const auto dexAtyxy = fd_1st<2>(cctkGH, exAtxy, i, j, k, idx);
-const auto dexAtyxz = fd_1st<2>(cctkGH, exAtxz, i, j, k, idx);
-const auto dexAtyyy = fd_1st<2>(cctkGH, exAtyy, i, j, k, idx);
-const auto dexAtyyz = fd_1st<2>(cctkGH, exAtyz, i, j, k, idx);
-const auto dexAtyzz = fd_1st<2>(cctkGH, exAtzz, i, j, k, idx);
-const auto dexAtzxx = fd_1st<3>(cctkGH, exAtxx, i, j, k, idx);
-const auto dexAtzxy = fd_1st<3>(cctkGH, exAtxy, i, j, k, idx);
-const auto dexAtzxz = fd_1st<3>(cctkGH, exAtxz, i, j, k, idx);
-const auto dexAtzyy = fd_1st<3>(cctkGH, exAtyy, i, j, k, idx);
-const auto dexAtzyz = fd_1st<3>(cctkGH, exAtyz, i, j, k, idx);
-const auto dexAtzzz = fd_1st<3>(cctkGH, exAtzz, i, j, k, idx);
-const auto dtrGtxx = fd_1st<1>(cctkGH, trGtx, i, j, k, idx);
-const auto dtrGtxy = fd_1st<1>(cctkGH, trGty, i, j, k, idx);
-const auto dtrGtxz = fd_1st<1>(cctkGH, trGtz, i, j, k, idx);
-const auto dtrGtyx = fd_1st<2>(cctkGH, trGtx, i, j, k, idx);
-const auto dtrGtyy = fd_1st<2>(cctkGH, trGty, i, j, k, idx);
-const auto dtrGtyz = fd_1st<2>(cctkGH, trGtz, i, j, k, idx);
-const auto dtrGtzx = fd_1st<3>(cctkGH, trGtx, i, j, k, idx);
-const auto dtrGtzy = fd_1st<3>(cctkGH, trGty, i, j, k, idx);
-const auto dtrGtzz = fd_1st<3>(cctkGH, trGtz, i, j, k, idx);
-const auto dThetax = fd_1st<1>(cctkGH, Theta, i, j, k, idx);
-const auto dThetay = fd_1st<2>(cctkGH, Theta, i, j, k, idx);
-const auto dThetaz = fd_1st<3>(cctkGH, Theta, i, j, k, idx);
-const auto dalphax = fd_1st<1>(cctkGH, alpha, i, j, k, idx);
-const auto dalphay = fd_1st<2>(cctkGH, alpha, i, j, k, idx);
-const auto dalphaz = fd_1st<3>(cctkGH, alpha, i, j, k, idx);
-const auto dbetaxx = fd_1st<1>(cctkGH, betax, i, j, k, idx);
-const auto dbetaxy = fd_1st<1>(cctkGH, betay, i, j, k, idx);
-const auto dbetaxz = fd_1st<1>(cctkGH, betaz, i, j, k, idx);
-const auto dbetayx = fd_1st<2>(cctkGH, betax, i, j, k, idx);
-const auto dbetayy = fd_1st<2>(cctkGH, betay, i, j, k, idx);
-const auto dbetayz = fd_1st<2>(cctkGH, betaz, i, j, k, idx);
-const auto dbetazx = fd_1st<3>(cctkGH, betax, i, j, k, idx);
-const auto dbetazy = fd_1st<3>(cctkGH, betay, i, j, k, idx);
-const auto dbetazz = fd_1st<3>(cctkGH, betaz, i, j, k, idx);
-const auto ddWxx = fd_2nd<1, 1>(cctkGH, W, i, j, k, idx);
-const auto ddWxy = fd_2nd<1, 2>(cctkGH, W, i, j, k, idx);
-const auto ddWxz = fd_2nd<1, 3>(cctkGH, W, i, j, k, idx);
-const auto ddWyy = fd_2nd<2, 2>(cctkGH, W, i, j, k, idx);
-const auto ddWyz = fd_2nd<2, 3>(cctkGH, W, i, j, k, idx);
-const auto ddWzz = fd_2nd<3, 3>(cctkGH, W, i, j, k, idx);
-const auto ddgamtxxxx = fd_2nd<1, 1>(cctkGH, gamtxx, i, j, k, idx);
-const auto ddgamtxxxy = fd_2nd<1, 1>(cctkGH, gamtxy, i, j, k, idx);
-const auto ddgamtxxxz = fd_2nd<1, 1>(cctkGH, gamtxz, i, j, k, idx);
-const auto ddgamtxxyy = fd_2nd<1, 1>(cctkGH, gamtyy, i, j, k, idx);
-const auto ddgamtxxyz = fd_2nd<1, 1>(cctkGH, gamtyz, i, j, k, idx);
-const auto ddgamtxxzz = fd_2nd<1, 1>(cctkGH, gamtzz, i, j, k, idx);
-const auto ddgamtxyxx = fd_2nd<1, 2>(cctkGH, gamtxx, i, j, k, idx);
-const auto ddgamtxyxy = fd_2nd<1, 2>(cctkGH, gamtxy, i, j, k, idx);
-const auto ddgamtxyxz = fd_2nd<1, 2>(cctkGH, gamtxz, i, j, k, idx);
-const auto ddgamtxyyy = fd_2nd<1, 2>(cctkGH, gamtyy, i, j, k, idx);
-const auto ddgamtxyyz = fd_2nd<1, 2>(cctkGH, gamtyz, i, j, k, idx);
-const auto ddgamtxyzz = fd_2nd<1, 2>(cctkGH, gamtzz, i, j, k, idx);
-const auto ddgamtxzxx = fd_2nd<1, 3>(cctkGH, gamtxx, i, j, k, idx);
-const auto ddgamtxzxy = fd_2nd<1, 3>(cctkGH, gamtxy, i, j, k, idx);
-const auto ddgamtxzxz = fd_2nd<1, 3>(cctkGH, gamtxz, i, j, k, idx);
-const auto ddgamtxzyy = fd_2nd<1, 3>(cctkGH, gamtyy, i, j, k, idx);
-const auto ddgamtxzyz = fd_2nd<1, 3>(cctkGH, gamtyz, i, j, k, idx);
-const auto ddgamtxzzz = fd_2nd<1, 3>(cctkGH, gamtzz, i, j, k, idx);
-const auto ddgamtyyxx = fd_2nd<2, 2>(cctkGH, gamtxx, i, j, k, idx);
-const auto ddgamtyyxy = fd_2nd<2, 2>(cctkGH, gamtxy, i, j, k, idx);
-const auto ddgamtyyxz = fd_2nd<2, 2>(cctkGH, gamtxz, i, j, k, idx);
-const auto ddgamtyyyy = fd_2nd<2, 2>(cctkGH, gamtyy, i, j, k, idx);
-const auto ddgamtyyyz = fd_2nd<2, 2>(cctkGH, gamtyz, i, j, k, idx);
-const auto ddgamtyyzz = fd_2nd<2, 2>(cctkGH, gamtzz, i, j, k, idx);
-const auto ddgamtyzxx = fd_2nd<2, 3>(cctkGH, gamtxx, i, j, k, idx);
-const auto ddgamtyzxy = fd_2nd<2, 3>(cctkGH, gamtxy, i, j, k, idx);
-const auto ddgamtyzxz = fd_2nd<2, 3>(cctkGH, gamtxz, i, j, k, idx);
-const auto ddgamtyzyy = fd_2nd<2, 3>(cctkGH, gamtyy, i, j, k, idx);
-const auto ddgamtyzyz = fd_2nd<2, 3>(cctkGH, gamtyz, i, j, k, idx);
-const auto ddgamtyzzz = fd_2nd<2, 3>(cctkGH, gamtzz, i, j, k, idx);
-const auto ddgamtzzxx = fd_2nd<3, 3>(cctkGH, gamtxx, i, j, k, idx);
-const auto ddgamtzzxy = fd_2nd<3, 3>(cctkGH, gamtxy, i, j, k, idx);
-const auto ddgamtzzxz = fd_2nd<3, 3>(cctkGH, gamtxz, i, j, k, idx);
-const auto ddgamtzzyy = fd_2nd<3, 3>(cctkGH, gamtyy, i, j, k, idx);
-const auto ddgamtzzyz = fd_2nd<3, 3>(cctkGH, gamtyz, i, j, k, idx);
-const auto ddgamtzzzz = fd_2nd<3, 3>(cctkGH, gamtzz, i, j, k, idx);
-const auto ddalphaxx = fd_2nd<1, 1>(cctkGH, alpha, i, j, k, idx);
-const auto ddalphaxy = fd_2nd<1, 2>(cctkGH, alpha, i, j, k, idx);
-const auto ddalphaxz = fd_2nd<1, 3>(cctkGH, alpha, i, j, k, idx);
-const auto ddalphayy = fd_2nd<2, 2>(cctkGH, alpha, i, j, k, idx);
-const auto ddalphayz = fd_2nd<2, 3>(cctkGH, alpha, i, j, k, idx);
-const auto ddalphazz = fd_2nd<3, 3>(cctkGH, alpha, i, j, k, idx);
-const auto ddbetaxxx = fd_2nd<1, 1>(cctkGH, betax, i, j, k, idx);
-const auto ddbetaxxy = fd_2nd<1, 1>(cctkGH, betay, i, j, k, idx);
-const auto ddbetaxxz = fd_2nd<1, 1>(cctkGH, betaz, i, j, k, idx);
-const auto ddbetaxyx = fd_2nd<1, 2>(cctkGH, betax, i, j, k, idx);
-const auto ddbetaxyy = fd_2nd<1, 2>(cctkGH, betay, i, j, k, idx);
-const auto ddbetaxyz = fd_2nd<1, 2>(cctkGH, betaz, i, j, k, idx);
-const auto ddbetaxzx = fd_2nd<1, 3>(cctkGH, betax, i, j, k, idx);
-const auto ddbetaxzy = fd_2nd<1, 3>(cctkGH, betay, i, j, k, idx);
-const auto ddbetaxzz = fd_2nd<1, 3>(cctkGH, betaz, i, j, k, idx);
-const auto ddbetayyx = fd_2nd<2, 2>(cctkGH, betax, i, j, k, idx);
-const auto ddbetayyy = fd_2nd<2, 2>(cctkGH, betay, i, j, k, idx);
-const auto ddbetayyz = fd_2nd<2, 2>(cctkGH, betaz, i, j, k, idx);
-const auto ddbetayzx = fd_2nd<2, 3>(cctkGH, betax, i, j, k, idx);
-const auto ddbetayzy = fd_2nd<2, 3>(cctkGH, betay, i, j, k, idx);
-const auto ddbetayzz = fd_2nd<2, 3>(cctkGH, betaz, i, j, k, idx);
-const auto ddbetazzx = fd_2nd<3, 3>(cctkGH, betax, i, j, k, idx);
-const auto ddbetazzy = fd_2nd<3, 3>(cctkGH, betay, i, j, k, idx);
-const auto ddbetazzz = fd_2nd<3, 3>(cctkGH, betaz, i, j, k, idx);
+const auto dW1 = fd_1st<1>(cctkGH, W, i, j, k, idx);
+const auto dW2 = fd_1st<2>(cctkGH, W, i, j, k, idx);
+const auto dW3 = fd_1st<3>(cctkGH, W, i, j, k, idx);
+const auto dgamt111 = fd_1st<1>(cctkGH, gamt11, i, j, k, idx);
+const auto dgamt112 = fd_1st<1>(cctkGH, gamt12, i, j, k, idx);
+const auto dgamt113 = fd_1st<1>(cctkGH, gamt13, i, j, k, idx);
+const auto dgamt122 = fd_1st<1>(cctkGH, gamt22, i, j, k, idx);
+const auto dgamt123 = fd_1st<1>(cctkGH, gamt23, i, j, k, idx);
+const auto dgamt133 = fd_1st<1>(cctkGH, gamt33, i, j, k, idx);
+const auto dgamt211 = fd_1st<2>(cctkGH, gamt11, i, j, k, idx);
+const auto dgamt212 = fd_1st<2>(cctkGH, gamt12, i, j, k, idx);
+const auto dgamt213 = fd_1st<2>(cctkGH, gamt13, i, j, k, idx);
+const auto dgamt222 = fd_1st<2>(cctkGH, gamt22, i, j, k, idx);
+const auto dgamt223 = fd_1st<2>(cctkGH, gamt23, i, j, k, idx);
+const auto dgamt233 = fd_1st<2>(cctkGH, gamt33, i, j, k, idx);
+const auto dgamt311 = fd_1st<3>(cctkGH, gamt11, i, j, k, idx);
+const auto dgamt312 = fd_1st<3>(cctkGH, gamt12, i, j, k, idx);
+const auto dgamt313 = fd_1st<3>(cctkGH, gamt13, i, j, k, idx);
+const auto dgamt322 = fd_1st<3>(cctkGH, gamt22, i, j, k, idx);
+const auto dgamt323 = fd_1st<3>(cctkGH, gamt23, i, j, k, idx);
+const auto dgamt333 = fd_1st<3>(cctkGH, gamt33, i, j, k, idx);
+const auto dexKh1 = fd_1st<1>(cctkGH, exKh, i, j, k, idx);
+const auto dexKh2 = fd_1st<2>(cctkGH, exKh, i, j, k, idx);
+const auto dexKh3 = fd_1st<3>(cctkGH, exKh, i, j, k, idx);
+const auto dexAt111 = fd_1st<1>(cctkGH, exAt11, i, j, k, idx);
+const auto dexAt112 = fd_1st<1>(cctkGH, exAt12, i, j, k, idx);
+const auto dexAt113 = fd_1st<1>(cctkGH, exAt13, i, j, k, idx);
+const auto dexAt122 = fd_1st<1>(cctkGH, exAt22, i, j, k, idx);
+const auto dexAt123 = fd_1st<1>(cctkGH, exAt23, i, j, k, idx);
+const auto dexAt133 = fd_1st<1>(cctkGH, exAt33, i, j, k, idx);
+const auto dexAt211 = fd_1st<2>(cctkGH, exAt11, i, j, k, idx);
+const auto dexAt212 = fd_1st<2>(cctkGH, exAt12, i, j, k, idx);
+const auto dexAt213 = fd_1st<2>(cctkGH, exAt13, i, j, k, idx);
+const auto dexAt222 = fd_1st<2>(cctkGH, exAt22, i, j, k, idx);
+const auto dexAt223 = fd_1st<2>(cctkGH, exAt23, i, j, k, idx);
+const auto dexAt233 = fd_1st<2>(cctkGH, exAt33, i, j, k, idx);
+const auto dexAt311 = fd_1st<3>(cctkGH, exAt11, i, j, k, idx);
+const auto dexAt312 = fd_1st<3>(cctkGH, exAt12, i, j, k, idx);
+const auto dexAt313 = fd_1st<3>(cctkGH, exAt13, i, j, k, idx);
+const auto dexAt322 = fd_1st<3>(cctkGH, exAt22, i, j, k, idx);
+const auto dexAt323 = fd_1st<3>(cctkGH, exAt23, i, j, k, idx);
+const auto dexAt333 = fd_1st<3>(cctkGH, exAt33, i, j, k, idx);
+const auto dtrGt11 = fd_1st<1>(cctkGH, trGt1, i, j, k, idx);
+const auto dtrGt12 = fd_1st<1>(cctkGH, trGt2, i, j, k, idx);
+const auto dtrGt13 = fd_1st<1>(cctkGH, trGt3, i, j, k, idx);
+const auto dtrGt21 = fd_1st<2>(cctkGH, trGt1, i, j, k, idx);
+const auto dtrGt22 = fd_1st<2>(cctkGH, trGt2, i, j, k, idx);
+const auto dtrGt23 = fd_1st<2>(cctkGH, trGt3, i, j, k, idx);
+const auto dtrGt31 = fd_1st<3>(cctkGH, trGt1, i, j, k, idx);
+const auto dtrGt32 = fd_1st<3>(cctkGH, trGt2, i, j, k, idx);
+const auto dtrGt33 = fd_1st<3>(cctkGH, trGt3, i, j, k, idx);
+const auto dTheta1 = fd_1st<1>(cctkGH, Theta, i, j, k, idx);
+const auto dTheta2 = fd_1st<2>(cctkGH, Theta, i, j, k, idx);
+const auto dTheta3 = fd_1st<3>(cctkGH, Theta, i, j, k, idx);
+const auto dalpha1 = fd_1st<1>(cctkGH, alpha, i, j, k, idx);
+const auto dalpha2 = fd_1st<2>(cctkGH, alpha, i, j, k, idx);
+const auto dalpha3 = fd_1st<3>(cctkGH, alpha, i, j, k, idx);
+const auto dbeta11 = fd_1st<1>(cctkGH, beta1, i, j, k, idx);
+const auto dbeta12 = fd_1st<1>(cctkGH, beta2, i, j, k, idx);
+const auto dbeta13 = fd_1st<1>(cctkGH, beta3, i, j, k, idx);
+const auto dbeta21 = fd_1st<2>(cctkGH, beta1, i, j, k, idx);
+const auto dbeta22 = fd_1st<2>(cctkGH, beta2, i, j, k, idx);
+const auto dbeta23 = fd_1st<2>(cctkGH, beta3, i, j, k, idx);
+const auto dbeta31 = fd_1st<3>(cctkGH, beta1, i, j, k, idx);
+const auto dbeta32 = fd_1st<3>(cctkGH, beta2, i, j, k, idx);
+const auto dbeta33 = fd_1st<3>(cctkGH, beta3, i, j, k, idx);
+const auto ddW11 = fd_2nd<1, 1>(cctkGH, W, i, j, k, idx);
+const auto ddW12 = fd_2nd<1, 2>(cctkGH, W, i, j, k, idx);
+const auto ddW13 = fd_2nd<1, 3>(cctkGH, W, i, j, k, idx);
+const auto ddW22 = fd_2nd<2, 2>(cctkGH, W, i, j, k, idx);
+const auto ddW23 = fd_2nd<2, 3>(cctkGH, W, i, j, k, idx);
+const auto ddW33 = fd_2nd<3, 3>(cctkGH, W, i, j, k, idx);
+const auto ddgamt1111 = fd_2nd<1, 1>(cctkGH, gamt11, i, j, k, idx);
+const auto ddgamt1112 = fd_2nd<1, 1>(cctkGH, gamt12, i, j, k, idx);
+const auto ddgamt1113 = fd_2nd<1, 1>(cctkGH, gamt13, i, j, k, idx);
+const auto ddgamt1122 = fd_2nd<1, 1>(cctkGH, gamt22, i, j, k, idx);
+const auto ddgamt1123 = fd_2nd<1, 1>(cctkGH, gamt23, i, j, k, idx);
+const auto ddgamt1133 = fd_2nd<1, 1>(cctkGH, gamt33, i, j, k, idx);
+const auto ddgamt1211 = fd_2nd<1, 2>(cctkGH, gamt11, i, j, k, idx);
+const auto ddgamt1212 = fd_2nd<1, 2>(cctkGH, gamt12, i, j, k, idx);
+const auto ddgamt1213 = fd_2nd<1, 2>(cctkGH, gamt13, i, j, k, idx);
+const auto ddgamt1222 = fd_2nd<1, 2>(cctkGH, gamt22, i, j, k, idx);
+const auto ddgamt1223 = fd_2nd<1, 2>(cctkGH, gamt23, i, j, k, idx);
+const auto ddgamt1233 = fd_2nd<1, 2>(cctkGH, gamt33, i, j, k, idx);
+const auto ddgamt1311 = fd_2nd<1, 3>(cctkGH, gamt11, i, j, k, idx);
+const auto ddgamt1312 = fd_2nd<1, 3>(cctkGH, gamt12, i, j, k, idx);
+const auto ddgamt1313 = fd_2nd<1, 3>(cctkGH, gamt13, i, j, k, idx);
+const auto ddgamt1322 = fd_2nd<1, 3>(cctkGH, gamt22, i, j, k, idx);
+const auto ddgamt1323 = fd_2nd<1, 3>(cctkGH, gamt23, i, j, k, idx);
+const auto ddgamt1333 = fd_2nd<1, 3>(cctkGH, gamt33, i, j, k, idx);
+const auto ddgamt2211 = fd_2nd<2, 2>(cctkGH, gamt11, i, j, k, idx);
+const auto ddgamt2212 = fd_2nd<2, 2>(cctkGH, gamt12, i, j, k, idx);
+const auto ddgamt2213 = fd_2nd<2, 2>(cctkGH, gamt13, i, j, k, idx);
+const auto ddgamt2222 = fd_2nd<2, 2>(cctkGH, gamt22, i, j, k, idx);
+const auto ddgamt2223 = fd_2nd<2, 2>(cctkGH, gamt23, i, j, k, idx);
+const auto ddgamt2233 = fd_2nd<2, 2>(cctkGH, gamt33, i, j, k, idx);
+const auto ddgamt2311 = fd_2nd<2, 3>(cctkGH, gamt11, i, j, k, idx);
+const auto ddgamt2312 = fd_2nd<2, 3>(cctkGH, gamt12, i, j, k, idx);
+const auto ddgamt2313 = fd_2nd<2, 3>(cctkGH, gamt13, i, j, k, idx);
+const auto ddgamt2322 = fd_2nd<2, 3>(cctkGH, gamt22, i, j, k, idx);
+const auto ddgamt2323 = fd_2nd<2, 3>(cctkGH, gamt23, i, j, k, idx);
+const auto ddgamt2333 = fd_2nd<2, 3>(cctkGH, gamt33, i, j, k, idx);
+const auto ddgamt3311 = fd_2nd<3, 3>(cctkGH, gamt11, i, j, k, idx);
+const auto ddgamt3312 = fd_2nd<3, 3>(cctkGH, gamt12, i, j, k, idx);
+const auto ddgamt3313 = fd_2nd<3, 3>(cctkGH, gamt13, i, j, k, idx);
+const auto ddgamt3322 = fd_2nd<3, 3>(cctkGH, gamt22, i, j, k, idx);
+const auto ddgamt3323 = fd_2nd<3, 3>(cctkGH, gamt23, i, j, k, idx);
+const auto ddgamt3333 = fd_2nd<3, 3>(cctkGH, gamt33, i, j, k, idx);
+const auto ddalpha11 = fd_2nd<1, 1>(cctkGH, alpha, i, j, k, idx);
+const auto ddalpha12 = fd_2nd<1, 2>(cctkGH, alpha, i, j, k, idx);
+const auto ddalpha13 = fd_2nd<1, 3>(cctkGH, alpha, i, j, k, idx);
+const auto ddalpha22 = fd_2nd<2, 2>(cctkGH, alpha, i, j, k, idx);
+const auto ddalpha23 = fd_2nd<2, 3>(cctkGH, alpha, i, j, k, idx);
+const auto ddalpha33 = fd_2nd<3, 3>(cctkGH, alpha, i, j, k, idx);
+const auto ddbeta111 = fd_2nd<1, 1>(cctkGH, beta1, i, j, k, idx);
+const auto ddbeta112 = fd_2nd<1, 1>(cctkGH, beta2, i, j, k, idx);
+const auto ddbeta113 = fd_2nd<1, 1>(cctkGH, beta3, i, j, k, idx);
+const auto ddbeta121 = fd_2nd<1, 2>(cctkGH, beta1, i, j, k, idx);
+const auto ddbeta122 = fd_2nd<1, 2>(cctkGH, beta2, i, j, k, idx);
+const auto ddbeta123 = fd_2nd<1, 2>(cctkGH, beta3, i, j, k, idx);
+const auto ddbeta131 = fd_2nd<1, 3>(cctkGH, beta1, i, j, k, idx);
+const auto ddbeta132 = fd_2nd<1, 3>(cctkGH, beta2, i, j, k, idx);
+const auto ddbeta133 = fd_2nd<1, 3>(cctkGH, beta3, i, j, k, idx);
+const auto ddbeta221 = fd_2nd<2, 2>(cctkGH, beta1, i, j, k, idx);
+const auto ddbeta222 = fd_2nd<2, 2>(cctkGH, beta2, i, j, k, idx);
+const auto ddbeta223 = fd_2nd<2, 2>(cctkGH, beta3, i, j, k, idx);
+const auto ddbeta231 = fd_2nd<2, 3>(cctkGH, beta1, i, j, k, idx);
+const auto ddbeta232 = fd_2nd<2, 3>(cctkGH, beta2, i, j, k, idx);
+const auto ddbeta233 = fd_2nd<2, 3>(cctkGH, beta3, i, j, k, idx);
+const auto ddbeta331 = fd_2nd<3, 3>(cctkGH, beta1, i, j, k, idx);
+const auto ddbeta332 = fd_2nd<3, 3>(cctkGH, beta2, i, j, k, idx);
+const auto ddbeta333 = fd_2nd<3, 3>(cctkGH, beta3, i, j, k, idx);
 
 const auto
-dlnWx
+dlnW1
 =
-dWx/W[ijk]
+dW1/W[ijk]
 ;
 
 const auto
-dlnWy
+dlnW2
 =
-dWy/W[ijk]
+dW2/W[ijk]
 ;
 
 const auto
-dlnWz
+dlnW3
 =
-dWz/W[ijk]
+dW3/W[ijk]
 ;
 
 const auto
-invgamtxx
+invgamt11
 =
--Power(gamtyz[ijk],2) + gamtyy[ijk]*gamtzz[ijk]
+-Power(gamt23[ijk],2) + gamt22[ijk]*gamt33[ijk]
 ;
 
 const auto
-invgamtxy
+invgamt12
 =
-gamtxz[ijk]*gamtyz[ijk] - gamtxy[ijk]*gamtzz[ijk]
+gamt13[ijk]*gamt23[ijk] - gamt12[ijk]*gamt33[ijk]
 ;
 
 const auto
-invgamtxz
+invgamt13
 =
--(gamtxz[ijk]*gamtyy[ijk]) + gamtxy[ijk]*gamtyz[ijk]
+-(gamt13[ijk]*gamt22[ijk]) + gamt12[ijk]*gamt23[ijk]
 ;
 
 const auto
-invgamtyy
+invgamt22
 =
--Power(gamtxz[ijk],2) + gamtxx[ijk]*gamtzz[ijk]
+-Power(gamt13[ijk],2) + gamt11[ijk]*gamt33[ijk]
 ;
 
 const auto
-invgamtyz
+invgamt23
 =
-gamtxy[ijk]*gamtxz[ijk] - gamtxx[ijk]*gamtyz[ijk]
+gamt12[ijk]*gamt13[ijk] - gamt11[ijk]*gamt23[ijk]
 ;
 
 const auto
-invgamtzz
+invgamt33
 =
--Power(gamtxy[ijk],2) + gamtxx[ijk]*gamtyy[ijk]
+-Power(gamt12[ijk],2) + gamt11[ijk]*gamt22[ijk]
 ;
 
 const auto
-invgamxx
+invgam11
 =
-invgamtxx*Power(W[ijk],2)
+invgamt11*Power(W[ijk],2)
 ;
 
 const auto
-invgamxy
+invgam12
 =
-invgamtxy*Power(W[ijk],2)
+invgamt12*Power(W[ijk],2)
 ;
 
 const auto
-invgamxz
+invgam13
 =
-invgamtxz*Power(W[ijk],2)
+invgamt13*Power(W[ijk],2)
 ;
 
 const auto
-invgamyy
+invgam22
 =
-invgamtyy*Power(W[ijk],2)
+invgamt22*Power(W[ijk],2)
 ;
 
 const auto
-invgamyz
+invgam23
 =
-invgamtyz*Power(W[ijk],2)
+invgamt23*Power(W[ijk],2)
 ;
 
 const auto
-invgamzz
+invgam33
 =
-invgamtzz*Power(W[ijk],2)
+invgamt33*Power(W[ijk],2)
 ;
 
 const auto
-gamxx
+gam11
 =
-gamtxx[ijk]/Power(W[ijk],2)
+gamt11[ijk]/Power(W[ijk],2)
 ;
 
 const auto
-gamxy
+gam12
 =
-gamtxy[ijk]/Power(W[ijk],2)
+gamt12[ijk]/Power(W[ijk],2)
 ;
 
 const auto
-gamxz
+gam13
 =
-gamtxz[ijk]/Power(W[ijk],2)
+gamt13[ijk]/Power(W[ijk],2)
 ;
 
 const auto
-gamyy
+gam22
 =
-gamtyy[ijk]/Power(W[ijk],2)
+gamt22[ijk]/Power(W[ijk],2)
 ;
 
 const auto
-gamyz
+gam23
 =
-gamtyz[ijk]/Power(W[ijk],2)
+gamt23[ijk]/Power(W[ijk],2)
 ;
 
 const auto
-gamzz
+gam33
 =
-gamtzz[ijk]/Power(W[ijk],2)
+gamt33[ijk]/Power(W[ijk],2)
 ;
 
 const auto
-GtDDDxxx
+GtDDD111
 =
-dgamtxxx/2.
+dgamt111/2.
 ;
 
 const auto
-GtDDDxxy
+GtDDD112
 =
-dgamtyxx/2.
+dgamt211/2.
 ;
 
 const auto
-GtDDDxxz
+GtDDD113
 =
-dgamtzxx/2.
+dgamt311/2.
 ;
 
 const auto
-GtDDDxyy
+GtDDD122
 =
--0.5*dgamtxyy + dgamtyxy
+-0.5*dgamt122 + dgamt212
 ;
 
 const auto
-GtDDDxyz
+GtDDD123
 =
-(-dgamtxyz + dgamtyxz + dgamtzxy)/2.
+(-dgamt123 + dgamt213 + dgamt312)/2.
 ;
 
 const auto
-GtDDDxzz
+GtDDD133
 =
--0.5*dgamtxzz + dgamtzxz
+-0.5*dgamt133 + dgamt313
 ;
 
 const auto
-GtDDDyxx
+GtDDD211
 =
-dgamtxxy - dgamtyxx/2.
+dgamt112 - dgamt211/2.
 ;
 
 const auto
-GtDDDyxy
+GtDDD212
 =
-dgamtxyy/2.
+dgamt122/2.
 ;
 
 const auto
-GtDDDyxz
+GtDDD213
 =
-(dgamtxyz - dgamtyxz + dgamtzxy)/2.
+(dgamt123 - dgamt213 + dgamt312)/2.
 ;
 
 const auto
-GtDDDyyy
+GtDDD222
 =
-dgamtyyy/2.
+dgamt222/2.
 ;
 
 const auto
-GtDDDyyz
+GtDDD223
 =
-dgamtzyy/2.
+dgamt322/2.
 ;
 
 const auto
-GtDDDyzz
+GtDDD233
 =
--0.5*dgamtyzz + dgamtzyz
+-0.5*dgamt233 + dgamt323
 ;
 
 const auto
-GtDDDzxx
+GtDDD311
 =
-dgamtxxz - dgamtzxx/2.
+dgamt113 - dgamt311/2.
 ;
 
 const auto
-GtDDDzxy
+GtDDD312
 =
-(dgamtxyz + dgamtyxz - dgamtzxy)/2.
+(dgamt123 + dgamt213 - dgamt312)/2.
 ;
 
 const auto
-GtDDDzxz
+GtDDD313
 =
-dgamtxzz/2.
+dgamt133/2.
 ;
 
 const auto
-GtDDDzyy
+GtDDD322
 =
-dgamtyyz - dgamtzyy/2.
+dgamt223 - dgamt322/2.
 ;
 
 const auto
-GtDDDzyz
+GtDDD323
 =
-dgamtyzz/2.
+dgamt233/2.
 ;
 
 const auto
-GtDDDzzz
+GtDDD333
 =
-dgamtzzz/2.
+dgamt333/2.
 ;
 
 const auto
-GtDDUxxx
+GtDDU111
 =
-GtDDDxxx*invgamtxx + GtDDDxxy*invgamtxy + GtDDDxxz*invgamtxz
+GtDDD111*invgamt11 + GtDDD112*invgamt12 + GtDDD113*invgamt13
 ;
 
 const auto
-GtDDUxxy
+GtDDU112
 =
-GtDDDxxx*invgamtxy + GtDDDxxy*invgamtyy + GtDDDxxz*invgamtyz
+GtDDD111*invgamt12 + GtDDD112*invgamt22 + GtDDD113*invgamt23
 ;
 
 const auto
-GtDDUxxz
+GtDDU113
 =
-GtDDDxxx*invgamtxz + GtDDDxxy*invgamtyz + GtDDDxxz*invgamtzz
+GtDDD111*invgamt13 + GtDDD112*invgamt23 + GtDDD113*invgamt33
 ;
 
 const auto
-GtDDUxyx
+GtDDU121
 =
-GtDDDxxy*invgamtxx + GtDDDxyy*invgamtxy + GtDDDxyz*invgamtxz
+GtDDD112*invgamt11 + GtDDD122*invgamt12 + GtDDD123*invgamt13
 ;
 
 const auto
-GtDDUxyy
+GtDDU122
 =
-GtDDDxxy*invgamtxy + GtDDDxyy*invgamtyy + GtDDDxyz*invgamtyz
+GtDDD112*invgamt12 + GtDDD122*invgamt22 + GtDDD123*invgamt23
 ;
 
 const auto
-GtDDUxyz
+GtDDU123
 =
-GtDDDxxy*invgamtxz + GtDDDxyy*invgamtyz + GtDDDxyz*invgamtzz
+GtDDD112*invgamt13 + GtDDD122*invgamt23 + GtDDD123*invgamt33
 ;
 
 const auto
-GtDDUxzx
+GtDDU131
 =
-GtDDDxxz*invgamtxx + GtDDDxyz*invgamtxy + GtDDDxzz*invgamtxz
+GtDDD113*invgamt11 + GtDDD123*invgamt12 + GtDDD133*invgamt13
 ;
 
 const auto
-GtDDUxzy
+GtDDU132
 =
-GtDDDxxz*invgamtxy + GtDDDxyz*invgamtyy + GtDDDxzz*invgamtyz
+GtDDD113*invgamt12 + GtDDD123*invgamt22 + GtDDD133*invgamt23
 ;
 
 const auto
-GtDDUxzz
+GtDDU133
 =
-GtDDDxxz*invgamtxz + GtDDDxyz*invgamtyz + GtDDDxzz*invgamtzz
+GtDDD113*invgamt13 + GtDDD123*invgamt23 + GtDDD133*invgamt33
 ;
 
 const auto
-GtDDUyxx
+GtDDU211
 =
-GtDDDyxx*invgamtxx + GtDDDyxy*invgamtxy + GtDDDyxz*invgamtxz
+GtDDD211*invgamt11 + GtDDD212*invgamt12 + GtDDD213*invgamt13
 ;
 
 const auto
-GtDDUyxy
+GtDDU212
 =
-GtDDDyxx*invgamtxy + GtDDDyxy*invgamtyy + GtDDDyxz*invgamtyz
+GtDDD211*invgamt12 + GtDDD212*invgamt22 + GtDDD213*invgamt23
 ;
 
 const auto
-GtDDUyxz
+GtDDU213
 =
-GtDDDyxx*invgamtxz + GtDDDyxy*invgamtyz + GtDDDyxz*invgamtzz
+GtDDD211*invgamt13 + GtDDD212*invgamt23 + GtDDD213*invgamt33
 ;
 
 const auto
-GtDDUyyx
+GtDDU221
 =
-GtDDDyxy*invgamtxx + GtDDDyyy*invgamtxy + GtDDDyyz*invgamtxz
+GtDDD212*invgamt11 + GtDDD222*invgamt12 + GtDDD223*invgamt13
 ;
 
 const auto
-GtDDUyyy
+GtDDU222
 =
-GtDDDyxy*invgamtxy + GtDDDyyy*invgamtyy + GtDDDyyz*invgamtyz
+GtDDD212*invgamt12 + GtDDD222*invgamt22 + GtDDD223*invgamt23
 ;
 
 const auto
-GtDDUyyz
+GtDDU223
 =
-GtDDDyxy*invgamtxz + GtDDDyyy*invgamtyz + GtDDDyyz*invgamtzz
+GtDDD212*invgamt13 + GtDDD222*invgamt23 + GtDDD223*invgamt33
 ;
 
 const auto
-GtDDUyzx
+GtDDU231
 =
-GtDDDyxz*invgamtxx + GtDDDyyz*invgamtxy + GtDDDyzz*invgamtxz
+GtDDD213*invgamt11 + GtDDD223*invgamt12 + GtDDD233*invgamt13
 ;
 
 const auto
-GtDDUyzy
+GtDDU232
 =
-GtDDDyxz*invgamtxy + GtDDDyyz*invgamtyy + GtDDDyzz*invgamtyz
+GtDDD213*invgamt12 + GtDDD223*invgamt22 + GtDDD233*invgamt23
 ;
 
 const auto
-GtDDUyzz
+GtDDU233
 =
-GtDDDyxz*invgamtxz + GtDDDyyz*invgamtyz + GtDDDyzz*invgamtzz
+GtDDD213*invgamt13 + GtDDD223*invgamt23 + GtDDD233*invgamt33
 ;
 
 const auto
-GtDDUzxx
+GtDDU311
 =
-GtDDDzxx*invgamtxx + GtDDDzxy*invgamtxy + GtDDDzxz*invgamtxz
+GtDDD311*invgamt11 + GtDDD312*invgamt12 + GtDDD313*invgamt13
 ;
 
 const auto
-GtDDUzxy
+GtDDU312
 =
-GtDDDzxx*invgamtxy + GtDDDzxy*invgamtyy + GtDDDzxz*invgamtyz
+GtDDD311*invgamt12 + GtDDD312*invgamt22 + GtDDD313*invgamt23
 ;
 
 const auto
-GtDDUzxz
+GtDDU313
 =
-GtDDDzxx*invgamtxz + GtDDDzxy*invgamtyz + GtDDDzxz*invgamtzz
+GtDDD311*invgamt13 + GtDDD312*invgamt23 + GtDDD313*invgamt33
 ;
 
 const auto
-GtDDUzyx
+GtDDU321
 =
-GtDDDzxy*invgamtxx + GtDDDzyy*invgamtxy + GtDDDzyz*invgamtxz
+GtDDD312*invgamt11 + GtDDD322*invgamt12 + GtDDD323*invgamt13
 ;
 
 const auto
-GtDDUzyy
+GtDDU322
 =
-GtDDDzxy*invgamtxy + GtDDDzyy*invgamtyy + GtDDDzyz*invgamtyz
+GtDDD312*invgamt12 + GtDDD322*invgamt22 + GtDDD323*invgamt23
 ;
 
 const auto
-GtDDUzyz
+GtDDU323
 =
-GtDDDzxy*invgamtxz + GtDDDzyy*invgamtyz + GtDDDzyz*invgamtzz
+GtDDD312*invgamt13 + GtDDD322*invgamt23 + GtDDD323*invgamt33
 ;
 
 const auto
-GtDDUzzx
+GtDDU331
 =
-GtDDDzxz*invgamtxx + GtDDDzyz*invgamtxy + GtDDDzzz*invgamtxz
+GtDDD313*invgamt11 + GtDDD323*invgamt12 + GtDDD333*invgamt13
 ;
 
 const auto
-GtDDUzzy
+GtDDU332
 =
-GtDDDzxz*invgamtxy + GtDDDzyz*invgamtyy + GtDDDzzz*invgamtyz
+GtDDD313*invgamt12 + GtDDD323*invgamt22 + GtDDD333*invgamt23
 ;
 
 const auto
-GtDDUzzz
+GtDDU333
 =
-GtDDDzxz*invgamtxz + GtDDDzyz*invgamtyz + GtDDDzzz*invgamtzz
+GtDDD313*invgamt13 + GtDDD323*invgamt23 + GtDDD333*invgamt33
 ;
 
 const auto
-Gtxxx
+Gt111
 =
-GtDDDxxx*invgamtxx + GtDDDyxx*invgamtxy + GtDDDzxx*invgamtxz
+GtDDD111*invgamt11 + GtDDD211*invgamt12 + GtDDD311*invgamt13
 ;
 
 const auto
-Gtxxy
+Gt112
 =
-GtDDDxxy*invgamtxx + GtDDDyxy*invgamtxy + GtDDDzxy*invgamtxz
+GtDDD112*invgamt11 + GtDDD212*invgamt12 + GtDDD312*invgamt13
 ;
 
 const auto
-Gtxxz
+Gt113
 =
-GtDDDxxz*invgamtxx + GtDDDyxz*invgamtxy + GtDDDzxz*invgamtxz
+GtDDD113*invgamt11 + GtDDD213*invgamt12 + GtDDD313*invgamt13
 ;
 
 const auto
-Gtxyy
+Gt122
 =
-GtDDDxyy*invgamtxx + GtDDDyyy*invgamtxy + GtDDDzyy*invgamtxz
+GtDDD122*invgamt11 + GtDDD222*invgamt12 + GtDDD322*invgamt13
 ;
 
 const auto
-Gtxyz
+Gt123
 =
-GtDDDxyz*invgamtxx + GtDDDyyz*invgamtxy + GtDDDzyz*invgamtxz
+GtDDD123*invgamt11 + GtDDD223*invgamt12 + GtDDD323*invgamt13
 ;
 
 const auto
-Gtxzz
+Gt133
 =
-GtDDDxzz*invgamtxx + GtDDDyzz*invgamtxy + GtDDDzzz*invgamtxz
+GtDDD133*invgamt11 + GtDDD233*invgamt12 + GtDDD333*invgamt13
 ;
 
 const auto
-Gtyxx
+Gt211
 =
-GtDDDxxx*invgamtxy + GtDDDyxx*invgamtyy + GtDDDzxx*invgamtyz
+GtDDD111*invgamt12 + GtDDD211*invgamt22 + GtDDD311*invgamt23
 ;
 
 const auto
-Gtyxy
+Gt212
 =
-GtDDDxxy*invgamtxy + GtDDDyxy*invgamtyy + GtDDDzxy*invgamtyz
+GtDDD112*invgamt12 + GtDDD212*invgamt22 + GtDDD312*invgamt23
 ;
 
 const auto
-Gtyxz
+Gt213
 =
-GtDDDxxz*invgamtxy + GtDDDyxz*invgamtyy + GtDDDzxz*invgamtyz
+GtDDD113*invgamt12 + GtDDD213*invgamt22 + GtDDD313*invgamt23
 ;
 
 const auto
-Gtyyy
+Gt222
 =
-GtDDDxyy*invgamtxy + GtDDDyyy*invgamtyy + GtDDDzyy*invgamtyz
+GtDDD122*invgamt12 + GtDDD222*invgamt22 + GtDDD322*invgamt23
 ;
 
 const auto
-Gtyyz
+Gt223
 =
-GtDDDxyz*invgamtxy + GtDDDyyz*invgamtyy + GtDDDzyz*invgamtyz
+GtDDD123*invgamt12 + GtDDD223*invgamt22 + GtDDD323*invgamt23
 ;
 
 const auto
-Gtyzz
+Gt233
 =
-GtDDDxzz*invgamtxy + GtDDDyzz*invgamtyy + GtDDDzzz*invgamtyz
+GtDDD133*invgamt12 + GtDDD233*invgamt22 + GtDDD333*invgamt23
 ;
 
 const auto
-Gtzxx
+Gt311
 =
-GtDDDxxx*invgamtxz + GtDDDyxx*invgamtyz + GtDDDzxx*invgamtzz
+GtDDD111*invgamt13 + GtDDD211*invgamt23 + GtDDD311*invgamt33
 ;
 
 const auto
-Gtzxy
+Gt312
 =
-GtDDDxxy*invgamtxz + GtDDDyxy*invgamtyz + GtDDDzxy*invgamtzz
+GtDDD112*invgamt13 + GtDDD212*invgamt23 + GtDDD312*invgamt33
 ;
 
 const auto
-Gtzxz
+Gt313
 =
-GtDDDxxz*invgamtxz + GtDDDyxz*invgamtyz + GtDDDzxz*invgamtzz
+GtDDD113*invgamt13 + GtDDD213*invgamt23 + GtDDD313*invgamt33
 ;
 
 const auto
-Gtzyy
+Gt322
 =
-GtDDDxyy*invgamtxz + GtDDDyyy*invgamtyz + GtDDDzyy*invgamtzz
+GtDDD122*invgamt13 + GtDDD222*invgamt23 + GtDDD322*invgamt33
 ;
 
 const auto
-Gtzyz
+Gt323
 =
-GtDDDxyz*invgamtxz + GtDDDyyz*invgamtyz + GtDDDzyz*invgamtzz
+GtDDD123*invgamt13 + GtDDD223*invgamt23 + GtDDD323*invgamt33
 ;
 
 const auto
-Gtzzz
+Gt333
 =
-GtDDDxzz*invgamtxz + GtDDDyzz*invgamtyz + GtDDDzzz*invgamtzz
+GtDDD133*invgamt13 + GtDDD233*invgamt23 + GtDDD333*invgamt33
 ;
 
 const auto
-trGtdx
+trGtd1
 =
-Gtxxx*invgamtxx + 2*Gtxxy*invgamtxy + 2*Gtxxz*invgamtxz + Gtxyy*invgamtyy +
-  2*Gtxyz*invgamtyz + Gtxzz*invgamtzz
+Gt111*invgamt11 + 2*Gt112*invgamt12 + 2*Gt113*invgamt13 + Gt122*invgamt22 +
+  2*Gt123*invgamt23 + Gt133*invgamt33
 ;
 
 const auto
-trGtdy
+trGtd2
 =
-Gtyxx*invgamtxx + 2*Gtyxy*invgamtxy + 2*Gtyxz*invgamtxz + Gtyyy*invgamtyy +
-  2*Gtyyz*invgamtyz + Gtyzz*invgamtzz
+Gt211*invgamt11 + 2*Gt212*invgamt12 + 2*Gt213*invgamt13 + Gt222*invgamt22 +
+  2*Gt223*invgamt23 + Gt233*invgamt33
 ;
 
 const auto
-trGtdz
+trGtd3
 =
-Gtzxx*invgamtxx + 2*Gtzxy*invgamtxy + 2*Gtzxz*invgamtxz + Gtzyy*invgamtyy +
-  2*Gtzyz*invgamtyz + Gtzzz*invgamtzz
+Gt311*invgamt11 + 2*Gt312*invgamt12 + 2*Gt313*invgamt13 + Gt322*invgamt22 +
+  2*Gt323*invgamt23 + Gt333*invgamt33
 ;
 
 const auto
-dgamxxx
+dgam111
 =
-(dgamtxxx - 2*dlnWx*gamtxx[ijk])/Power(W[ijk],2)
+(dgamt111 - 2*dlnW1*gamt11[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamxxy
+dgam112
 =
-(dgamtxxy - 2*dlnWx*gamtxy[ijk])/Power(W[ijk],2)
+(dgamt112 - 2*dlnW1*gamt12[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamxxz
+dgam113
 =
-(dgamtxxz - 2*dlnWx*gamtxz[ijk])/Power(W[ijk],2)
+(dgamt113 - 2*dlnW1*gamt13[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamxyy
+dgam122
 =
-(dgamtxyy - 2*dlnWx*gamtyy[ijk])/Power(W[ijk],2)
+(dgamt122 - 2*dlnW1*gamt22[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamxyz
+dgam123
 =
-(dgamtxyz - 2*dlnWx*gamtyz[ijk])/Power(W[ijk],2)
+(dgamt123 - 2*dlnW1*gamt23[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamxzz
+dgam133
 =
-(dgamtxzz - 2*dlnWx*gamtzz[ijk])/Power(W[ijk],2)
+(dgamt133 - 2*dlnW1*gamt33[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamyxx
+dgam211
 =
-(dgamtyxx - 2*dlnWy*gamtxx[ijk])/Power(W[ijk],2)
+(dgamt211 - 2*dlnW2*gamt11[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamyxy
+dgam212
 =
-(dgamtyxy - 2*dlnWy*gamtxy[ijk])/Power(W[ijk],2)
+(dgamt212 - 2*dlnW2*gamt12[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamyxz
+dgam213
 =
-(dgamtyxz - 2*dlnWy*gamtxz[ijk])/Power(W[ijk],2)
+(dgamt213 - 2*dlnW2*gamt13[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamyyy
+dgam222
 =
-(dgamtyyy - 2*dlnWy*gamtyy[ijk])/Power(W[ijk],2)
+(dgamt222 - 2*dlnW2*gamt22[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamyyz
+dgam223
 =
-(dgamtyyz - 2*dlnWy*gamtyz[ijk])/Power(W[ijk],2)
+(dgamt223 - 2*dlnW2*gamt23[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamyzz
+dgam233
 =
-(dgamtyzz - 2*dlnWy*gamtzz[ijk])/Power(W[ijk],2)
+(dgamt233 - 2*dlnW2*gamt33[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamzxx
+dgam311
 =
-(dgamtzxx - 2*dlnWz*gamtxx[ijk])/Power(W[ijk],2)
+(dgamt311 - 2*dlnW3*gamt11[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamzxy
+dgam312
 =
-(dgamtzxy - 2*dlnWz*gamtxy[ijk])/Power(W[ijk],2)
+(dgamt312 - 2*dlnW3*gamt12[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamzxz
+dgam313
 =
-(dgamtzxz - 2*dlnWz*gamtxz[ijk])/Power(W[ijk],2)
+(dgamt313 - 2*dlnW3*gamt13[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamzyy
+dgam322
 =
-(dgamtzyy - 2*dlnWz*gamtyy[ijk])/Power(W[ijk],2)
+(dgamt322 - 2*dlnW3*gamt22[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamzyz
+dgam323
 =
-(dgamtzyz - 2*dlnWz*gamtyz[ijk])/Power(W[ijk],2)
+(dgamt323 - 2*dlnW3*gamt23[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-dgamzzz
+dgam333
 =
-(dgamtzzz - 2*dlnWz*gamtzz[ijk])/Power(W[ijk],2)
+(dgamt333 - 2*dlnW3*gamt33[ijk])/Power(W[ijk],2)
 ;
 
 const auto
-GamDDDxxx
+GamDDD111
 =
-dgamxxx/2.
+dgam111/2.
 ;
 
 const auto
-GamDDDxxy
+GamDDD112
 =
-dgamyxx/2.
+dgam211/2.
 ;
 
 const auto
-GamDDDxxz
+GamDDD113
 =
-dgamzxx/2.
+dgam311/2.
 ;
 
 const auto
-GamDDDxyy
+GamDDD122
 =
--0.5*dgamxyy + dgamyxy
+-0.5*dgam122 + dgam212
 ;
 
 const auto
-GamDDDxyz
+GamDDD123
 =
-(-dgamxyz + dgamyxz + dgamzxy)/2.
+(-dgam123 + dgam213 + dgam312)/2.
 ;
 
 const auto
-GamDDDxzz
+GamDDD133
 =
--0.5*dgamxzz + dgamzxz
+-0.5*dgam133 + dgam313
 ;
 
 const auto
-GamDDDyxx
+GamDDD211
 =
-dgamxxy - dgamyxx/2.
+dgam112 - dgam211/2.
 ;
 
 const auto
-GamDDDyxy
+GamDDD212
 =
-dgamxyy/2.
+dgam122/2.
 ;
 
 const auto
-GamDDDyxz
+GamDDD213
 =
-(dgamxyz - dgamyxz + dgamzxy)/2.
+(dgam123 - dgam213 + dgam312)/2.
 ;
 
 const auto
-GamDDDyyy
+GamDDD222
 =
-dgamyyy/2.
+dgam222/2.
 ;
 
 const auto
-GamDDDyyz
+GamDDD223
 =
-dgamzyy/2.
+dgam322/2.
 ;
 
 const auto
-GamDDDyzz
+GamDDD233
 =
--0.5*dgamyzz + dgamzyz
+-0.5*dgam233 + dgam323
 ;
 
 const auto
-GamDDDzxx
+GamDDD311
 =
-dgamxxz - dgamzxx/2.
+dgam113 - dgam311/2.
 ;
 
 const auto
-GamDDDzxy
+GamDDD312
 =
-(dgamxyz + dgamyxz - dgamzxy)/2.
+(dgam123 + dgam213 - dgam312)/2.
 ;
 
 const auto
-GamDDDzxz
+GamDDD313
 =
-dgamxzz/2.
+dgam133/2.
 ;
 
 const auto
-GamDDDzyy
+GamDDD322
 =
-dgamyyz - dgamzyy/2.
+dgam223 - dgam322/2.
 ;
 
 const auto
-GamDDDzyz
+GamDDD323
 =
-dgamyzz/2.
+dgam233/2.
 ;
 
 const auto
-GamDDDzzz
+GamDDD333
 =
-dgamzzz/2.
+dgam333/2.
 ;
 
 const auto
-Gamxxx
+Gam111
 =
-GamDDDxxx*invgamxx + GamDDDyxx*invgamxy + GamDDDzxx*invgamxz
+GamDDD111*invgam11 + GamDDD211*invgam12 + GamDDD311*invgam13
 ;
 
 const auto
-Gamxxy
+Gam112
 =
-GamDDDxxy*invgamxx + GamDDDyxy*invgamxy + GamDDDzxy*invgamxz
+GamDDD112*invgam11 + GamDDD212*invgam12 + GamDDD312*invgam13
 ;
 
 const auto
-Gamxxz
+Gam113
 =
-GamDDDxxz*invgamxx + GamDDDyxz*invgamxy + GamDDDzxz*invgamxz
+GamDDD113*invgam11 + GamDDD213*invgam12 + GamDDD313*invgam13
 ;
 
 const auto
-Gamxyy
+Gam122
 =
-GamDDDxyy*invgamxx + GamDDDyyy*invgamxy + GamDDDzyy*invgamxz
+GamDDD122*invgam11 + GamDDD222*invgam12 + GamDDD322*invgam13
 ;
 
 const auto
-Gamxyz
+Gam123
 =
-GamDDDxyz*invgamxx + GamDDDyyz*invgamxy + GamDDDzyz*invgamxz
+GamDDD123*invgam11 + GamDDD223*invgam12 + GamDDD323*invgam13
 ;
 
 const auto
-Gamxzz
+Gam133
 =
-GamDDDxzz*invgamxx + GamDDDyzz*invgamxy + GamDDDzzz*invgamxz
+GamDDD133*invgam11 + GamDDD233*invgam12 + GamDDD333*invgam13
 ;
 
 const auto
-Gamyxx
+Gam211
 =
-GamDDDxxx*invgamxy + GamDDDyxx*invgamyy + GamDDDzxx*invgamyz
+GamDDD111*invgam12 + GamDDD211*invgam22 + GamDDD311*invgam23
 ;
 
 const auto
-Gamyxy
+Gam212
 =
-GamDDDxxy*invgamxy + GamDDDyxy*invgamyy + GamDDDzxy*invgamyz
+GamDDD112*invgam12 + GamDDD212*invgam22 + GamDDD312*invgam23
 ;
 
 const auto
-Gamyxz
+Gam213
 =
-GamDDDxxz*invgamxy + GamDDDyxz*invgamyy + GamDDDzxz*invgamyz
+GamDDD113*invgam12 + GamDDD213*invgam22 + GamDDD313*invgam23
 ;
 
 const auto
-Gamyyy
+Gam222
 =
-GamDDDxyy*invgamxy + GamDDDyyy*invgamyy + GamDDDzyy*invgamyz
+GamDDD122*invgam12 + GamDDD222*invgam22 + GamDDD322*invgam23
 ;
 
 const auto
-Gamyyz
+Gam223
 =
-GamDDDxyz*invgamxy + GamDDDyyz*invgamyy + GamDDDzyz*invgamyz
+GamDDD123*invgam12 + GamDDD223*invgam22 + GamDDD323*invgam23
 ;
 
 const auto
-Gamyzz
+Gam233
 =
-GamDDDxzz*invgamxy + GamDDDyzz*invgamyy + GamDDDzzz*invgamyz
+GamDDD133*invgam12 + GamDDD233*invgam22 + GamDDD333*invgam23
 ;
 
 const auto
-Gamzxx
+Gam311
 =
-GamDDDxxx*invgamxz + GamDDDyxx*invgamyz + GamDDDzxx*invgamzz
+GamDDD111*invgam13 + GamDDD211*invgam23 + GamDDD311*invgam33
 ;
 
 const auto
-Gamzxy
+Gam312
 =
-GamDDDxxy*invgamxz + GamDDDyxy*invgamyz + GamDDDzxy*invgamzz
+GamDDD112*invgam13 + GamDDD212*invgam23 + GamDDD312*invgam33
 ;
 
 const auto
-Gamzxz
+Gam313
 =
-GamDDDxxz*invgamxz + GamDDDyxz*invgamyz + GamDDDzxz*invgamzz
+GamDDD113*invgam13 + GamDDD213*invgam23 + GamDDD313*invgam33
 ;
 
 const auto
-Gamzyy
+Gam322
 =
-GamDDDxyy*invgamxz + GamDDDyyy*invgamyz + GamDDDzyy*invgamzz
+GamDDD122*invgam13 + GamDDD222*invgam23 + GamDDD322*invgam33
 ;
 
 const auto
-Gamzyz
+Gam323
 =
-GamDDDxyz*invgamxz + GamDDDyyz*invgamyz + GamDDDzyz*invgamzz
+GamDDD123*invgam13 + GamDDD223*invgam23 + GamDDD323*invgam33
 ;
 
 const auto
-Gamzzz
+Gam333
 =
-GamDDDxzz*invgamxz + GamDDDyzz*invgamyz + GamDDDzzz*invgamzz
+GamDDD133*invgam13 + GamDDD233*invgam23 + GamDDD333*invgam33
 ;
 
 const auto
-exAtUUxx
+exAtUU11
 =
-Power(invgamtxx,2)*exAtxx[ijk] + 2*invgamtxx*invgamtxy*exAtxy[ijk] +
-  2*invgamtxx*invgamtxz*exAtxz[ijk] + Power(invgamtxy,2)*exAtyy[ijk] +
-  2*invgamtxy*invgamtxz*exAtyz[ijk] + Power(invgamtxz,2)*exAtzz[ijk]
+Power(invgamt11,2)*exAt11[ijk] + 2*invgamt11*invgamt12*exAt12[ijk] +
+  2*invgamt11*invgamt13*exAt13[ijk] + Power(invgamt12,2)*exAt22[ijk] +
+  2*invgamt12*invgamt13*exAt23[ijk] + Power(invgamt13,2)*exAt33[ijk]
 ;
 
 const auto
-exAtUUxy
+exAtUU12
 =
-invgamtxx*invgamtxy*exAtxx[ijk] +
-  (Power(invgamtxy,2) + invgamtxx*invgamtyy)*exAtxy[ijk] +
-  invgamtxy*invgamtxz*exAtxz[ijk] + invgamtxx*invgamtyz*exAtxz[ijk] +
-  invgamtxy*invgamtyy*exAtyy[ijk] + invgamtxz*invgamtyy*exAtyz[ijk] +
-  invgamtxy*invgamtyz*exAtyz[ijk] + invgamtxz*invgamtyz*exAtzz[ijk]
+invgamt11*invgamt12*exAt11[ijk] +
+  (Power(invgamt12,2) + invgamt11*invgamt22)*exAt12[ijk] +
+  invgamt12*invgamt13*exAt13[ijk] + invgamt11*invgamt23*exAt13[ijk] +
+  invgamt12*invgamt22*exAt22[ijk] + invgamt13*invgamt22*exAt23[ijk] +
+  invgamt12*invgamt23*exAt23[ijk] + invgamt13*invgamt23*exAt33[ijk]
 ;
 
 const auto
-exAtUUxz
+exAtUU13
 =
-invgamtxx*invgamtxz*exAtxx[ijk] +
-  (invgamtxy*invgamtxz + invgamtxx*invgamtyz)*exAtxy[ijk] +
-  Power(invgamtxz,2)*exAtxz[ijk] + invgamtxx*invgamtzz*exAtxz[ijk] +
-  invgamtxy*invgamtyz*exAtyy[ijk] + invgamtxz*invgamtyz*exAtyz[ijk] +
-  invgamtxy*invgamtzz*exAtyz[ijk] + invgamtxz*invgamtzz*exAtzz[ijk]
+invgamt11*invgamt13*exAt11[ijk] +
+  (invgamt12*invgamt13 + invgamt11*invgamt23)*exAt12[ijk] +
+  Power(invgamt13,2)*exAt13[ijk] + invgamt11*invgamt33*exAt13[ijk] +
+  invgamt12*invgamt23*exAt22[ijk] + invgamt13*invgamt23*exAt23[ijk] +
+  invgamt12*invgamt33*exAt23[ijk] + invgamt13*invgamt33*exAt33[ijk]
 ;
 
 const auto
-exAtUUyy
+exAtUU22
 =
-Power(invgamtxy,2)*exAtxx[ijk] + 2*invgamtxy*invgamtyy*exAtxy[ijk] +
-  2*invgamtxy*invgamtyz*exAtxz[ijk] + Power(invgamtyy,2)*exAtyy[ijk] +
-  2*invgamtyy*invgamtyz*exAtyz[ijk] + Power(invgamtyz,2)*exAtzz[ijk]
+Power(invgamt12,2)*exAt11[ijk] + 2*invgamt12*invgamt22*exAt12[ijk] +
+  2*invgamt12*invgamt23*exAt13[ijk] + Power(invgamt22,2)*exAt22[ijk] +
+  2*invgamt22*invgamt23*exAt23[ijk] + Power(invgamt23,2)*exAt33[ijk]
 ;
 
 const auto
-exAtUUyz
+exAtUU23
 =
-invgamtxy*invgamtxz*exAtxx[ijk] +
-  (invgamtxz*invgamtyy + invgamtxy*invgamtyz)*exAtxy[ijk] +
-  invgamtxz*invgamtyz*exAtxz[ijk] + invgamtxy*invgamtzz*exAtxz[ijk] +
-  invgamtyy*invgamtyz*exAtyy[ijk] + Power(invgamtyz,2)*exAtyz[ijk] +
-  invgamtyy*invgamtzz*exAtyz[ijk] + invgamtyz*invgamtzz*exAtzz[ijk]
+invgamt12*invgamt13*exAt11[ijk] +
+  (invgamt13*invgamt22 + invgamt12*invgamt23)*exAt12[ijk] +
+  invgamt13*invgamt23*exAt13[ijk] + invgamt12*invgamt33*exAt13[ijk] +
+  invgamt22*invgamt23*exAt22[ijk] + Power(invgamt23,2)*exAt23[ijk] +
+  invgamt22*invgamt33*exAt23[ijk] + invgamt23*invgamt33*exAt33[ijk]
 ;
 
 const auto
-exAtUUzz
+exAtUU33
 =
-Power(invgamtxz,2)*exAtxx[ijk] + 2*invgamtxz*invgamtyz*exAtxy[ijk] +
-  2*invgamtxz*invgamtzz*exAtxz[ijk] + Power(invgamtyz,2)*exAtyy[ijk] +
-  2*invgamtyz*invgamtzz*exAtyz[ijk] + Power(invgamtzz,2)*exAtzz[ijk]
+Power(invgamt13,2)*exAt11[ijk] + 2*invgamt13*invgamt23*exAt12[ijk] +
+  2*invgamt13*invgamt33*exAt13[ijk] + Power(invgamt23,2)*exAt22[ijk] +
+  2*invgamt23*invgamt33*exAt23[ijk] + Power(invgamt33,2)*exAt33[ijk]
 ;
 
 const auto
-tDtDWxx
+tDtDW11
 =
-ddWxx - dWx*Gtxxx - dWy*Gtyxx - dWz*Gtzxx
+ddW11 - dW1*Gt111 - dW2*Gt211 - dW3*Gt311
 ;
 
 const auto
-tDtDWxy
+tDtDW12
 =
-ddWxy - dWx*Gtxxy - dWy*Gtyxy - dWz*Gtzxy
+ddW12 - dW1*Gt112 - dW2*Gt212 - dW3*Gt312
 ;
 
 const auto
-tDtDWxz
+tDtDW13
 =
-ddWxz - dWx*Gtxxz - dWy*Gtyxz - dWz*Gtzxz
+ddW13 - dW1*Gt113 - dW2*Gt213 - dW3*Gt313
 ;
 
 const auto
-tDtDWyy
+tDtDW22
 =
-ddWyy - dWx*Gtxyy - dWy*Gtyyy - dWz*Gtzyy
+ddW22 - dW1*Gt122 - dW2*Gt222 - dW3*Gt322
 ;
 
 const auto
-tDtDWyz
+tDtDW23
 =
-ddWyz - dWx*Gtxyz - dWy*Gtyyz - dWz*Gtzyz
+ddW23 - dW1*Gt123 - dW2*Gt223 - dW3*Gt323
 ;
 
 const auto
-tDtDWzz
+tDtDW33
 =
-ddWzz - dWx*Gtxzz - dWy*Gtyzz - dWz*Gtzzz
+ddW33 - dW1*Gt133 - dW2*Gt233 - dW3*Gt333
 ;
 
 const auto
-DDalphaxx
+DDalpha11
 =
-ddalphaxx - dalphax*Gamxxx - dalphay*Gamyxx - dalphaz*Gamzxx
+ddalpha11 - dalpha1*Gam111 - dalpha2*Gam211 - dalpha3*Gam311
 ;
 
 const auto
-DDalphaxy
+DDalpha12
 =
-ddalphaxy - dalphax*Gamxxy - dalphay*Gamyxy - dalphaz*Gamzxy
+ddalpha12 - dalpha1*Gam112 - dalpha2*Gam212 - dalpha3*Gam312
 ;
 
 const auto
-DDalphaxz
+DDalpha13
 =
-ddalphaxz - dalphax*Gamxxz - dalphay*Gamyxz - dalphaz*Gamzxz
+ddalpha13 - dalpha1*Gam113 - dalpha2*Gam213 - dalpha3*Gam313
 ;
 
 const auto
-DDalphayy
+DDalpha22
 =
-ddalphayy - dalphax*Gamxyy - dalphay*Gamyyy - dalphaz*Gamzyy
+ddalpha22 - dalpha1*Gam122 - dalpha2*Gam222 - dalpha3*Gam322
 ;
 
 const auto
-DDalphayz
+DDalpha23
 =
-ddalphayz - dalphax*Gamxyz - dalphay*Gamyyz - dalphaz*Gamzyz
+ddalpha23 - dalpha1*Gam123 - dalpha2*Gam223 - dalpha3*Gam323
 ;
 
 const auto
-DDalphazz
+DDalpha33
 =
-ddalphazz - dalphax*Gamxzz - dalphay*Gamyzz - dalphaz*Gamzzz
+ddalpha33 - dalpha1*Gam133 - dalpha2*Gam233 - dalpha3*Gam333
 ;
 
 const auto
-RtWxx
+RtW11
 =
-(tDtDWxx + gamtxx[ijk]*(invgamtxx*tDtDWxx + 2*invgamtxy*tDtDWxy +
-       2*invgamtxz*tDtDWxz + invgamtyy*tDtDWyy + 2*invgamtyz*tDtDWyz +
-       invgamtzz*tDtDWzz - 2*(Power(dlnWx,2)*invgamtxx +
-          2*dlnWx*dlnWy*invgamtxy + 2*dlnWx*dlnWz*invgamtxz +
-          Power(dlnWy,2)*invgamtyy + 2*dlnWy*dlnWz*invgamtyz +
-          Power(dlnWz,2)*invgamtzz)*W[ijk]))/W[ijk]
+(tDtDW11 + gamt11[ijk]*(invgamt11*tDtDW11 + 2*invgamt12*tDtDW12 +
+       2*invgamt13*tDtDW13 + invgamt22*tDtDW22 + 2*invgamt23*tDtDW23 +
+       invgamt33*tDtDW33 - 2*(Power(dlnW1,2)*invgamt11 +
+          2*dlnW1*dlnW2*invgamt12 + 2*dlnW1*dlnW3*invgamt13 +
+          Power(dlnW2,2)*invgamt22 + 2*dlnW2*dlnW3*invgamt23 +
+          Power(dlnW3,2)*invgamt33)*W[ijk]))/W[ijk]
 ;
 
 const auto
-RtWxy
+RtW12
 =
-(tDtDWxy + gamtxy[ijk]*(invgamtxx*tDtDWxx + 2*invgamtxy*tDtDWxy +
-       2*invgamtxz*tDtDWxz + invgamtyy*tDtDWyy + 2*invgamtyz*tDtDWyz +
-       invgamtzz*tDtDWzz - 2*(Power(dlnWx,2)*invgamtxx +
-          2*dlnWx*dlnWy*invgamtxy + 2*dlnWx*dlnWz*invgamtxz +
-          Power(dlnWy,2)*invgamtyy + 2*dlnWy*dlnWz*invgamtyz +
-          Power(dlnWz,2)*invgamtzz)*W[ijk]))/W[ijk]
+(tDtDW12 + gamt12[ijk]*(invgamt11*tDtDW11 + 2*invgamt12*tDtDW12 +
+       2*invgamt13*tDtDW13 + invgamt22*tDtDW22 + 2*invgamt23*tDtDW23 +
+       invgamt33*tDtDW33 - 2*(Power(dlnW1,2)*invgamt11 +
+          2*dlnW1*dlnW2*invgamt12 + 2*dlnW1*dlnW3*invgamt13 +
+          Power(dlnW2,2)*invgamt22 + 2*dlnW2*dlnW3*invgamt23 +
+          Power(dlnW3,2)*invgamt33)*W[ijk]))/W[ijk]
 ;
 
 const auto
-RtWxz
+RtW13
 =
-(tDtDWxz + gamtxz[ijk]*(invgamtxx*tDtDWxx + 2*invgamtxy*tDtDWxy +
-       2*invgamtxz*tDtDWxz + invgamtyy*tDtDWyy + 2*invgamtyz*tDtDWyz +
-       invgamtzz*tDtDWzz - 2*(Power(dlnWx,2)*invgamtxx +
-          2*dlnWx*dlnWy*invgamtxy + 2*dlnWx*dlnWz*invgamtxz +
-          Power(dlnWy,2)*invgamtyy + 2*dlnWy*dlnWz*invgamtyz +
-          Power(dlnWz,2)*invgamtzz)*W[ijk]))/W[ijk]
+(tDtDW13 + gamt13[ijk]*(invgamt11*tDtDW11 + 2*invgamt12*tDtDW12 +
+       2*invgamt13*tDtDW13 + invgamt22*tDtDW22 + 2*invgamt23*tDtDW23 +
+       invgamt33*tDtDW33 - 2*(Power(dlnW1,2)*invgamt11 +
+          2*dlnW1*dlnW2*invgamt12 + 2*dlnW1*dlnW3*invgamt13 +
+          Power(dlnW2,2)*invgamt22 + 2*dlnW2*dlnW3*invgamt23 +
+          Power(dlnW3,2)*invgamt33)*W[ijk]))/W[ijk]
 ;
 
 const auto
-RtWyy
+RtW22
 =
-(tDtDWyy + gamtyy[ijk]*(invgamtxx*tDtDWxx + 2*invgamtxy*tDtDWxy +
-       2*invgamtxz*tDtDWxz + invgamtyy*tDtDWyy + 2*invgamtyz*tDtDWyz +
-       invgamtzz*tDtDWzz - 2*(Power(dlnWx,2)*invgamtxx +
-          2*dlnWx*dlnWy*invgamtxy + 2*dlnWx*dlnWz*invgamtxz +
-          Power(dlnWy,2)*invgamtyy + 2*dlnWy*dlnWz*invgamtyz +
-          Power(dlnWz,2)*invgamtzz)*W[ijk]))/W[ijk]
+(tDtDW22 + gamt22[ijk]*(invgamt11*tDtDW11 + 2*invgamt12*tDtDW12 +
+       2*invgamt13*tDtDW13 + invgamt22*tDtDW22 + 2*invgamt23*tDtDW23 +
+       invgamt33*tDtDW33 - 2*(Power(dlnW1,2)*invgamt11 +
+          2*dlnW1*dlnW2*invgamt12 + 2*dlnW1*dlnW3*invgamt13 +
+          Power(dlnW2,2)*invgamt22 + 2*dlnW2*dlnW3*invgamt23 +
+          Power(dlnW3,2)*invgamt33)*W[ijk]))/W[ijk]
 ;
 
 const auto
-RtWyz
+RtW23
 =
-(tDtDWyz + gamtyz[ijk]*(invgamtxx*tDtDWxx + 2*invgamtxy*tDtDWxy +
-       2*invgamtxz*tDtDWxz + invgamtyy*tDtDWyy + 2*invgamtyz*tDtDWyz +
-       invgamtzz*tDtDWzz - 2*(Power(dlnWx,2)*invgamtxx +
-          2*dlnWx*dlnWy*invgamtxy + 2*dlnWx*dlnWz*invgamtxz +
-          Power(dlnWy,2)*invgamtyy + 2*dlnWy*dlnWz*invgamtyz +
-          Power(dlnWz,2)*invgamtzz)*W[ijk]))/W[ijk]
+(tDtDW23 + gamt23[ijk]*(invgamt11*tDtDW11 + 2*invgamt12*tDtDW12 +
+       2*invgamt13*tDtDW13 + invgamt22*tDtDW22 + 2*invgamt23*tDtDW23 +
+       invgamt33*tDtDW33 - 2*(Power(dlnW1,2)*invgamt11 +
+          2*dlnW1*dlnW2*invgamt12 + 2*dlnW1*dlnW3*invgamt13 +
+          Power(dlnW2,2)*invgamt22 + 2*dlnW2*dlnW3*invgamt23 +
+          Power(dlnW3,2)*invgamt33)*W[ijk]))/W[ijk]
 ;
 
 const auto
-RtWzz
+RtW33
 =
-(tDtDWzz + gamtzz[ijk]*(invgamtxx*tDtDWxx + 2*invgamtxy*tDtDWxy +
-       2*invgamtxz*tDtDWxz + invgamtyy*tDtDWyy + 2*invgamtyz*tDtDWyz +
-       invgamtzz*tDtDWzz - 2*(Power(dlnWx,2)*invgamtxx +
-          2*dlnWx*dlnWy*invgamtxy + 2*dlnWx*dlnWz*invgamtxz +
-          Power(dlnWy,2)*invgamtyy + 2*dlnWy*dlnWz*invgamtyz +
-          Power(dlnWz,2)*invgamtzz)*W[ijk]))/W[ijk]
+(tDtDW33 + gamt33[ijk]*(invgamt11*tDtDW11 + 2*invgamt12*tDtDW12 +
+       2*invgamt13*tDtDW13 + invgamt22*tDtDW22 + 2*invgamt23*tDtDW23 +
+       invgamt33*tDtDW33 - 2*(Power(dlnW1,2)*invgamt11 +
+          2*dlnW1*dlnW2*invgamt12 + 2*dlnW1*dlnW3*invgamt13 +
+          Power(dlnW2,2)*invgamt22 + 2*dlnW2*dlnW3*invgamt23 +
+          Power(dlnW3,2)*invgamt33)*W[ijk]))/W[ijk]
 ;
 
 const auto
-Rtxx
+Rt11
 =
-3*GtDDUxxx*Gtxxx + 3*GtDDUxxy*Gtxxy + 3*GtDDUxxz*Gtxxz + 2*GtDDUxyx*Gtyxx +
-  GtDDUyxx*Gtyxx + 2*GtDDUxyy*Gtyxy + GtDDUyxy*Gtyxy + 2*GtDDUxyz*Gtyxz +
-  GtDDUyxz*Gtyxz + 2*GtDDUxzx*Gtzxx + GtDDUzxx*Gtzxx + 2*GtDDUxzy*Gtzxy +
-  GtDDUzxy*Gtzxy + 2*GtDDUxzz*Gtzxz + GtDDUzxz*Gtzxz -
-  (ddgamtxxxx*invgamtxx)/2. - ddgamtxyxx*invgamtxy - ddgamtxzxx*invgamtxz -
-  (ddgamtyyxx*invgamtyy)/2. - ddgamtyzxx*invgamtyz -
-  (ddgamtzzxx*invgamtzz)/2. + GtDDDxxx*trGtdx + GtDDDxxy*trGtdy +
-  GtDDDxxz*trGtdz + dtrGtxx*gamtxx[ijk] + dtrGtxy*gamtxy[ijk] +
-  dtrGtxz*gamtxz[ijk]
+3*Gt111*GtDDU111 + 3*Gt112*GtDDU112 + 3*Gt113*GtDDU113 + 2*Gt211*GtDDU121 +
+  2*Gt212*GtDDU122 + 2*Gt213*GtDDU123 + 2*Gt311*GtDDU131 +
+  2*Gt312*GtDDU132 + 2*Gt313*GtDDU133 + Gt211*GtDDU211 + Gt212*GtDDU212 +
+  Gt213*GtDDU213 + Gt311*GtDDU311 + Gt312*GtDDU312 + Gt313*GtDDU313 -
+  (ddgamt1111*invgamt11)/2. - ddgamt1211*invgamt12 - ddgamt1311*invgamt13 -
+  (ddgamt2211*invgamt22)/2. - ddgamt2311*invgamt23 -
+  (ddgamt3311*invgamt33)/2. + GtDDD111*trGtd1 + GtDDD112*trGtd2 +
+  GtDDD113*trGtd3 + dtrGt11*gamt11[ijk] + dtrGt12*gamt12[ijk] +
+  dtrGt13*gamt13[ijk]
 ;
 
 const auto
-Rtxy
+Rt12
 =
-(2*GtDDUxyx*Gtxxx + 2*GtDDUyxx*Gtxxx + 2*GtDDUxxx*Gtxxy +
-    2*GtDDUxyy*Gtxxy + 2*GtDDUyxy*Gtxxy + 2*GtDDUxyz*Gtxxz +
-    2*GtDDUyxz*Gtxxz + 2*GtDDUxxy*Gtxyy + 2*GtDDUxxz*Gtxyz +
-    4*GtDDUyyx*Gtyxx + 2*GtDDUxyx*Gtyxy + 4*GtDDUyyy*Gtyxy +
-    4*GtDDUyyz*Gtyxz + 2*GtDDUxyy*Gtyyy + 2*GtDDUxyz*Gtyyz +
-    2*GtDDUyzx*Gtzxx + 2*GtDDUzyx*Gtzxx + 2*GtDDUxzx*Gtzxy +
-    2*GtDDUyzy*Gtzxy + 2*GtDDUzyy*Gtzxy + 2*GtDDUyzz*Gtzxz +
-    2*GtDDUzyz*Gtzxz + 2*GtDDUxzy*Gtzyy + 2*GtDDUxzz*Gtzyz -
-    ddgamtxxxy*invgamtxx - 2*ddgamtxyxy*invgamtxy -
-    2*ddgamtxzxy*invgamtxz - ddgamtyyxy*invgamtyy -
-    2*ddgamtyzxy*invgamtyz - ddgamtzzxy*invgamtzz + GtDDDxxy*trGtdx +
-    GtDDDyxx*trGtdx + GtDDDxyy*trGtdy + GtDDDyxy*trGtdy + GtDDDxyz*trGtdz +
-    GtDDDyxz*trGtdz + dtrGtyx*gamtxx[ijk] +
-    (dtrGtxx + dtrGtyy)*gamtxy[ijk] + dtrGtyz*gamtxz[ijk] +
-    dtrGtxy*gamtyy[ijk] + dtrGtxz*gamtyz[ijk])/2.
+(2*Gt112*GtDDU111 + 2*Gt122*GtDDU112 + 2*Gt123*GtDDU113 +
+    2*Gt111*GtDDU121 + 2*Gt212*GtDDU121 + 2*Gt112*GtDDU122 +
+    2*Gt222*GtDDU122 + 2*Gt113*GtDDU123 + 2*Gt223*GtDDU123 +
+    2*Gt312*GtDDU131 + 2*Gt322*GtDDU132 + 2*Gt323*GtDDU133 +
+    2*Gt111*GtDDU211 + 2*Gt112*GtDDU212 + 2*Gt113*GtDDU213 +
+    4*Gt211*GtDDU221 + 4*Gt212*GtDDU222 + 4*Gt213*GtDDU223 +
+    2*Gt311*GtDDU231 + 2*Gt312*GtDDU232 + 2*Gt313*GtDDU233 +
+    2*Gt311*GtDDU321 + 2*Gt312*GtDDU322 + 2*Gt313*GtDDU323 -
+    ddgamt1112*invgamt11 - 2*ddgamt1212*invgamt12 -
+    2*ddgamt1312*invgamt13 - ddgamt2212*invgamt22 -
+    2*ddgamt2312*invgamt23 - ddgamt3312*invgamt33 + GtDDD112*trGtd1 +
+    GtDDD211*trGtd1 + GtDDD122*trGtd2 + GtDDD212*trGtd2 + GtDDD123*trGtd3 +
+    GtDDD213*trGtd3 + dtrGt21*gamt11[ijk] +
+    (dtrGt11 + dtrGt22)*gamt12[ijk] + dtrGt23*gamt13[ijk] +
+    dtrGt12*gamt22[ijk] + dtrGt13*gamt23[ijk])/2.
 ;
 
 const auto
-Rtxz
+Rt13
 =
-(2*GtDDUxzx*Gtxxx + 2*GtDDUzxx*Gtxxx + 2*GtDDUxzy*Gtxxy +
-    2*GtDDUzxy*Gtxxy + 2*GtDDUxxx*Gtxxz + 2*GtDDUxzz*Gtxxz +
-    2*GtDDUzxz*Gtxxz + 2*GtDDUxxy*Gtxyz + 2*GtDDUxxz*Gtxzz +
-    2*GtDDUyzx*Gtyxx + 2*GtDDUzyx*Gtyxx + 2*GtDDUyzy*Gtyxy +
-    2*GtDDUzyy*Gtyxy + 2*GtDDUxyx*Gtyxz + 2*GtDDUyzz*Gtyxz +
-    2*GtDDUzyz*Gtyxz + 2*GtDDUxyy*Gtyyz + 2*GtDDUxyz*Gtyzz +
-    4*GtDDUzzx*Gtzxx + 4*GtDDUzzy*Gtzxy + 2*GtDDUxzx*Gtzxz +
-    4*GtDDUzzz*Gtzxz + 2*GtDDUxzy*Gtzyz + 2*GtDDUxzz*Gtzzz -
-    ddgamtxxxz*invgamtxx - 2*ddgamtxyxz*invgamtxy -
-    2*ddgamtxzxz*invgamtxz - ddgamtyyxz*invgamtyy -
-    2*ddgamtyzxz*invgamtyz - ddgamtzzxz*invgamtzz + GtDDDxxz*trGtdx +
-    GtDDDzxx*trGtdx + GtDDDxyz*trGtdy + GtDDDzxy*trGtdy + GtDDDxzz*trGtdz +
-    GtDDDzxz*trGtdz + dtrGtzx*gamtxx[ijk] + dtrGtzy*gamtxy[ijk] +
-    dtrGtxx*gamtxz[ijk] + dtrGtzz*gamtxz[ijk] + dtrGtxy*gamtyz[ijk] +
-    dtrGtxz*gamtzz[ijk])/2.
+(2*Gt113*GtDDU111 + 2*Gt123*GtDDU112 + 2*Gt133*GtDDU113 +
+    2*Gt213*GtDDU121 + 2*Gt223*GtDDU122 + 2*Gt233*GtDDU123 +
+    2*Gt111*GtDDU131 + 2*Gt313*GtDDU131 + 2*Gt112*GtDDU132 +
+    2*Gt323*GtDDU132 + 2*Gt113*GtDDU133 + 2*Gt333*GtDDU133 +
+    2*Gt211*GtDDU231 + 2*Gt212*GtDDU232 + 2*Gt213*GtDDU233 +
+    2*Gt111*GtDDU311 + 2*Gt112*GtDDU312 + 2*Gt113*GtDDU313 +
+    2*Gt211*GtDDU321 + 2*Gt212*GtDDU322 + 2*Gt213*GtDDU323 +
+    4*Gt311*GtDDU331 + 4*Gt312*GtDDU332 + 4*Gt313*GtDDU333 -
+    ddgamt1113*invgamt11 - 2*ddgamt1213*invgamt12 -
+    2*ddgamt1313*invgamt13 - ddgamt2213*invgamt22 -
+    2*ddgamt2313*invgamt23 - ddgamt3313*invgamt33 + GtDDD113*trGtd1 +
+    GtDDD311*trGtd1 + GtDDD123*trGtd2 + GtDDD312*trGtd2 + GtDDD133*trGtd3 +
+    GtDDD313*trGtd3 + dtrGt31*gamt11[ijk] + dtrGt32*gamt12[ijk] +
+    dtrGt11*gamt13[ijk] + dtrGt33*gamt13[ijk] + dtrGt12*gamt23[ijk] +
+    dtrGt13*gamt33[ijk])/2.
 ;
 
 const auto
-Rtyy
+Rt22
 =
-GtDDUxyx*Gtxxy + 2*GtDDUyxx*Gtxxy + GtDDUxyy*Gtxyy + 2*GtDDUyxy*Gtxyy +
-  GtDDUxyz*Gtxyz + 2*GtDDUyxz*Gtxyz + 3*GtDDUyyx*Gtyxy + 3*GtDDUyyy*Gtyyy +
-  3*GtDDUyyz*Gtyyz + 2*GtDDUyzx*Gtzxy + GtDDUzyx*Gtzxy + 2*GtDDUyzy*Gtzyy +
-  GtDDUzyy*Gtzyy + 2*GtDDUyzz*Gtzyz + GtDDUzyz*Gtzyz -
-  (ddgamtxxyy*invgamtxx)/2. - ddgamtxyyy*invgamtxy - ddgamtxzyy*invgamtxz -
-  (ddgamtyyyy*invgamtyy)/2. - ddgamtyzyy*invgamtyz -
-  (ddgamtzzyy*invgamtzz)/2. + GtDDDyxy*trGtdx + GtDDDyyy*trGtdy +
-  GtDDDyyz*trGtdz + dtrGtyx*gamtxy[ijk] + dtrGtyy*gamtyy[ijk] +
-  dtrGtyz*gamtyz[ijk]
+Gt112*GtDDU121 + Gt122*GtDDU122 + Gt123*GtDDU123 + 2*Gt112*GtDDU211 +
+  2*Gt122*GtDDU212 + 2*Gt123*GtDDU213 + 3*Gt212*GtDDU221 +
+  3*Gt222*GtDDU222 + 3*Gt223*GtDDU223 + 2*Gt312*GtDDU231 +
+  2*Gt322*GtDDU232 + 2*Gt323*GtDDU233 + Gt312*GtDDU321 + Gt322*GtDDU322 +
+  Gt323*GtDDU323 - (ddgamt1122*invgamt11)/2. - ddgamt1222*invgamt12 -
+  ddgamt1322*invgamt13 - (ddgamt2222*invgamt22)/2. - ddgamt2322*invgamt23 -
+  (ddgamt3322*invgamt33)/2. + GtDDD212*trGtd1 + GtDDD222*trGtd2 +
+  GtDDD223*trGtd3 + dtrGt21*gamt12[ijk] + dtrGt22*gamt22[ijk] +
+  dtrGt23*gamt23[ijk]
 ;
 
 const auto
-Rtyz
+Rt23
 =
-(2*GtDDUxzx*Gtxxy + 2*GtDDUzxx*Gtxxy + 2*GtDDUyxx*Gtxxz +
-    2*GtDDUxzy*Gtxyy + 2*GtDDUzxy*Gtxyy + 2*GtDDUxzz*Gtxyz +
-    2*GtDDUyxy*Gtxyz + 2*GtDDUzxz*Gtxyz + 2*GtDDUyxz*Gtxzz +
-    2*GtDDUyzx*Gtyxy + 2*GtDDUzyx*Gtyxy + 2*GtDDUyyx*Gtyxz +
-    2*GtDDUyzy*Gtyyy + 2*GtDDUzyy*Gtyyy + 2*GtDDUyyy*Gtyyz +
-    2*GtDDUyzz*Gtyyz + 2*GtDDUzyz*Gtyyz + 2*GtDDUyyz*Gtyzz +
-    4*GtDDUzzx*Gtzxy + 2*GtDDUyzx*Gtzxz + 4*GtDDUzzy*Gtzyy +
-    2*GtDDUyzy*Gtzyz + 4*GtDDUzzz*Gtzyz + 2*GtDDUyzz*Gtzzz -
-    ddgamtxxyz*invgamtxx - 2*ddgamtxyyz*invgamtxy -
-    2*ddgamtxzyz*invgamtxz - ddgamtyyyz*invgamtyy -
-    2*ddgamtyzyz*invgamtyz - ddgamtzzyz*invgamtzz + GtDDDyxz*trGtdx +
-    GtDDDzxy*trGtdx + GtDDDyyz*trGtdy + GtDDDzyy*trGtdy + GtDDDyzz*trGtdz +
-    GtDDDzyz*trGtdz + dtrGtzx*gamtxy[ijk] + dtrGtyx*gamtxz[ijk] +
-    dtrGtzy*gamtyy[ijk] + dtrGtyy*gamtyz[ijk] + dtrGtzz*gamtyz[ijk] +
-    dtrGtyz*gamtzz[ijk])/2.
+(2*Gt112*GtDDU131 + 2*Gt122*GtDDU132 + 2*Gt123*GtDDU133 +
+    2*Gt113*GtDDU211 + 2*Gt123*GtDDU212 + 2*Gt133*GtDDU213 +
+    2*Gt213*GtDDU221 + 2*Gt223*GtDDU222 + 2*Gt233*GtDDU223 +
+    2*Gt212*GtDDU231 + 2*Gt313*GtDDU231 + 2*Gt222*GtDDU232 +
+    2*Gt323*GtDDU232 + 2*Gt223*GtDDU233 + 2*Gt333*GtDDU233 +
+    2*Gt112*GtDDU311 + 2*Gt122*GtDDU312 + 2*Gt123*GtDDU313 +
+    2*Gt212*GtDDU321 + 2*Gt222*GtDDU322 + 2*Gt223*GtDDU323 +
+    4*Gt312*GtDDU331 + 4*Gt322*GtDDU332 + 4*Gt323*GtDDU333 -
+    ddgamt1123*invgamt11 - 2*ddgamt1223*invgamt12 -
+    2*ddgamt1323*invgamt13 - ddgamt2223*invgamt22 -
+    2*ddgamt2323*invgamt23 - ddgamt3323*invgamt33 + GtDDD213*trGtd1 +
+    GtDDD312*trGtd1 + GtDDD223*trGtd2 + GtDDD322*trGtd2 + GtDDD233*trGtd3 +
+    GtDDD323*trGtd3 + dtrGt31*gamt12[ijk] + dtrGt21*gamt13[ijk] +
+    dtrGt32*gamt22[ijk] + dtrGt22*gamt23[ijk] + dtrGt33*gamt23[ijk] +
+    dtrGt23*gamt33[ijk])/2.
 ;
 
 const auto
-Rtzz
+Rt33
 =
-GtDDUxzx*Gtxxz + 2*GtDDUzxx*Gtxxz + GtDDUxzy*Gtxyz + 2*GtDDUzxy*Gtxyz +
-  GtDDUxzz*Gtxzz + 2*GtDDUzxz*Gtxzz + GtDDUyzx*Gtyxz + 2*GtDDUzyx*Gtyxz +
-  GtDDUyzy*Gtyyz + 2*GtDDUzyy*Gtyyz + GtDDUyzz*Gtyzz + 2*GtDDUzyz*Gtyzz +
-  3*GtDDUzzx*Gtzxz + 3*GtDDUzzy*Gtzyz + 3*GtDDUzzz*Gtzzz -
-  (ddgamtxxzz*invgamtxx)/2. - ddgamtxyzz*invgamtxy - ddgamtxzzz*invgamtxz -
-  (ddgamtyyzz*invgamtyy)/2. - ddgamtyzzz*invgamtyz -
-  (ddgamtzzzz*invgamtzz)/2. + GtDDDzxz*trGtdx + GtDDDzyz*trGtdy +
-  GtDDDzzz*trGtdz + dtrGtzx*gamtxz[ijk] + dtrGtzy*gamtyz[ijk] +
-  dtrGtzz*gamtzz[ijk]
+Gt113*GtDDU131 + Gt123*GtDDU132 + Gt133*GtDDU133 + Gt213*GtDDU231 +
+  Gt223*GtDDU232 + Gt233*GtDDU233 + 2*Gt113*GtDDU311 + 2*Gt123*GtDDU312 +
+  2*Gt133*GtDDU313 + 2*Gt213*GtDDU321 + 2*Gt223*GtDDU322 +
+  2*Gt233*GtDDU323 + 3*Gt313*GtDDU331 + 3*Gt323*GtDDU332 +
+  3*Gt333*GtDDU333 - (ddgamt1133*invgamt11)/2. - ddgamt1233*invgamt12 -
+  ddgamt1333*invgamt13 - (ddgamt2233*invgamt22)/2. - ddgamt2333*invgamt23 -
+  (ddgamt3333*invgamt33)/2. + GtDDD313*trGtd1 + GtDDD323*trGtd2 +
+  GtDDD333*trGtd3 + dtrGt31*gamt13[ijk] + dtrGt32*gamt23[ijk] +
+  dtrGt33*gamt33[ijk]
 ;
 
 const auto
-Rxx
+R11
 =
-RtWxx + Rtxx
+Rt11 + RtW11
 ;
 
 const auto
-Rxy
+R12
 =
-RtWxy + Rtxy
+Rt12 + RtW12
 ;
 
 const auto
-Rxz
+R13
 =
-RtWxz + Rtxz
+Rt13 + RtW13
 ;
 
 const auto
-Ryy
+R22
 =
-RtWyy + Rtyy
+Rt22 + RtW22
 ;
 
 const auto
-Ryz
+R23
 =
-RtWyz + Rtyz
+Rt23 + RtW23
 ;
 
 const auto
-Rzz
+R33
 =
-RtWzz + Rtzz
+Rt33 + RtW33
 ;
 
 const auto
 trR
 =
-invgamxx*Rxx + 2*invgamxy*Rxy + 2*invgamxz*Rxz + invgamyy*Ryy +
-  2*invgamyz*Ryz + invgamzz*Rzz
+invgam11*R11 + 2*invgam12*R12 + 2*invgam13*R13 + invgam22*R22 +
+  2*invgam23*R23 + invgam33*R33
 ;
 
 const auto
 rho
 =
-(eTtt[ijk] - 2*betay[ijk]*eTty[ijk] - 2*betaz[ijk]*eTtz[ijk] +
-    Power(betax[ijk],2)*eTxx[ijk] +
-    2*betax[ijk]*(-eTtx[ijk] + betay[ijk]*eTxy[ijk] +
-       betaz[ijk]*eTxz[ijk]) + Power(betay[ijk],2)*eTyy[ijk] +
-    2*betay[ijk]*betaz[ijk]*eTyz[ijk] + Power(betaz[ijk],2)*eTzz[ijk])/
-  Power(alpha[ijk],2)
+(Power(beta1[ijk],2)*eT11[ijk] + Power(beta2[ijk],2)*eT22[ijk] +
+    Power(beta3[ijk],2)*eT33[ijk] +
+    2*beta1[ijk]*(beta2[ijk]*eT12[ijk] + beta3[ijk]*eT13[ijk] -
+       eTt1[ijk]) + 2*beta2[ijk]*(beta3[ijk]*eT23[ijk] - eTt2[ijk]) -
+    2*beta3[ijk]*eTt3[ijk] + eTtt[ijk])/Power(alpha[ijk],2)
 ;
 
 const auto
-Smx
+Sm1
 =
-(-eTtx[ijk] + betax[ijk]*eTxx[ijk] + betay[ijk]*eTxy[ijk] +
-    betaz[ijk]*eTxz[ijk])/alpha[ijk]
+(beta1[ijk]*eT11[ijk] + beta2[ijk]*eT12[ijk] + beta3[ijk]*eT13[ijk] -
+    eTt1[ijk])/alpha[ijk]
 ;
 
 const auto
-Smy
+Sm2
 =
-(-eTty[ijk] + betax[ijk]*eTxy[ijk] + betay[ijk]*eTyy[ijk] +
-    betaz[ijk]*eTyz[ijk])/alpha[ijk]
+(beta1[ijk]*eT12[ijk] + beta2[ijk]*eT22[ijk] + beta3[ijk]*eT23[ijk] -
+    eTt2[ijk])/alpha[ijk]
 ;
 
 const auto
-Smz
+Sm3
 =
-(-eTtz[ijk] + betax[ijk]*eTxz[ijk] + betay[ijk]*eTyz[ijk] +
-    betaz[ijk]*eTzz[ijk])/alpha[ijk]
+(beta1[ijk]*eT13[ijk] + beta2[ijk]*eT23[ijk] + beta3[ijk]*eT33[ijk] -
+    eTt3[ijk])/alpha[ijk]
 ;
 
 const auto
-Ssxx
+Ss11
 =
-eTxx[ijk]
+eT11[ijk]
 ;
 
 const auto
-Ssxy
+Ss12
 =
-eTxy[ijk]
+eT12[ijk]
 ;
 
 const auto
-Ssxz
+Ss13
 =
-eTxz[ijk]
+eT13[ijk]
 ;
 
 const auto
-Ssyy
+Ss22
 =
-eTyy[ijk]
+eT22[ijk]
 ;
 
 const auto
-Ssyz
+Ss23
 =
-eTyz[ijk]
+eT23[ijk]
 ;
 
 const auto
-Sszz
+Ss33
 =
-eTzz[ijk]
+eT33[ijk]
 ;
 
 const auto
 trSs
 =
-invgamxx*Ssxx + 2*invgamxy*Ssxy + 2*invgamxz*Ssxz + invgamyy*Ssyy +
-  2*invgamyz*Ssyz + invgamzz*Sszz
+invgam11*Ss11 + 2*invgam12*Ss12 + 2*invgam13*Ss13 + invgam22*Ss22 +
+  2*invgam23*Ss23 + invgam33*Ss33
 ;
 
 
 dtW[ijk]
 =
-dWx*betax[ijk] + dWy*betay[ijk] + dWz*betaz[ijk] -
-  ((dbetaxx + dbetayy + dbetazz)*W[ijk])/3. +
+dW1*beta1[ijk] + dW2*beta2[ijk] + dW3*beta3[ijk] -
+  ((dbeta11 + dbeta22 + dbeta33)*W[ijk])/3. +
   (alpha[ijk]*exKh[ijk]*W[ijk])/3. + (2*alpha[ijk]*Theta[ijk]*W[ijk])/3.
 ;
 
-dtgamtxx[ijk]
+dtgamt11[ijk]
 =
-dgamtxxx*betax[ijk] + dgamtyxx*betay[ijk] + dgamtzxx*betaz[ijk] -
-  2*alpha[ijk]*exAtxx[ijk] + 2*dbetaxx*gamtxx[ijk] -
-  (2*(dbetaxx + dbetayy + dbetazz)*gamtxx[ijk])/3. + 2*dbetaxy*gamtxy[ijk] +
-  2*dbetaxz*gamtxz[ijk]
+dgamt111*beta1[ijk] + dgamt211*beta2[ijk] + dgamt311*beta3[ijk] -
+  2*alpha[ijk]*exAt11[ijk] + 2*dbeta11*gamt11[ijk] -
+  (2*(dbeta11 + dbeta22 + dbeta33)*gamt11[ijk])/3. + 2*dbeta12*gamt12[ijk] +
+  2*dbeta13*gamt13[ijk]
 ;
 
-dtgamtxy[ijk]
+dtgamt12[ijk]
 =
-dgamtxxy*betax[ijk] + dgamtyxy*betay[ijk] + dgamtzxy*betaz[ijk] -
-  2*alpha[ijk]*exAtxy[ijk] + dbetayx*gamtxx[ijk] + dbetaxx*gamtxy[ijk] +
-  dbetayy*gamtxy[ijk] - (2*(dbetaxx + dbetayy + dbetazz)*gamtxy[ijk])/3. +
-  dbetayz*gamtxz[ijk] + dbetaxy*gamtyy[ijk] + dbetaxz*gamtyz[ijk]
+dgamt112*beta1[ijk] + dgamt212*beta2[ijk] + dgamt312*beta3[ijk] -
+  2*alpha[ijk]*exAt12[ijk] + dbeta21*gamt11[ijk] + dbeta11*gamt12[ijk] +
+  dbeta22*gamt12[ijk] - (2*(dbeta11 + dbeta22 + dbeta33)*gamt12[ijk])/3. +
+  dbeta23*gamt13[ijk] + dbeta12*gamt22[ijk] + dbeta13*gamt23[ijk]
 ;
 
-dtgamtxz[ijk]
+dtgamt13[ijk]
 =
-dgamtxxz*betax[ijk] + dgamtyxz*betay[ijk] + dgamtzxz*betaz[ijk] -
-  2*alpha[ijk]*exAtxz[ijk] + dbetazx*gamtxx[ijk] + dbetazy*gamtxy[ijk] +
-  dbetaxx*gamtxz[ijk] + dbetazz*gamtxz[ijk] -
-  (2*(dbetaxx + dbetayy + dbetazz)*gamtxz[ijk])/3. + dbetaxy*gamtyz[ijk] +
-  dbetaxz*gamtzz[ijk]
+dgamt113*beta1[ijk] + dgamt213*beta2[ijk] + dgamt313*beta3[ijk] -
+  2*alpha[ijk]*exAt13[ijk] + dbeta31*gamt11[ijk] + dbeta32*gamt12[ijk] +
+  dbeta11*gamt13[ijk] + dbeta33*gamt13[ijk] -
+  (2*(dbeta11 + dbeta22 + dbeta33)*gamt13[ijk])/3. + dbeta12*gamt23[ijk] +
+  dbeta13*gamt33[ijk]
 ;
 
-dtgamtyy[ijk]
+dtgamt22[ijk]
 =
-dgamtxyy*betax[ijk] + dgamtyyy*betay[ijk] + dgamtzyy*betaz[ijk] -
-  2*alpha[ijk]*exAtyy[ijk] + 2*dbetayx*gamtxy[ijk] + 2*dbetayy*gamtyy[ijk] -
-  (2*(dbetaxx + dbetayy + dbetazz)*gamtyy[ijk])/3. + 2*dbetayz*gamtyz[ijk]
+dgamt122*beta1[ijk] + dgamt222*beta2[ijk] + dgamt322*beta3[ijk] -
+  2*alpha[ijk]*exAt22[ijk] + 2*dbeta21*gamt12[ijk] + 2*dbeta22*gamt22[ijk] -
+  (2*(dbeta11 + dbeta22 + dbeta33)*gamt22[ijk])/3. + 2*dbeta23*gamt23[ijk]
 ;
 
-dtgamtyz[ijk]
+dtgamt23[ijk]
 =
-dgamtxyz*betax[ijk] + dgamtyyz*betay[ijk] + dgamtzyz*betaz[ijk] -
-  2*alpha[ijk]*exAtyz[ijk] + dbetazx*gamtxy[ijk] + dbetayx*gamtxz[ijk] +
-  dbetazy*gamtyy[ijk] + dbetayy*gamtyz[ijk] + dbetazz*gamtyz[ijk] -
-  (2*(dbetaxx + dbetayy + dbetazz)*gamtyz[ijk])/3. + dbetayz*gamtzz[ijk]
+dgamt123*beta1[ijk] + dgamt223*beta2[ijk] + dgamt323*beta3[ijk] -
+  2*alpha[ijk]*exAt23[ijk] + dbeta31*gamt12[ijk] + dbeta21*gamt13[ijk] +
+  dbeta32*gamt22[ijk] + dbeta22*gamt23[ijk] + dbeta33*gamt23[ijk] -
+  (2*(dbeta11 + dbeta22 + dbeta33)*gamt23[ijk])/3. + dbeta23*gamt33[ijk]
 ;
 
-dtgamtzz[ijk]
+dtgamt33[ijk]
 =
-dgamtxzz*betax[ijk] + dgamtyzz*betay[ijk] + dgamtzzz*betaz[ijk] -
-  2*alpha[ijk]*exAtzz[ijk] + 2*dbetazx*gamtxz[ijk] + 2*dbetazy*gamtyz[ijk] +
-  2*dbetazz*gamtzz[ijk] - (2*(dbetaxx + dbetayy + dbetazz)*gamtzz[ijk])/3.
+dgamt133*beta1[ijk] + dgamt233*beta2[ijk] + dgamt333*beta3[ijk] -
+  2*alpha[ijk]*exAt33[ijk] + 2*dbeta31*gamt13[ijk] + 2*dbeta32*gamt23[ijk] +
+  2*dbeta33*gamt33[ijk] - (2*(dbeta11 + dbeta22 + dbeta33)*gamt33[ijk])/3.
 ;
 
 dtexKh[ijk]
 =
--(DDalphaxx*invgamxx) - 2*DDalphaxy*invgamxy - 2*DDalphaxz*invgamxz -
-  DDalphayy*invgamyy - 2*DDalphayz*invgamyz - DDalphazz*invgamzz +
-  dexKhx*betax[ijk] + dexKhy*betay[ijk] + dexKhz*betaz[ijk] +
-  alpha[ijk]*(4*cpi*rho + 4*cpi*trSs + exAtUUxx*exAtxx[ijk] +
-     2*exAtUUxy*exAtxy[ijk] + 2*exAtUUxz*exAtxz[ijk] +
-     exAtUUyy*exAtyy[ijk] + 2*exAtUUyz*exAtyz[ijk] + exAtUUzz*exAtzz[ijk] +
+-(DDalpha11*invgam11) - 2*DDalpha12*invgam12 - 2*DDalpha13*invgam13 -
+  DDalpha22*invgam22 - 2*DDalpha23*invgam23 - DDalpha33*invgam33 +
+  dexKh1*beta1[ijk] + dexKh2*beta2[ijk] + dexKh3*beta3[ijk] +
+  alpha[ijk]*(4*cpi*rho + 4*cpi*trSs + exAtUU11*exAt11[ijk] +
+     2*exAtUU12*exAt12[ijk] + 2*exAtUU13*exAt13[ijk] +
+     exAtUU22*exAt22[ijk] + 2*exAtUU23*exAt23[ijk] + exAtUU33*exAt33[ijk] +
      Power(exKh[ijk],2)/3. + ckappa1*Theta[ijk] -
      ckappa1*ckappa2*Theta[ijk] + (4*exKh[ijk]*Theta[ijk])/3. +
      (4*Power(Theta[ijk],2))/3.)
 ;
 
-dtexAtxx[ijk]
+dtexAt11[ijk]
 =
-(3*dexAtxxx*betax[ijk] + 3*dexAtyxx*betay[ijk] + 3*dexAtzxx*betaz[ijk] +
-    4*dbetaxx*exAtxx[ijk] - 2*dbetayy*exAtxx[ijk] - 2*dbetazz*exAtxx[ijk] -
-    6*invgamtxx*alpha[ijk]*Power(exAtxx[ijk],2) + 6*dbetaxy*exAtxy[ijk] -
-    12*invgamtxy*alpha[ijk]*exAtxx[ijk]*exAtxy[ijk] -
-    6*invgamtyy*alpha[ijk]*Power(exAtxy[ijk],2) + 6*dbetaxz*exAtxz[ijk] -
-    12*invgamtxz*alpha[ijk]*exAtxx[ijk]*exAtxz[ijk] -
-    12*invgamtyz*alpha[ijk]*exAtxy[ijk]*exAtxz[ijk] -
-    6*invgamtzz*alpha[ijk]*Power(exAtxz[ijk],2) +
-    3*alpha[ijk]*exAtxx[ijk]*exKh[ijk] +
-    6*alpha[ijk]*exAtxx[ijk]*Theta[ijk] - 3*DDalphaxx*Power(W[ijk],2) +
-    DDalphaxx*gamxx*invgamxx*Power(W[ijk],2) +
-    2*DDalphaxy*gamxx*invgamxy*Power(W[ijk],2) +
-    2*DDalphaxz*gamxx*invgamxz*Power(W[ijk],2) +
-    DDalphayy*gamxx*invgamyy*Power(W[ijk],2) +
-    2*DDalphayz*gamxx*invgamyz*Power(W[ijk],2) +
-    DDalphazz*gamxx*invgamzz*Power(W[ijk],2) +
-    3*Rxx*alpha[ijk]*Power(W[ijk],2) -
-    gamxx*invgamxx*Rxx*alpha[ijk]*Power(W[ijk],2) -
-    2*gamxx*invgamxy*Rxy*alpha[ijk]*Power(W[ijk],2) -
-    2*gamxx*invgamxz*Rxz*alpha[ijk]*Power(W[ijk],2) -
-    gamxx*invgamyy*Ryy*alpha[ijk]*Power(W[ijk],2) -
-    2*gamxx*invgamyz*Ryz*alpha[ijk]*Power(W[ijk],2) -
-    gamxx*invgamzz*Rzz*alpha[ijk]*Power(W[ijk],2) -
-    24*cpi*Ssxx*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamxx*invgamxx*Ssxx*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamxx*invgamxy*Ssxy*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamxx*invgamxz*Ssxz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamxx*invgamyy*Ssyy*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamxx*invgamyz*Ssyz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamxx*invgamzz*Sszz*alpha[ijk]*Power(W[ijk],2))/3.
+(3*dexAt111*beta1[ijk] + 3*dexAt211*beta2[ijk] + 3*dexAt311*beta3[ijk] +
+    4*dbeta11*exAt11[ijk] - 2*dbeta22*exAt11[ijk] - 2*dbeta33*exAt11[ijk] -
+    6*invgamt11*alpha[ijk]*Power(exAt11[ijk],2) + 6*dbeta12*exAt12[ijk] -
+    12*invgamt12*alpha[ijk]*exAt11[ijk]*exAt12[ijk] -
+    6*invgamt22*alpha[ijk]*Power(exAt12[ijk],2) + 6*dbeta13*exAt13[ijk] -
+    12*invgamt13*alpha[ijk]*exAt11[ijk]*exAt13[ijk] -
+    12*invgamt23*alpha[ijk]*exAt12[ijk]*exAt13[ijk] -
+    6*invgamt33*alpha[ijk]*Power(exAt13[ijk],2) +
+    3*alpha[ijk]*exAt11[ijk]*exKh[ijk] +
+    6*alpha[ijk]*exAt11[ijk]*Theta[ijk] - 3*DDalpha11*Power(W[ijk],2) +
+    DDalpha11*gam11*invgam11*Power(W[ijk],2) +
+    2*DDalpha12*gam11*invgam12*Power(W[ijk],2) +
+    2*DDalpha13*gam11*invgam13*Power(W[ijk],2) +
+    DDalpha22*gam11*invgam22*Power(W[ijk],2) +
+    2*DDalpha23*gam11*invgam23*Power(W[ijk],2) +
+    DDalpha33*gam11*invgam33*Power(W[ijk],2) +
+    3*R11*alpha[ijk]*Power(W[ijk],2) -
+    gam11*invgam11*R11*alpha[ijk]*Power(W[ijk],2) -
+    2*gam11*invgam12*R12*alpha[ijk]*Power(W[ijk],2) -
+    2*gam11*invgam13*R13*alpha[ijk]*Power(W[ijk],2) -
+    gam11*invgam22*R22*alpha[ijk]*Power(W[ijk],2) -
+    2*gam11*invgam23*R23*alpha[ijk]*Power(W[ijk],2) -
+    gam11*invgam33*R33*alpha[ijk]*Power(W[ijk],2) -
+    24*cpi*Ss11*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam11*invgam11*Ss11*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam11*invgam12*Ss12*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam11*invgam13*Ss13*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam11*invgam22*Ss22*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam11*invgam23*Ss23*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam11*invgam33*Ss33*alpha[ijk]*Power(W[ijk],2))/3.
 ;
 
-dtexAtxy[ijk]
+dtexAt12[ijk]
 =
-(3*dexAtxxy*betax[ijk] + 3*dexAtyxy*betay[ijk] + 3*dexAtzxy*betaz[ijk] +
-    3*dbetayx*exAtxx[ijk] + dbetaxx*exAtxy[ijk] + dbetayy*exAtxy[ijk] -
-    2*dbetazz*exAtxy[ijk] - 6*invgamtxx*alpha[ijk]*exAtxx[ijk]*
-     exAtxy[ijk] - 6*invgamtxy*alpha[ijk]*Power(exAtxy[ijk],2) +
-    3*dbetayz*exAtxz[ijk] - 6*invgamtxz*alpha[ijk]*exAtxy[ijk]*
-     exAtxz[ijk] + 3*dbetaxy*exAtyy[ijk] -
-    6*invgamtxy*alpha[ijk]*exAtxx[ijk]*exAtyy[ijk] -
-    6*invgamtyy*alpha[ijk]*exAtxy[ijk]*exAtyy[ijk] -
-    6*invgamtyz*alpha[ijk]*exAtxz[ijk]*exAtyy[ijk] +
-    3*dbetaxz*exAtyz[ijk] - 6*invgamtxz*alpha[ijk]*exAtxx[ijk]*
-     exAtyz[ijk] - 6*invgamtyz*alpha[ijk]*exAtxy[ijk]*exAtyz[ijk] -
-    6*invgamtzz*alpha[ijk]*exAtxz[ijk]*exAtyz[ijk] +
-    3*alpha[ijk]*exAtxy[ijk]*exKh[ijk] +
-    6*alpha[ijk]*exAtxy[ijk]*Theta[ijk] - 3*DDalphaxy*Power(W[ijk],2) +
-    DDalphaxx*gamxy*invgamxx*Power(W[ijk],2) +
-    2*DDalphaxy*gamxy*invgamxy*Power(W[ijk],2) +
-    2*DDalphaxz*gamxy*invgamxz*Power(W[ijk],2) +
-    DDalphayy*gamxy*invgamyy*Power(W[ijk],2) +
-    2*DDalphayz*gamxy*invgamyz*Power(W[ijk],2) +
-    DDalphazz*gamxy*invgamzz*Power(W[ijk],2) -
-    gamxy*invgamxx*Rxx*alpha[ijk]*Power(W[ijk],2) +
-    3*Rxy*alpha[ijk]*Power(W[ijk],2) -
-    2*gamxy*invgamxy*Rxy*alpha[ijk]*Power(W[ijk],2) -
-    2*gamxy*invgamxz*Rxz*alpha[ijk]*Power(W[ijk],2) -
-    gamxy*invgamyy*Ryy*alpha[ijk]*Power(W[ijk],2) -
-    2*gamxy*invgamyz*Ryz*alpha[ijk]*Power(W[ijk],2) -
-    gamxy*invgamzz*Rzz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamxy*invgamxx*Ssxx*alpha[ijk]*Power(W[ijk],2) -
-    24*cpi*Ssxy*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamxy*invgamxy*Ssxy*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamxy*invgamxz*Ssxz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamxy*invgamyy*Ssyy*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamxy*invgamyz*Ssyz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamxy*invgamzz*Sszz*alpha[ijk]*Power(W[ijk],2))/3.
+(3*dexAt112*beta1[ijk] + 3*dexAt212*beta2[ijk] + 3*dexAt312*beta3[ijk] +
+    3*dbeta21*exAt11[ijk] + dbeta11*exAt12[ijk] + dbeta22*exAt12[ijk] -
+    2*dbeta33*exAt12[ijk] - 6*invgamt11*alpha[ijk]*exAt11[ijk]*
+     exAt12[ijk] - 6*invgamt12*alpha[ijk]*Power(exAt12[ijk],2) +
+    3*dbeta23*exAt13[ijk] - 6*invgamt13*alpha[ijk]*exAt12[ijk]*
+     exAt13[ijk] + 3*dbeta12*exAt22[ijk] -
+    6*invgamt12*alpha[ijk]*exAt11[ijk]*exAt22[ijk] -
+    6*invgamt22*alpha[ijk]*exAt12[ijk]*exAt22[ijk] -
+    6*invgamt23*alpha[ijk]*exAt13[ijk]*exAt22[ijk] +
+    3*dbeta13*exAt23[ijk] - 6*invgamt13*alpha[ijk]*exAt11[ijk]*
+     exAt23[ijk] - 6*invgamt23*alpha[ijk]*exAt12[ijk]*exAt23[ijk] -
+    6*invgamt33*alpha[ijk]*exAt13[ijk]*exAt23[ijk] +
+    3*alpha[ijk]*exAt12[ijk]*exKh[ijk] +
+    6*alpha[ijk]*exAt12[ijk]*Theta[ijk] - 3*DDalpha12*Power(W[ijk],2) +
+    DDalpha11*gam12*invgam11*Power(W[ijk],2) +
+    2*DDalpha12*gam12*invgam12*Power(W[ijk],2) +
+    2*DDalpha13*gam12*invgam13*Power(W[ijk],2) +
+    DDalpha22*gam12*invgam22*Power(W[ijk],2) +
+    2*DDalpha23*gam12*invgam23*Power(W[ijk],2) +
+    DDalpha33*gam12*invgam33*Power(W[ijk],2) -
+    gam12*invgam11*R11*alpha[ijk]*Power(W[ijk],2) +
+    3*R12*alpha[ijk]*Power(W[ijk],2) -
+    2*gam12*invgam12*R12*alpha[ijk]*Power(W[ijk],2) -
+    2*gam12*invgam13*R13*alpha[ijk]*Power(W[ijk],2) -
+    gam12*invgam22*R22*alpha[ijk]*Power(W[ijk],2) -
+    2*gam12*invgam23*R23*alpha[ijk]*Power(W[ijk],2) -
+    gam12*invgam33*R33*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam12*invgam11*Ss11*alpha[ijk]*Power(W[ijk],2) -
+    24*cpi*Ss12*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam12*invgam12*Ss12*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam12*invgam13*Ss13*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam12*invgam22*Ss22*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam12*invgam23*Ss23*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam12*invgam33*Ss33*alpha[ijk]*Power(W[ijk],2))/3.
 ;
 
-dtexAtxz[ijk]
+dtexAt13[ijk]
 =
-(3*dexAtxxz*betax[ijk] + 3*dexAtyxz*betay[ijk] + 3*dexAtzxz*betaz[ijk] +
-    3*dbetazx*exAtxx[ijk] + 3*dbetazy*exAtxy[ijk] + dbetaxx*exAtxz[ijk] -
-    2*dbetayy*exAtxz[ijk] + dbetazz*exAtxz[ijk] -
-    6*invgamtxx*alpha[ijk]*exAtxx[ijk]*exAtxz[ijk] -
-    6*invgamtxy*alpha[ijk]*exAtxy[ijk]*exAtxz[ijk] -
-    6*invgamtxz*alpha[ijk]*Power(exAtxz[ijk],2) + 3*dbetaxy*exAtyz[ijk] -
-    6*invgamtxy*alpha[ijk]*exAtxx[ijk]*exAtyz[ijk] -
-    6*invgamtyy*alpha[ijk]*exAtxy[ijk]*exAtyz[ijk] -
-    6*invgamtyz*alpha[ijk]*exAtxz[ijk]*exAtyz[ijk] +
-    3*dbetaxz*exAtzz[ijk] - 6*invgamtxz*alpha[ijk]*exAtxx[ijk]*
-     exAtzz[ijk] - 6*invgamtyz*alpha[ijk]*exAtxy[ijk]*exAtzz[ijk] -
-    6*invgamtzz*alpha[ijk]*exAtxz[ijk]*exAtzz[ijk] +
-    3*alpha[ijk]*exAtxz[ijk]*exKh[ijk] +
-    6*alpha[ijk]*exAtxz[ijk]*Theta[ijk] - 3*DDalphaxz*Power(W[ijk],2) +
-    DDalphaxx*gamxz*invgamxx*Power(W[ijk],2) +
-    2*DDalphaxy*gamxz*invgamxy*Power(W[ijk],2) +
-    2*DDalphaxz*gamxz*invgamxz*Power(W[ijk],2) +
-    DDalphayy*gamxz*invgamyy*Power(W[ijk],2) +
-    2*DDalphayz*gamxz*invgamyz*Power(W[ijk],2) +
-    DDalphazz*gamxz*invgamzz*Power(W[ijk],2) -
-    gamxz*invgamxx*Rxx*alpha[ijk]*Power(W[ijk],2) -
-    2*gamxz*invgamxy*Rxy*alpha[ijk]*Power(W[ijk],2) +
-    3*Rxz*alpha[ijk]*Power(W[ijk],2) -
-    2*gamxz*invgamxz*Rxz*alpha[ijk]*Power(W[ijk],2) -
-    gamxz*invgamyy*Ryy*alpha[ijk]*Power(W[ijk],2) -
-    2*gamxz*invgamyz*Ryz*alpha[ijk]*Power(W[ijk],2) -
-    gamxz*invgamzz*Rzz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamxz*invgamxx*Ssxx*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamxz*invgamxy*Ssxy*alpha[ijk]*Power(W[ijk],2) -
-    24*cpi*Ssxz*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamxz*invgamxz*Ssxz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamxz*invgamyy*Ssyy*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamxz*invgamyz*Ssyz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamxz*invgamzz*Sszz*alpha[ijk]*Power(W[ijk],2))/3.
+(3*dexAt113*beta1[ijk] + 3*dexAt213*beta2[ijk] + 3*dexAt313*beta3[ijk] +
+    3*dbeta31*exAt11[ijk] + 3*dbeta32*exAt12[ijk] + dbeta11*exAt13[ijk] -
+    2*dbeta22*exAt13[ijk] + dbeta33*exAt13[ijk] -
+    6*invgamt11*alpha[ijk]*exAt11[ijk]*exAt13[ijk] -
+    6*invgamt12*alpha[ijk]*exAt12[ijk]*exAt13[ijk] -
+    6*invgamt13*alpha[ijk]*Power(exAt13[ijk],2) + 3*dbeta12*exAt23[ijk] -
+    6*invgamt12*alpha[ijk]*exAt11[ijk]*exAt23[ijk] -
+    6*invgamt22*alpha[ijk]*exAt12[ijk]*exAt23[ijk] -
+    6*invgamt23*alpha[ijk]*exAt13[ijk]*exAt23[ijk] +
+    3*dbeta13*exAt33[ijk] - 6*invgamt13*alpha[ijk]*exAt11[ijk]*
+     exAt33[ijk] - 6*invgamt23*alpha[ijk]*exAt12[ijk]*exAt33[ijk] -
+    6*invgamt33*alpha[ijk]*exAt13[ijk]*exAt33[ijk] +
+    3*alpha[ijk]*exAt13[ijk]*exKh[ijk] +
+    6*alpha[ijk]*exAt13[ijk]*Theta[ijk] - 3*DDalpha13*Power(W[ijk],2) +
+    DDalpha11*gam13*invgam11*Power(W[ijk],2) +
+    2*DDalpha12*gam13*invgam12*Power(W[ijk],2) +
+    2*DDalpha13*gam13*invgam13*Power(W[ijk],2) +
+    DDalpha22*gam13*invgam22*Power(W[ijk],2) +
+    2*DDalpha23*gam13*invgam23*Power(W[ijk],2) +
+    DDalpha33*gam13*invgam33*Power(W[ijk],2) -
+    gam13*invgam11*R11*alpha[ijk]*Power(W[ijk],2) -
+    2*gam13*invgam12*R12*alpha[ijk]*Power(W[ijk],2) +
+    3*R13*alpha[ijk]*Power(W[ijk],2) -
+    2*gam13*invgam13*R13*alpha[ijk]*Power(W[ijk],2) -
+    gam13*invgam22*R22*alpha[ijk]*Power(W[ijk],2) -
+    2*gam13*invgam23*R23*alpha[ijk]*Power(W[ijk],2) -
+    gam13*invgam33*R33*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam13*invgam11*Ss11*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam13*invgam12*Ss12*alpha[ijk]*Power(W[ijk],2) -
+    24*cpi*Ss13*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam13*invgam13*Ss13*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam13*invgam22*Ss22*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam13*invgam23*Ss23*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam13*invgam33*Ss33*alpha[ijk]*Power(W[ijk],2))/3.
 ;
 
-dtexAtyy[ijk]
+dtexAt22[ijk]
 =
-(3*dexAtxyy*betax[ijk] + 3*dexAtyyy*betay[ijk] + 3*dexAtzyy*betaz[ijk] +
-    6*dbetayx*exAtxy[ijk] - 6*invgamtxx*alpha[ijk]*Power(exAtxy[ijk],2) -
-    2*dbetaxx*exAtyy[ijk] + 4*dbetayy*exAtyy[ijk] - 2*dbetazz*exAtyy[ijk] -
-    12*invgamtxy*alpha[ijk]*exAtxy[ijk]*exAtyy[ijk] -
-    6*invgamtyy*alpha[ijk]*Power(exAtyy[ijk],2) + 6*dbetayz*exAtyz[ijk] -
-    12*invgamtxz*alpha[ijk]*exAtxy[ijk]*exAtyz[ijk] -
-    12*invgamtyz*alpha[ijk]*exAtyy[ijk]*exAtyz[ijk] -
-    6*invgamtzz*alpha[ijk]*Power(exAtyz[ijk],2) +
-    3*alpha[ijk]*exAtyy[ijk]*exKh[ijk] +
-    6*alpha[ijk]*exAtyy[ijk]*Theta[ijk] - 3*DDalphayy*Power(W[ijk],2) +
-    DDalphaxx*gamyy*invgamxx*Power(W[ijk],2) +
-    2*DDalphaxy*gamyy*invgamxy*Power(W[ijk],2) +
-    2*DDalphaxz*gamyy*invgamxz*Power(W[ijk],2) +
-    DDalphayy*gamyy*invgamyy*Power(W[ijk],2) +
-    2*DDalphayz*gamyy*invgamyz*Power(W[ijk],2) +
-    DDalphazz*gamyy*invgamzz*Power(W[ijk],2) -
-    gamyy*invgamxx*Rxx*alpha[ijk]*Power(W[ijk],2) -
-    2*gamyy*invgamxy*Rxy*alpha[ijk]*Power(W[ijk],2) -
-    2*gamyy*invgamxz*Rxz*alpha[ijk]*Power(W[ijk],2) +
-    3*Ryy*alpha[ijk]*Power(W[ijk],2) -
-    gamyy*invgamyy*Ryy*alpha[ijk]*Power(W[ijk],2) -
-    2*gamyy*invgamyz*Ryz*alpha[ijk]*Power(W[ijk],2) -
-    gamyy*invgamzz*Rzz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamyy*invgamxx*Ssxx*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamyy*invgamxy*Ssxy*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamyy*invgamxz*Ssxz*alpha[ijk]*Power(W[ijk],2) -
-    24*cpi*Ssyy*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamyy*invgamyy*Ssyy*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamyy*invgamyz*Ssyz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamyy*invgamzz*Sszz*alpha[ijk]*Power(W[ijk],2))/3.
+(3*dexAt122*beta1[ijk] + 3*dexAt222*beta2[ijk] + 3*dexAt322*beta3[ijk] +
+    6*dbeta21*exAt12[ijk] - 6*invgamt11*alpha[ijk]*Power(exAt12[ijk],2) -
+    2*dbeta11*exAt22[ijk] + 4*dbeta22*exAt22[ijk] - 2*dbeta33*exAt22[ijk] -
+    12*invgamt12*alpha[ijk]*exAt12[ijk]*exAt22[ijk] -
+    6*invgamt22*alpha[ijk]*Power(exAt22[ijk],2) + 6*dbeta23*exAt23[ijk] -
+    12*invgamt13*alpha[ijk]*exAt12[ijk]*exAt23[ijk] -
+    12*invgamt23*alpha[ijk]*exAt22[ijk]*exAt23[ijk] -
+    6*invgamt33*alpha[ijk]*Power(exAt23[ijk],2) +
+    3*alpha[ijk]*exAt22[ijk]*exKh[ijk] +
+    6*alpha[ijk]*exAt22[ijk]*Theta[ijk] - 3*DDalpha22*Power(W[ijk],2) +
+    DDalpha11*gam22*invgam11*Power(W[ijk],2) +
+    2*DDalpha12*gam22*invgam12*Power(W[ijk],2) +
+    2*DDalpha13*gam22*invgam13*Power(W[ijk],2) +
+    DDalpha22*gam22*invgam22*Power(W[ijk],2) +
+    2*DDalpha23*gam22*invgam23*Power(W[ijk],2) +
+    DDalpha33*gam22*invgam33*Power(W[ijk],2) -
+    gam22*invgam11*R11*alpha[ijk]*Power(W[ijk],2) -
+    2*gam22*invgam12*R12*alpha[ijk]*Power(W[ijk],2) -
+    2*gam22*invgam13*R13*alpha[ijk]*Power(W[ijk],2) +
+    3*R22*alpha[ijk]*Power(W[ijk],2) -
+    gam22*invgam22*R22*alpha[ijk]*Power(W[ijk],2) -
+    2*gam22*invgam23*R23*alpha[ijk]*Power(W[ijk],2) -
+    gam22*invgam33*R33*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam22*invgam11*Ss11*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam22*invgam12*Ss12*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam22*invgam13*Ss13*alpha[ijk]*Power(W[ijk],2) -
+    24*cpi*Ss22*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam22*invgam22*Ss22*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam22*invgam23*Ss23*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam22*invgam33*Ss33*alpha[ijk]*Power(W[ijk],2))/3.
 ;
 
-dtexAtyz[ijk]
+dtexAt23[ijk]
 =
-(3*dexAtxyz*betax[ijk] + 3*dexAtyyz*betay[ijk] + 3*dexAtzyz*betaz[ijk] +
-    3*dbetazx*exAtxy[ijk] + 3*dbetayx*exAtxz[ijk] -
-    6*invgamtxx*alpha[ijk]*exAtxy[ijk]*exAtxz[ijk] +
-    3*dbetazy*exAtyy[ijk] - 6*invgamtxy*alpha[ijk]*exAtxz[ijk]*
-     exAtyy[ijk] - 2*dbetaxx*exAtyz[ijk] + dbetayy*exAtyz[ijk] +
-    dbetazz*exAtyz[ijk] - 6*invgamtxy*alpha[ijk]*exAtxy[ijk]*exAtyz[ijk] -
-    6*invgamtxz*alpha[ijk]*exAtxz[ijk]*exAtyz[ijk] -
-    6*invgamtyy*alpha[ijk]*exAtyy[ijk]*exAtyz[ijk] -
-    6*invgamtyz*alpha[ijk]*Power(exAtyz[ijk],2) + 3*dbetayz*exAtzz[ijk] -
-    6*invgamtxz*alpha[ijk]*exAtxy[ijk]*exAtzz[ijk] -
-    6*invgamtyz*alpha[ijk]*exAtyy[ijk]*exAtzz[ijk] -
-    6*invgamtzz*alpha[ijk]*exAtyz[ijk]*exAtzz[ijk] +
-    3*alpha[ijk]*exAtyz[ijk]*exKh[ijk] +
-    6*alpha[ijk]*exAtyz[ijk]*Theta[ijk] - 3*DDalphayz*Power(W[ijk],2) +
-    DDalphaxx*gamyz*invgamxx*Power(W[ijk],2) +
-    2*DDalphaxy*gamyz*invgamxy*Power(W[ijk],2) +
-    2*DDalphaxz*gamyz*invgamxz*Power(W[ijk],2) +
-    DDalphayy*gamyz*invgamyy*Power(W[ijk],2) +
-    2*DDalphayz*gamyz*invgamyz*Power(W[ijk],2) +
-    DDalphazz*gamyz*invgamzz*Power(W[ijk],2) -
-    gamyz*invgamxx*Rxx*alpha[ijk]*Power(W[ijk],2) -
-    2*gamyz*invgamxy*Rxy*alpha[ijk]*Power(W[ijk],2) -
-    2*gamyz*invgamxz*Rxz*alpha[ijk]*Power(W[ijk],2) -
-    gamyz*invgamyy*Ryy*alpha[ijk]*Power(W[ijk],2) +
-    3*Ryz*alpha[ijk]*Power(W[ijk],2) -
-    2*gamyz*invgamyz*Ryz*alpha[ijk]*Power(W[ijk],2) -
-    gamyz*invgamzz*Rzz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamyz*invgamxx*Ssxx*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamyz*invgamxy*Ssxy*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamyz*invgamxz*Ssxz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamyz*invgamyy*Ssyy*alpha[ijk]*Power(W[ijk],2) -
-    24*cpi*Ssyz*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamyz*invgamyz*Ssyz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamyz*invgamzz*Sszz*alpha[ijk]*Power(W[ijk],2))/3.
+(3*dexAt123*beta1[ijk] + 3*dexAt223*beta2[ijk] + 3*dexAt323*beta3[ijk] +
+    3*dbeta31*exAt12[ijk] + 3*dbeta21*exAt13[ijk] -
+    6*invgamt11*alpha[ijk]*exAt12[ijk]*exAt13[ijk] +
+    3*dbeta32*exAt22[ijk] - 6*invgamt12*alpha[ijk]*exAt13[ijk]*
+     exAt22[ijk] - 2*dbeta11*exAt23[ijk] + dbeta22*exAt23[ijk] +
+    dbeta33*exAt23[ijk] - 6*invgamt12*alpha[ijk]*exAt12[ijk]*exAt23[ijk] -
+    6*invgamt13*alpha[ijk]*exAt13[ijk]*exAt23[ijk] -
+    6*invgamt22*alpha[ijk]*exAt22[ijk]*exAt23[ijk] -
+    6*invgamt23*alpha[ijk]*Power(exAt23[ijk],2) + 3*dbeta23*exAt33[ijk] -
+    6*invgamt13*alpha[ijk]*exAt12[ijk]*exAt33[ijk] -
+    6*invgamt23*alpha[ijk]*exAt22[ijk]*exAt33[ijk] -
+    6*invgamt33*alpha[ijk]*exAt23[ijk]*exAt33[ijk] +
+    3*alpha[ijk]*exAt23[ijk]*exKh[ijk] +
+    6*alpha[ijk]*exAt23[ijk]*Theta[ijk] - 3*DDalpha23*Power(W[ijk],2) +
+    DDalpha11*gam23*invgam11*Power(W[ijk],2) +
+    2*DDalpha12*gam23*invgam12*Power(W[ijk],2) +
+    2*DDalpha13*gam23*invgam13*Power(W[ijk],2) +
+    DDalpha22*gam23*invgam22*Power(W[ijk],2) +
+    2*DDalpha23*gam23*invgam23*Power(W[ijk],2) +
+    DDalpha33*gam23*invgam33*Power(W[ijk],2) -
+    gam23*invgam11*R11*alpha[ijk]*Power(W[ijk],2) -
+    2*gam23*invgam12*R12*alpha[ijk]*Power(W[ijk],2) -
+    2*gam23*invgam13*R13*alpha[ijk]*Power(W[ijk],2) -
+    gam23*invgam22*R22*alpha[ijk]*Power(W[ijk],2) +
+    3*R23*alpha[ijk]*Power(W[ijk],2) -
+    2*gam23*invgam23*R23*alpha[ijk]*Power(W[ijk],2) -
+    gam23*invgam33*R33*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam23*invgam11*Ss11*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam23*invgam12*Ss12*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam23*invgam13*Ss13*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam23*invgam22*Ss22*alpha[ijk]*Power(W[ijk],2) -
+    24*cpi*Ss23*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam23*invgam23*Ss23*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam23*invgam33*Ss33*alpha[ijk]*Power(W[ijk],2))/3.
 ;
 
-dtexAtzz[ijk]
+dtexAt33[ijk]
 =
-(3*dexAtxzz*betax[ijk] + 3*dexAtyzz*betay[ijk] + 3*dexAtzzz*betaz[ijk] +
-    6*dbetazx*exAtxz[ijk] - 6*invgamtxx*alpha[ijk]*Power(exAtxz[ijk],2) +
-    6*dbetazy*exAtyz[ijk] - 12*invgamtxy*alpha[ijk]*exAtxz[ijk]*
-     exAtyz[ijk] - 6*invgamtyy*alpha[ijk]*Power(exAtyz[ijk],2) -
-    2*dbetaxx*exAtzz[ijk] - 2*dbetayy*exAtzz[ijk] + 4*dbetazz*exAtzz[ijk] -
-    12*invgamtxz*alpha[ijk]*exAtxz[ijk]*exAtzz[ijk] -
-    12*invgamtyz*alpha[ijk]*exAtyz[ijk]*exAtzz[ijk] -
-    6*invgamtzz*alpha[ijk]*Power(exAtzz[ijk],2) +
-    3*alpha[ijk]*exAtzz[ijk]*exKh[ijk] +
-    6*alpha[ijk]*exAtzz[ijk]*Theta[ijk] - 3*DDalphazz*Power(W[ijk],2) +
-    DDalphaxx*gamzz*invgamxx*Power(W[ijk],2) +
-    2*DDalphaxy*gamzz*invgamxy*Power(W[ijk],2) +
-    2*DDalphaxz*gamzz*invgamxz*Power(W[ijk],2) +
-    DDalphayy*gamzz*invgamyy*Power(W[ijk],2) +
-    2*DDalphayz*gamzz*invgamyz*Power(W[ijk],2) +
-    DDalphazz*gamzz*invgamzz*Power(W[ijk],2) -
-    gamzz*invgamxx*Rxx*alpha[ijk]*Power(W[ijk],2) -
-    2*gamzz*invgamxy*Rxy*alpha[ijk]*Power(W[ijk],2) -
-    2*gamzz*invgamxz*Rxz*alpha[ijk]*Power(W[ijk],2) -
-    gamzz*invgamyy*Ryy*alpha[ijk]*Power(W[ijk],2) -
-    2*gamzz*invgamyz*Ryz*alpha[ijk]*Power(W[ijk],2) +
-    3*Rzz*alpha[ijk]*Power(W[ijk],2) -
-    gamzz*invgamzz*Rzz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamzz*invgamxx*Ssxx*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamzz*invgamxy*Ssxy*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamzz*invgamxz*Ssxz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamzz*invgamyy*Ssyy*alpha[ijk]*Power(W[ijk],2) +
-    16*cpi*gamzz*invgamyz*Ssyz*alpha[ijk]*Power(W[ijk],2) -
-    24*cpi*Sszz*alpha[ijk]*Power(W[ijk],2) +
-    8*cpi*gamzz*invgamzz*Sszz*alpha[ijk]*Power(W[ijk],2))/3.
+(3*dexAt133*beta1[ijk] + 3*dexAt233*beta2[ijk] + 3*dexAt333*beta3[ijk] +
+    6*dbeta31*exAt13[ijk] - 6*invgamt11*alpha[ijk]*Power(exAt13[ijk],2) +
+    6*dbeta32*exAt23[ijk] - 12*invgamt12*alpha[ijk]*exAt13[ijk]*
+     exAt23[ijk] - 6*invgamt22*alpha[ijk]*Power(exAt23[ijk],2) -
+    2*dbeta11*exAt33[ijk] - 2*dbeta22*exAt33[ijk] + 4*dbeta33*exAt33[ijk] -
+    12*invgamt13*alpha[ijk]*exAt13[ijk]*exAt33[ijk] -
+    12*invgamt23*alpha[ijk]*exAt23[ijk]*exAt33[ijk] -
+    6*invgamt33*alpha[ijk]*Power(exAt33[ijk],2) +
+    3*alpha[ijk]*exAt33[ijk]*exKh[ijk] +
+    6*alpha[ijk]*exAt33[ijk]*Theta[ijk] - 3*DDalpha33*Power(W[ijk],2) +
+    DDalpha11*gam33*invgam11*Power(W[ijk],2) +
+    2*DDalpha12*gam33*invgam12*Power(W[ijk],2) +
+    2*DDalpha13*gam33*invgam13*Power(W[ijk],2) +
+    DDalpha22*gam33*invgam22*Power(W[ijk],2) +
+    2*DDalpha23*gam33*invgam23*Power(W[ijk],2) +
+    DDalpha33*gam33*invgam33*Power(W[ijk],2) -
+    gam33*invgam11*R11*alpha[ijk]*Power(W[ijk],2) -
+    2*gam33*invgam12*R12*alpha[ijk]*Power(W[ijk],2) -
+    2*gam33*invgam13*R13*alpha[ijk]*Power(W[ijk],2) -
+    gam33*invgam22*R22*alpha[ijk]*Power(W[ijk],2) -
+    2*gam33*invgam23*R23*alpha[ijk]*Power(W[ijk],2) +
+    3*R33*alpha[ijk]*Power(W[ijk],2) -
+    gam33*invgam33*R33*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam33*invgam11*Ss11*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam33*invgam12*Ss12*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam33*invgam13*Ss13*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam33*invgam22*Ss22*alpha[ijk]*Power(W[ijk],2) +
+    16*cpi*gam33*invgam23*Ss23*alpha[ijk]*Power(W[ijk],2) -
+    24*cpi*Ss33*alpha[ijk]*Power(W[ijk],2) +
+    8*cpi*gam33*invgam33*Ss33*alpha[ijk]*Power(W[ijk],2))/3.
 ;
 
-dttrGtx[ijk]
+dttrGt1[ijk]
 =
-(-6*dalphax*exAtUUxx - 6*dalphay*exAtUUxy - 6*dalphaz*exAtUUxz +
-    4*ddbetaxxx*invgamtxx + ddbetaxyy*invgamtxx + ddbetaxzz*invgamtxx +
-    7*ddbetaxyx*invgamtxy + ddbetayyy*invgamtxy + ddbetayzz*invgamtxy +
-    7*ddbetaxzx*invgamtxz + ddbetayzy*invgamtxz + ddbetazzz*invgamtxz +
-    3*ddbetayyx*invgamtyy + 6*ddbetayzx*invgamtyz + 3*ddbetazzx*invgamtzz -
-    dbetaxx*trGtdx + 2*dbetayy*trGtdx + 2*dbetazz*trGtdx -
-    3*dbetayx*trGtdy - 3*dbetazx*trGtdz + 3*dtrGtxx*betax[ijk] +
-    3*dtrGtyx*betay[ijk] + 3*dtrGtzx*betaz[ijk] -
-    2*alpha[ijk]*(9*dlnWx*exAtUUxx + 9*dlnWy*exAtUUxy + 9*dlnWz*exAtUUxz -
-       3*exAtUUxx*Gtxxx - 6*exAtUUxy*Gtxxy - 6*exAtUUxz*Gtxxz -
-       3*exAtUUyy*Gtxyy - 6*exAtUUyz*Gtxyz - 3*exAtUUzz*Gtxzz +
-       2*dexKhx*invgamtxx + dThetax*invgamtxx + 2*dexKhy*invgamtxy +
-       dThetay*invgamtxy + 2*dexKhz*invgamtxz + dThetaz*invgamtxz +
-       24*cpi*invgamtxx*Smx + 24*cpi*invgamtxy*Smy + 24*cpi*invgamtxz*Smz -
-       3*ckappa1*trGtdx + 3*ckappa1*trGtx[ijk]))/3.
+(-6*dalpha1*exAtUU11 - 6*dalpha2*exAtUU12 - 6*dalpha3*exAtUU13 +
+    4*ddbeta111*invgamt11 + ddbeta122*invgamt11 + ddbeta133*invgamt11 +
+    7*ddbeta121*invgamt12 + ddbeta222*invgamt12 + ddbeta233*invgamt12 +
+    7*ddbeta131*invgamt13 + ddbeta232*invgamt13 + ddbeta333*invgamt13 +
+    3*ddbeta221*invgamt22 + 6*ddbeta231*invgamt23 + 3*ddbeta331*invgamt33 -
+    dbeta11*trGtd1 + 2*dbeta22*trGtd1 + 2*dbeta33*trGtd1 -
+    3*dbeta21*trGtd2 - 3*dbeta31*trGtd3 + 3*dtrGt11*beta1[ijk] +
+    3*dtrGt21*beta2[ijk] + 3*dtrGt31*beta3[ijk] -
+    2*alpha[ijk]*(9*dlnW1*exAtUU11 + 9*dlnW2*exAtUU12 + 9*dlnW3*exAtUU13 -
+       3*exAtUU11*Gt111 - 6*exAtUU12*Gt112 - 6*exAtUU13*Gt113 -
+       3*exAtUU22*Gt122 - 6*exAtUU23*Gt123 - 3*exAtUU33*Gt133 +
+       2*dexKh1*invgamt11 + dTheta1*invgamt11 + 2*dexKh2*invgamt12 +
+       dTheta2*invgamt12 + 2*dexKh3*invgamt13 + dTheta3*invgamt13 +
+       24*cpi*invgamt11*Sm1 + 24*cpi*invgamt12*Sm2 + 24*cpi*invgamt13*Sm3 -
+       3*ckappa1*trGtd1 + 3*ckappa1*trGt1[ijk]))/3.
 ;
 
-dttrGty[ijk]
+dttrGt2[ijk]
 =
-(-6*dalphax*exAtUUxy - 6*dalphay*exAtUUyy - 6*dalphaz*exAtUUyz +
-    3*ddbetaxxy*invgamtxx + ddbetaxxx*invgamtxy + 7*ddbetaxyy*invgamtxy +
-    ddbetaxzz*invgamtxy + 6*ddbetaxzy*invgamtxz + ddbetaxyx*invgamtyy +
-    4*ddbetayyy*invgamtyy + ddbetayzz*invgamtyy + ddbetaxzx*invgamtyz +
-    7*ddbetayzy*invgamtyz + ddbetazzz*invgamtyz + 3*ddbetazzy*invgamtzz -
-    3*dbetaxy*trGtdx + 2*dbetaxx*trGtdy - dbetayy*trGtdy +
-    2*dbetazz*trGtdy - 3*dbetazy*trGtdz + 3*dtrGtxy*betax[ijk] +
-    3*dtrGtyy*betay[ijk] + 3*dtrGtzy*betaz[ijk] -
-    2*alpha[ijk]*(9*dlnWx*exAtUUxy + 9*dlnWy*exAtUUyy + 9*dlnWz*exAtUUyz -
-       3*exAtUUxx*Gtyxx - 6*exAtUUxy*Gtyxy - 6*exAtUUxz*Gtyxz -
-       3*exAtUUyy*Gtyyy - 6*exAtUUyz*Gtyyz - 3*exAtUUzz*Gtyzz +
-       2*dexKhx*invgamtxy + dThetax*invgamtxy + 2*dexKhy*invgamtyy +
-       dThetay*invgamtyy + 2*dexKhz*invgamtyz + dThetaz*invgamtyz +
-       24*cpi*invgamtxy*Smx + 24*cpi*invgamtyy*Smy + 24*cpi*invgamtyz*Smz -
-       3*ckappa1*trGtdy + 3*ckappa1*trGty[ijk]))/3.
+(-6*dalpha1*exAtUU12 - 6*dalpha2*exAtUU22 - 6*dalpha3*exAtUU23 +
+    3*ddbeta112*invgamt11 + ddbeta111*invgamt12 + 7*ddbeta122*invgamt12 +
+    ddbeta133*invgamt12 + 6*ddbeta132*invgamt13 + ddbeta121*invgamt22 +
+    4*ddbeta222*invgamt22 + ddbeta233*invgamt22 + ddbeta131*invgamt23 +
+    7*ddbeta232*invgamt23 + ddbeta333*invgamt23 + 3*ddbeta332*invgamt33 -
+    3*dbeta12*trGtd1 + 2*dbeta11*trGtd2 - dbeta22*trGtd2 +
+    2*dbeta33*trGtd2 - 3*dbeta32*trGtd3 + 3*dtrGt12*beta1[ijk] +
+    3*dtrGt22*beta2[ijk] + 3*dtrGt32*beta3[ijk] -
+    2*alpha[ijk]*(9*dlnW1*exAtUU12 + 9*dlnW2*exAtUU22 + 9*dlnW3*exAtUU23 -
+       3*exAtUU11*Gt211 - 6*exAtUU12*Gt212 - 6*exAtUU13*Gt213 -
+       3*exAtUU22*Gt222 - 6*exAtUU23*Gt223 - 3*exAtUU33*Gt233 +
+       2*dexKh1*invgamt12 + dTheta1*invgamt12 + 2*dexKh2*invgamt22 +
+       dTheta2*invgamt22 + 2*dexKh3*invgamt23 + dTheta3*invgamt23 +
+       24*cpi*invgamt12*Sm1 + 24*cpi*invgamt22*Sm2 + 24*cpi*invgamt23*Sm3 -
+       3*ckappa1*trGtd2 + 3*ckappa1*trGt2[ijk]))/3.
 ;
 
-dttrGtz[ijk]
+dttrGt3[ijk]
 =
-(-6*dalphax*exAtUUxz - 6*dalphay*exAtUUyz - 6*dalphaz*exAtUUzz +
-    3*ddbetaxxz*invgamtxx + 6*ddbetaxyz*invgamtxy + ddbetaxxx*invgamtxz +
-    ddbetaxyy*invgamtxz + 7*ddbetaxzz*invgamtxz + 3*ddbetayyz*invgamtyy +
-    ddbetaxyx*invgamtyz + ddbetayyy*invgamtyz + 7*ddbetayzz*invgamtyz +
-    ddbetaxzx*invgamtzz + ddbetayzy*invgamtzz + 4*ddbetazzz*invgamtzz -
-    3*dbetaxz*trGtdx - 3*dbetayz*trGtdy + 2*dbetaxx*trGtdz +
-    2*dbetayy*trGtdz - dbetazz*trGtdz + 3*dtrGtxz*betax[ijk] +
-    3*dtrGtyz*betay[ijk] + 3*dtrGtzz*betaz[ijk] -
-    2*alpha[ijk]*(9*dlnWx*exAtUUxz + 9*dlnWy*exAtUUyz + 9*dlnWz*exAtUUzz -
-       3*exAtUUxx*Gtzxx - 6*exAtUUxy*Gtzxy - 6*exAtUUxz*Gtzxz -
-       3*exAtUUyy*Gtzyy - 6*exAtUUyz*Gtzyz - 3*exAtUUzz*Gtzzz +
-       2*dexKhx*invgamtxz + dThetax*invgamtxz + 2*dexKhy*invgamtyz +
-       dThetay*invgamtyz + 2*dexKhz*invgamtzz + dThetaz*invgamtzz +
-       24*cpi*invgamtxz*Smx + 24*cpi*invgamtyz*Smy + 24*cpi*invgamtzz*Smz -
-       3*ckappa1*trGtdz + 3*ckappa1*trGtz[ijk]))/3.
+(-6*dalpha1*exAtUU13 - 6*dalpha2*exAtUU23 - 6*dalpha3*exAtUU33 +
+    3*ddbeta113*invgamt11 + 6*ddbeta123*invgamt12 + ddbeta111*invgamt13 +
+    ddbeta122*invgamt13 + 7*ddbeta133*invgamt13 + 3*ddbeta223*invgamt22 +
+    ddbeta121*invgamt23 + ddbeta222*invgamt23 + 7*ddbeta233*invgamt23 +
+    ddbeta131*invgamt33 + ddbeta232*invgamt33 + 4*ddbeta333*invgamt33 -
+    3*dbeta13*trGtd1 - 3*dbeta23*trGtd2 + 2*dbeta11*trGtd3 +
+    2*dbeta22*trGtd3 - dbeta33*trGtd3 + 3*dtrGt13*beta1[ijk] +
+    3*dtrGt23*beta2[ijk] + 3*dtrGt33*beta3[ijk] -
+    2*alpha[ijk]*(9*dlnW1*exAtUU13 + 9*dlnW2*exAtUU23 + 9*dlnW3*exAtUU33 -
+       3*exAtUU11*Gt311 - 6*exAtUU12*Gt312 - 6*exAtUU13*Gt313 -
+       3*exAtUU22*Gt322 - 6*exAtUU23*Gt323 - 3*exAtUU33*Gt333 +
+       2*dexKh1*invgamt13 + dTheta1*invgamt13 + 2*dexKh2*invgamt23 +
+       dTheta2*invgamt23 + 2*dexKh3*invgamt33 + dTheta3*invgamt33 +
+       24*cpi*invgamt13*Sm1 + 24*cpi*invgamt23*Sm2 + 24*cpi*invgamt33*Sm3 -
+       3*ckappa1*trGtd3 + 3*ckappa1*trGt3[ijk]))/3.
 ;
 
 dtTheta[ijk]
 =
-dThetax*betax[ijk] + dThetay*betay[ijk] + dThetaz*betaz[ijk] -
-  (alpha[ijk]*(48*cpi*rho - 3*trR + 3*exAtUUxx*exAtxx[ijk] +
-       6*exAtUUxy*exAtxy[ijk] + 6*exAtUUxz*exAtxz[ijk] +
-       3*exAtUUyy*exAtyy[ijk] + 6*exAtUUyz*exAtyz[ijk] +
-       3*exAtUUzz*exAtzz[ijk] - 2*Power(exKh[ijk],2) +
+dTheta1*beta1[ijk] + dTheta2*beta2[ijk] + dTheta3*beta3[ijk] -
+  (alpha[ijk]*(48*cpi*rho - 3*trR + 3*exAtUU11*exAt11[ijk] +
+       6*exAtUU12*exAt12[ijk] + 6*exAtUU13*exAt13[ijk] +
+       3*exAtUU22*exAt22[ijk] + 6*exAtUU23*exAt23[ijk] +
+       3*exAtUU33*exAt33[ijk] - 2*Power(exKh[ijk],2) +
        12*ckappa1*Theta[ijk] + 6*ckappa1*ckappa2*Theta[ijk] -
        8*exKh[ijk]*Theta[ijk] - 8*Power(Theta[ijk],2)))/6.
 ;
 
 dtalpha[ijk]
 =
-dalphax*betax[ijk] + dalphay*betay[ijk] + dalphaz*betaz[ijk] -
+dalpha1*beta1[ijk] + dalpha2*beta2[ijk] + dalpha3*beta3[ijk] -
   cmuL*alpha[ijk]*exKh[ijk]
 ;
 
-dtbetax[ijk]
+dtbeta1[ijk]
 =
-(-ceta + dbetaxx)*betax[ijk] + dbetayx*betay[ijk] + dbetazx*betaz[ijk] +
-  cmuS*trGtx[ijk]
+(-ceta + dbeta11)*beta1[ijk] + dbeta21*beta2[ijk] + dbeta31*beta3[ijk] +
+  cmuS*trGt1[ijk]
 ;
 
-dtbetay[ijk]
+dtbeta2[ijk]
 =
-dbetaxy*betax[ijk] + (-ceta + dbetayy)*betay[ijk] + dbetazy*betaz[ijk] +
-  cmuS*trGty[ijk]
+dbeta12*beta1[ijk] + (-ceta + dbeta22)*beta2[ijk] + dbeta32*beta3[ijk] +
+  cmuS*trGt2[ijk]
 ;
 
-dtbetaz[ijk]
+dtbeta3[ijk]
 =
-dbetaxz*betax[ijk] + dbetayz*betay[ijk] - ceta*betaz[ijk] +
-  dbetazz*betaz[ijk] + cmuS*trGtz[ijk]
+dbeta13*beta1[ijk] + dbeta23*beta2[ijk] - ceta*beta3[ijk] +
+  dbeta33*beta3[ijk] + cmuS*trGt3[ijk]
 ;
 
 
