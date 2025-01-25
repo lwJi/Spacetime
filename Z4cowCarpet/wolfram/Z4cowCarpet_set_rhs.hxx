@@ -27,6 +27,15 @@ const auto &dtbeta1 = gf_dtbeta[0];
 const auto &dtbeta2 = gf_dtbeta[1];
 const auto &dtbeta3 = gf_dtbeta[2];
 
+const auto &eTt1 = gf_eTt[0];
+const auto &eTt2 = gf_eTt[1];
+const auto &eTt3 = gf_eTt[2];
+const auto &eT11 = gf_eT[0];
+const auto &eT12 = gf_eT[1];
+const auto &eT13 = gf_eT[2];
+const auto &eT22 = gf_eT[3];
+const auto &eT23 = gf_eT[4];
+const auto &eT33 = gf_eT[5];
 const auto &gamt11 = gf_gamt[0];
 const auto &gamt12 = gf_gamt[1];
 const auto &gamt13 = gf_gamt[2];
