@@ -39,25 +39,24 @@ SetMainPrint[
   pr["}"];
   pr[];
 
-  pr["template <int D, typename T>"];
+  pr["template <int DI, typename T>"];
   pr["inline T fd_1st(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> idx) {"];
-  PrintIndexes3D[4, 1];
+  PrintIndexes3D[4, 1, "DI"];
   pr["  return"];
-  PrintFDExpression[4, 1];
+  PrintFDExpression[4, 1, "idx"];
   pr["};"];
   pr[];
 
-  pr["template <int D1, int D2, typename T>"];
+  pr["template <int DI, int DJ, typename T>"];
   pr["inline T fd_2nd(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> idx) {"];
-  pr["  if constexpr (D1 == D2) {"];
-  pr["  constexpr int D = D1;"];
-  PrintIndexes3D[4, 2];
+  pr["  if constexpr (DI == DJ) {"];
+  PrintIndexes3D[4, 2, "DI"];
   pr["    return"];
-  PrintFDExpression[4, 2];
+  PrintFDExpression[4, 2, "idx"];
   pr["  } else {"];
-  PrintIndexes3DMix2nd[4];
+  PrintIndexes3DMix2nd[4, "DI", "DJ"];
   pr["    return"];
-  PrintFDExpressionMix2nd[4];
+  PrintFDExpressionMix2nd[4, "idx"];
   pr["  }"];
   pr["};"];
 
