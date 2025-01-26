@@ -19,13 +19,13 @@ extern "C" void Z4cowCarpet_Initial2(CCTK_ARGUMENTS) {
                                 1. / CCTK_DELTA_SPACE(1),
                                 1. / CCTK_DELTA_SPACE(2)};
 
-  const int istart = 1;
-  const int jstart = 1;
-  const int kstart = 1;
+  const int istart = cctk_nghostzones[0];
+  const int jstart = cctk_nghostzones[1];
+  const int kstart = cctk_nghostzones[2];
 
-  const int iend = cctk_lsh[0] - 1;
-  const int jend = cctk_lsh[1] - 1;
-  const int kend = cctk_lsh[2] - 1;
+  const int iend = cctk_lsh[0] - cctk_nghostzones[0];
+  const int jend = cctk_lsh[1] - cctk_nghostzones[1];
+  const int kend = cctk_lsh[2] - cctk_nghostzones[2];
 
   // Input grid functions
   const array<const CCTK_REAL *, 6> gf_gamt{gammatxx, gammatxy, gammatxz,
