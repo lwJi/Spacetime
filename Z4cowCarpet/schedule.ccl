@@ -36,18 +36,17 @@ SCHEDULE GROUP Z4cowCarpet_InitialGroup AT initial AFTER ADMBase_PostInitial
 SCHEDULE Z4cowCarpet_Initial1 IN Z4cowCarpet_InitialGroup
 {
   LANG: C
-  READS: ADMBase::metric(interior)
-  READS: ADMBase::curv(interior)
-  READS: ADMBase::lapse(interior)
-  READS: ADMBase::shift(interior)
-  WRITES: W(interior)
-  WRITES: gamma_tilde(interior)
-  WRITES: K_hat(interior)
-  WRITES: A_tilde(interior)
-  WRITES: Theta(interior)
-  WRITES: alphaG(interior)
-  WRITES: betaG(interior)
-  SYNC: gamma_tilde
+  READS: ADMBase::metric(everywhere)
+  READS: ADMBase::curv(everywhere)
+  READS: ADMBase::lapse(everywhere)
+  READS: ADMBase::shift(everywhere)
+  WRITES: W(everywhere)
+  WRITES: gamma_tilde(everywhere)
+  WRITES: K_hat(everywhere)
+  WRITES: A_tilde(everywhere)
+  WRITES: Theta(everywhere)
+  WRITES: alphaG(everywhere)
+  WRITES: betaG(everywhere)
 } "Convert ADM to Z4c variables, part 1"
 
 SCHEDULE Z4cowCarpet_Initial2 IN Z4cowCarpet_InitialGroup AFTER Z4cowCarpet_Initial1
