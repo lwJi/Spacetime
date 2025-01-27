@@ -44,6 +44,7 @@ SCHEDULE Z4cowCarpet_Initial1 IN Z4cowCarpet_InitialGroup
   WRITES: gamma_tilde(everywhere)
   WRITES: K_hat(everywhere)
   WRITES: A_tilde(everywhere)
+  WRITES: Gam_tilde(everywhere)
   WRITES: Theta(everywhere)
   WRITES: alphaG(everywhere)
   WRITES: betaG(everywhere)

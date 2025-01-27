@@ -38,13 +38,14 @@ Module[{Mat, invMat},
   SetEQNDelayed[invgamma[i_, j_], invMat[[i[[1]], j[[1]]]] // Simplify]
 ];
 
-(*SetEQN[{SuffixName -> "Initial1"}, trGt[i_], 0];*)
+(* initialize Gamt to 0 *)
+SetEQN[{SuffixName -> "Initial1"}, trGt[i_], 0];
 
 SetOutputFile[FileNameJoin[{Directory[], "Z4cowCarpet_initial1.hxx"}]];
 
 SetMainPrint[
   (* initail grid function names *)
-  PrintInitializations[{Mode -> "MainOut"}, Delete[EvolVarlist, {{1}, {5}, {-3}}]];
+  PrintInitializations[{Mode -> "MainOut"}, Delete[EvolVarlist, {{1}, {-3}}]];
   pr[];
 
   PrintInitializations[{Mode -> "MainIn"}, ADMVarlist];
@@ -65,6 +66,9 @@ SetMainPrint[
   pr[];
 
   PrintEquations[{Mode -> "Main"}, Drop[EvolVarlist, {5}]];
+  pr[];
+
+  PrintEquations[{Mode -> "Main", SuffixName -> "Initial1"}, Take[EvolVarlist, {5}]];
   pr[];
 
   pr["    }"];
