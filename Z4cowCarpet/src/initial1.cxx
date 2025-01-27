@@ -35,6 +35,7 @@ extern "C" void Z4cowCarpet_Initial1(CCTK_ARGUMENTS) {
                                       gammatyy, gammatyz, gammatzz};
   CCTK_REAL *gf_exKh = Kh;
   const array<CCTK_REAL *, 6> gf_exAt{Atxx, Atxy, Atxz, Atyy, Atyz, Atzz};
+  const array<CCTK_REAL *, 3> gf_trGt{Gamtx, Gamty, Gamtz};
   CCTK_REAL *gf_alpha = alphaG;
   const array<CCTK_REAL *, 3> gf_beta{betaGx, betaGy, betaGz};
 
