@@ -17,9 +17,6 @@ const auto &exAt13 = gf_exAt[2];
 const auto &exAt22 = gf_exAt[3];
 const auto &exAt23 = gf_exAt[4];
 const auto &exAt33 = gf_exAt[5];
-const auto &trGt1 = gf_trGt[0];
-const auto &trGt2 = gf_trGt[1];
-const auto &trGt3 = gf_trGt[2];
 const auto &alpha = gf_alpha;
 const auto &beta1 = gf_beta[0];
 const auto &beta2 = gf_beta[1];
@@ -203,22 +200,6 @@ ADMbeta2[ijk]
 beta3[ijk]
 =
 ADMbeta3[ijk]
-;
-
-
-trGt1[ijk]
-=
-0
-;
-
-trGt2[ijk]
-=
-0
-;
-
-trGt3[ijk]
-=
-0
 ;
 
 
