@@ -54,6 +54,7 @@ SCHEDULE Z4cowCarpet_Initial2 IN Z4cowCarpet_InitialGroup AFTER Z4cowCarpet_Init
   LANG: C
   READS: gamma_tilde(everywhere)
   WRITES: Gam_tilde(interior)
+  SYNC: Gam_tilde
 } "Convert ADM to Z4c variables, part 2"
 
 SCHEDULE Z4cowCarpet_RHS IN MoL_CalcRHS
@@ -97,3 +98,10 @@ schedule Z4cowCarpet_SelectBoundConds in MoL_PostStep
 schedule group ApplyBCs as Z4cowCarpet_ApplyBCs in MoL_PostStep after Z4cowCarpet_SelectBoundConds
 {
 } "Apply boundary conditions controlled by thorn Boundary"
+
+SCHEDULE Z4cowCarpet_RegisterVars IN MoL_Register
+{
+  LANG: C
+  OPTIONS: GLOBAL
+} "register evolution system with mol"
+

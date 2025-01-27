@@ -7,12 +7,23 @@ inherits:   ADMBase Boundary GenericFD Grid TmunuBase
 
 USES INCLUDE: Symmetry.h
 
-CCTK_INT FUNCTION MoLRegisterEvolvedGroup(CCTK_INT IN EvolvedIndex, \
-                                          CCTK_INT IN RHSIndex)
+CCTK_INT FUNCTION MoLRegisterEvolved(CCTK_INT IN EvolvedIndex, \
+                                     CCTK_INT IN RHSIndex)
 CCTK_INT FUNCTION MoLRegisterConstrained(CCTK_INT IN ConstrainedIndex)
+CCTK_INT FUNCTION MoLRegisterSaveAndRestore(CCTK_INT IN SandRIndex)
+CCTK_INT FUNCTION MoLChangeToEvolved(CCTK_INT IN EvolvedIndex, \
+                                     CCTK_INT IN RHSIndex)
+CCTK_INT FUNCTION MoLChangeToConstrained(CCTK_INT IN ConstrainedIndex)
+CCTK_INT FUNCTION MoLChangeToSaveAndRestore(CCTK_INT IN SandRIndex)
+CCTK_INT FUNCTION MoLChangeToNone(CCTK_INT IN RemoveIndex)
 
-REQUIRES FUNCTION MoLRegisterEvolvedGroup
-REQUIRES FUNCTION MoLRegisterConstrained
+USES FUNCTION MoLRegisterEvolved
+USES FUNCTION MoLRegisterConstrained
+USES FUNCTION MoLRegisterSaveAndRestore
+USES FUNCTION MoLChangeToEvolved
+USES FUNCTION MoLChangeToConstrained
+USES FUNCTION MoLChangeToSaveAndRestore
+USES FUNCTION MoLChangeToNone
 
 CCTK_INT FUNCTION Boundary_SelectGroupForBC(CCTK_POINTER_TO_CONST IN cctkGH,
   CCTK_INT IN faces, CCTK_INT IN width, CCTK_INT IN table_handle,

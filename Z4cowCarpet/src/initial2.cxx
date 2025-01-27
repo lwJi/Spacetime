@@ -19,6 +19,18 @@ extern "C" void Z4cowCarpet_Initial2(CCTK_ARGUMENTS) {
                                 1. / CCTK_DELTA_SPACE(1),
                                 1. / CCTK_DELTA_SPACE(2)};
 
+  // Initial trGt to 0
+  for (int k = 0; k < cctk_lsh[0]; k++) {
+    for (int j = 0; j < cctk_lsh[1]; j++) {
+      for (int i = 0; i < cctk_lsh[2]; i++) {
+        const int ijk = CCTK_GFINDEX3D(cctkGH, i, j, k);
+        Gamtx[ijk] = 0.0;
+        Gamty[ijk] = 0.0;
+        Gamtz[ijk] = 0.0;
+      }
+    }
+  }
+
   const int istart = cctk_nghostzones[0];
   const int jstart = cctk_nghostzones[1];
   const int kstart = cctk_nghostzones[2];
