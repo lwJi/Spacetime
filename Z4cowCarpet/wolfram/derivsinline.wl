@@ -44,7 +44,7 @@ SetMainPrint[
   PrintIndexes3D[4, 1, "DI"];
   pr["  return"];
   PrintFDExpression[4, 1, "idx"];
-  pr["};"];
+  pr["}"];
   pr[];
 
   pr["template <int DI, int DJ, typename T>"];
@@ -58,7 +58,7 @@ SetMainPrint[
   pr["    return"];
   PrintFDExpressionMix2nd[4, "idx"];
   pr["  }"];
-  pr["};"];
+  pr["}"];
 
   pr["} // namespace Z4cowCarpet"];
 ];

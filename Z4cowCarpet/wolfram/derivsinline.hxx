@@ -23,7 +23,7 @@ inline T fd_1st(const cGH *restrict const cctkGH, const T *gf, int i, int j, int
   const int p2 = CCTK_GFINDEX3D(cctkGH, i + (D == 0 ? 2 : 0), j + (D == 1 ? 2 : 0), k + (D == 2 ? 2 : 0));
   return
     (idx[D]*(-8*gf[m1] + gf[m2] + 8*gf[p1] - gf[p2]))/12.;
-};
+}
 
 template <int DI, int DJ, typename T>
 inline T fd_2nd(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> idx) {
@@ -82,7 +82,7 @@ inline T fd_2nd(const cGH *restrict const cctkGH, const T *gf, int i, int j, int
     return
     (idx[D1]*idx[D2]*(64*gf[m1m1] - 8*gf[m1m2] - 64*gf[m1p1] + 8*gf[m1p2] - 8*gf[m2m1] + gf[m2m2] + 8*gf[m2p1] - gf[m2p2] - 64*gf[p1m1] + 8*gf[p1m2] + 64*gf[p1p1] - 8*gf[p1p2] + 8*gf[p2m1] - gf[p2m2] - 8*gf[p2p1] + gf[p2p2]))/144.;
   }
-};
+}
 } // namespace Z4cowCarpet
 
 #endif // #ifndef DERIVSINLINE_HXX
