@@ -31,7 +31,6 @@ double gettime() {
 }
 
 double total_rhs_time = 0;
-double total_rhs_loop_time = 0;
 
 extern "C" void Z4cowCarpet_RHS(CCTK_ARGUMENTS) {
 
@@ -96,11 +95,7 @@ extern "C" void Z4cowCarpet_RHS(CCTK_ARGUMENTS) {
   const nvtxRangeId_t range = nvtxRangeStartA("Z4cowCarpet_RHS::rhs");
 #endif
 
-  const double start_loop_time = gettime();
-
 #include "../wolfram/Z4cowCarpet_set_rhs.hxx"
-
-  const double finish_loop_time = gettime();
 
 #ifdef __CUDACC__
   nvtxRangeEnd(range);
@@ -185,9 +180,7 @@ extern "C" void Z4cowCarpet_RHS(CCTK_ARGUMENTS) {
   const double finish_time = gettime();
 
   total_rhs_time += finish_time - start_time;
-  total_rhs_loop_time += finish_loop_time - start_loop_time;
-  CCTK_VINFO("Total RHS and loop time: %g sec, %g sec", total_rhs_time,
-             total_rhs_loop_time);
+  CCTK_VINFO("RHS evaluation time: %g sec", total_rhs_time);
 }
 
 } // namespace Z4cowCarpet
