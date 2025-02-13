@@ -55,7 +55,7 @@ Module[{Mat, invMat},
 SetOutputFile[FileNameJoin[{Directory[], "Z4cowCarpet_initial2.hxx"}]];
 
 SetMainPrint[
-  (* Initailze grid function names *)
+  (* Initialize grid function names *)
   PrintInitializations[{Mode -> "MainOut"}, Take[EvolVarlist, {5}]];
   PrintInitializations[{Mode -> "MainIn"}, Take[EvolVarlist, {2}]];
   pr[];
