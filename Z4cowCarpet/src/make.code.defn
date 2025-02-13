@@ -3,13 +3,13 @@
 # Source files in this directory
 SRCS = \
   boundary.cxx \
+  enforce.cxx	\
   initial1.cxx \
   initial2.cxx \
   molregister.cxx \
   rhs.cxx
   #adm.cxx \
   #constraint.cxx \
-  #enforce.cxx	\
   #initiallapse.cxx \
   #newradx.cxx \
 
