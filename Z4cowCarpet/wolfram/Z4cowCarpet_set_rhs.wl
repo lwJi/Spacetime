@@ -2,10 +2,13 @@
 
 (* Z4cowCarpet_set_rhs.wl *)
 
-(* (c) Liwei Ji, 07/2024 *)
+(* (c) Liwei Ji, 02/2025 *)
 
-Needs["xAct`xCoba`", FileNameJoin[{Environment["GENERATO"], "src/Generato.wl"
-  }]]
+(******************)
+(* Configurations *)
+(******************)
+
+Needs["xAct`xCoba`", FileNameJoin[{Environment["GENERATO"], "src/Generato.wl"}]]
 
 SetPVerbose[False];
 
@@ -21,32 +24,36 @@ DefManifold[M3, 3, IndexRange[a, z]];
 
 DefChart[cart, M3, {1, 2, 3}, {X[], Y[], Z[]}, ChartColor -> Blue];
 
-(* Derivatives *)
 
-(* Define Variables *)
+(**********************************)
+(* Define Variables and Equations *)
+(**********************************)
 
 <<wl/Z4c_vars.wl
 
 <<wl/Z4c_rhs.wl
 
 Module[{Mat, invMat},
-  Mat = Table[gamt[{ii, -cart}, {jj, -cart}] // ToValues, {ii, 1, 3}, {jj, 1, 3}];
-  invMat = Inverse[Mat] /. {1 / Det[Mat] -> 1}; (* since we enforced that det(gamt) = 1 *)
+  Mat =
+    Table[gamt[{ii, -cart}, {jj, -cart}] // ToValues, {ii, 1, 3}, {jj, 1, 3}];
+  invMat = Inverse[Mat] /. {1 / Det[Mat] -> 1}; (* det(gamt) = 1 enforced *)
   (* SetEQNDelayed[detinvgamt[], 1 / Det[Mat] // Simplify]; *)
   SetEQNDelayed[invgamt[i_, j_], invMat[[i[[1]], j[[1]]]] // Simplify]
 ];
 
+
+(******************)
+(* Print to Files *)
+(******************)
+
 SetOutputFile[FileNameJoin[{Directory[], "Z4cowCarpet_set_rhs.hxx"}]];
 
 SetMainPrint[
-  (* initail grid function names *)
+  (* Initialize grid function names *)
   PrintInitializations[{Mode -> "MainOut"}, dtEvolVarlist];
-  pr[];
-
   PrintInitializations[{Mode -> "MainIn"}, Drop[TmunuVarlist, 1]];
   PrintInitializations[{Mode -> "MainIn"}, Delete[EvolVarlist, {{1}, {-3}}]];
   pr[];
-
 
   (* Loops *)
   pr["#pragma omp parallel for collapse(3)"];
@@ -56,8 +63,10 @@ SetMainPrint[
   pr["    const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);"];
   pr[];
 
-  PrintInitializations[{Mode -> "Derivs1st"}, dEvolVarlist];
-  PrintInitializations[{Mode -> "Derivs2nd"}, ddEvolVarlist];
+  PrintInitializations[{Mode -> "Derivs", DerivsOrder -> 1},
+                       dEvolVarlist];
+  PrintInitializations[{Mode -> "Derivs", DerivsOrder -> 2},
+                       ddEvolVarlist];
   pr[];
 
   PrintEquations[{Mode -> "Temp"}, IntermediateVarlist];
