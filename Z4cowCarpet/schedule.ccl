@@ -9,10 +9,10 @@ STORAGE: Theta[3]
 STORAGE: alphaG[3]
 STORAGE: betaG[3]
 
-#STORAGE: ZtC[1]
-#STORAGE: HC[1]
-#STORAGE: MtC[1]
-#STORAGE: allC[1]
+STORAGE: ZtC[1]
+STORAGE: HC[1]
+STORAGE: MtC[1]
+STORAGE: allC[1]
 
 STORAGE: W_rhs[1]
 STORAGE: gamma_tilde_rhs[1]
@@ -157,5 +157,27 @@ if (calc_ADM_vars) {
     #WRITES: ADMBase::dtlapse(everywhere)
     #WRITES: ADMBase::dtshift(everywhere)
   } "Convert Z4c to ADM variables"
+}
+
+if (calc_constraints) {
+  SCHEDULE Z4cowCarpet_Constraints AT analysis
+  {
+    LANG: C
+    READS: W(everywhere)
+    READS: gamma_tilde(everywhere)
+    READS: K_hat(everywhere)
+    READS: A_tilde(everywhere)
+    READS: Gam_tilde(everywhere)
+    READS: Theta(everywhere)
+    READS: alphaG(everywhere)
+    READS: betaG(everywhere)
+    READS: TmunuBase::stress_energy_scalar(interior)
+    READS: TmunuBase::stress_energy_vector(interior)
+    READS: TmunuBase::stress_energy_tensor(interior)
+    WRITES: ZtC(interior)
+    WRITES: HC(interior)
+    WRITES: MtC(interior)
+    #WRITES: allC(interior)
+  } "Calculate Z4c Constraints"
 }
 

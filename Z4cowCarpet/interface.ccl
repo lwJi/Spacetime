@@ -43,6 +43,11 @@ CCTK_REAL Theta TYPE=gf TIMELEVELS=4 TAGS='' "Theta"
 CCTK_REAL alphaG TYPE=gf TIMELEVELS=4 TAGS='' "alpha"
 CCTK_REAL betaG TYPE=gf TIMELEVELS=4 TAGS='' { betaGx betaGy betaGz } "beta"
 
+CCTK_REAL ZtC TYPE=gf TAGS='parities={-1 +1 +1   +1 -1 +1   +1 +1 -1} checkpoint="no"' { ZtCx ZtCy ZtCz } "Z-tilde"
+CCTK_REAL HC TYPE=gf TAGS='checkpoint="no"' "H"
+CCTK_REAL MtC TYPE=gf TAGS='parities={-1 +1 +1   +1 -1 +1   +1 +1 -1} checkpoint="no"' { MtCx MtCy MtCz } "M-tilde"
+CCTK_REAL allC TYPE=gf TAGS='checkpoint="no"' "constraint monitor"
+
 CCTK_REAL W_rhs TYPE=gf TAGS='checkpoint="no"' "W"
 CCTK_REAL gamma_tilde_rhs TYPE=gf TAGS='checkpoint="no"' { gammatxx_rhs gammatxy_rhs gammatxz_rhs gammatyy_rhs gammatyz_rhs gammatzz_rhs } "gamma-tilde"
 CCTK_REAL K_hat_rhs TYPE=gf TAGS='checkpoint="no"' { Kh_rhs } "K-hat"

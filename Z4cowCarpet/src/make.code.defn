@@ -4,12 +4,12 @@
 SRCS = \
   adm.cxx \
   boundary.cxx \
+  constraint.cxx \
   enforce.cxx	\
   initial1.cxx \
   initial2.cxx \
   molregister.cxx \
   rhs.cxx
-  #constraint.cxx \
   #initiallapse.cxx \
   #newradx.cxx \
 
