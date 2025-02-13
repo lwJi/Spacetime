@@ -6,6 +6,7 @@
 #include <cmath>
 
 #include "../wolfram/derivsinline.hxx"
+#include "../wolfram/dissinline.hxx"
 #include "../wolfram/powerinline.hxx"
 
 namespace Z4cowCarpet {
@@ -77,6 +78,21 @@ extern "C" void Z4cowCarpet_RHS(CCTK_ARGUMENTS) {
 #include "../wolfram/Z4cowCarpet_set_rhs.hxx"
 
   // Dissipation
+#include "../wolfram/Z4cowCarpet_applydiss.hxx"
+
+  applydiss(gf_W, gf_dtW);
+  for (int a = 0; a < 6; ++a)
+    applydiss(gf_gamt[a], gf_dtgamt[a]);
+  applydiss(gf_exKh, gf_dtexKh);
+  for (int a = 0; a < 6; ++a)
+    applydiss(gf_exAt[a], gf_dtexAt[a]);
+  for (int a = 0; a < 3; ++a)
+    applydiss(gf_trGt[a], gf_dttrGt[a]);
+  if (!set_Theta_zero)
+    applydiss(gf_Theta, gf_dtTheta);
+  applydiss(gf_alpha, gf_dtalpha);
+  for (int a = 0; a < 3; ++a)
+    applydiss(gf_beta[a], gf_dtbeta[a]);
 }
 
 } // namespace Z4cowCarpet

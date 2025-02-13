@@ -15,7 +15,7 @@ case 3: {
       const auto rhs_old = gf_rhs_[ijk];
       const auto rhs_new =
           rhs_old +
-          epsdiss * calc_diss<2>(cctkGH, gf_, p.i, p.j, p.k, invDxyz);
+          epsdiss * calc_diss<2>(cctkGH, gf_, i, j, k, invDxyz);
       gf_rhs_[ijk] = rhs_new;
   }
   }
@@ -31,7 +31,7 @@ case 5: {
       const auto rhs_old = gf_rhs_[ijk];
       const auto rhs_new =
           rhs_old +
-          epsdiss * calc_diss<4>(cctkGH, gf_, p.i, p.j, p.k, invDxyz);
+          epsdiss * calc_diss<4>(cctkGH, gf_, i, j, k, invDxyz);
       gf_rhs_[ijk] = rhs_new;
   }
   }
@@ -47,7 +47,7 @@ case 7: {
       const auto rhs_old = gf_rhs_[ijk];
       const auto rhs_new =
           rhs_old +
-          epsdiss * calc_diss<6>(cctkGH, gf_, p.i, p.j, p.k, invDxyz);
+          epsdiss * calc_diss<6>(cctkGH, gf_, i, j, k, invDxyz);
       gf_rhs_[ijk] = rhs_new;
   }
   }
@@ -63,7 +63,7 @@ case 9: {
       const auto rhs_old = gf_rhs_[ijk];
       const auto rhs_new =
           rhs_old +
-          epsdiss * calc_diss<8>(cctkGH, gf_, p.i, p.j, p.k, invDxyz);
+          epsdiss * calc_diss<8>(cctkGH, gf_, i, j, k, invDxyz);
       gf_rhs_[ijk] = rhs_new;
   }
   }

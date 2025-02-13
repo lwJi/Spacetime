@@ -37,7 +37,7 @@ SetMainPrint[
     pr["          rhs_old +"];
     pr["          epsdiss * calc_diss<"
                     <> ToString[aOrd]
-                    <> ">(cctkGH, gf_, p.i, p.j, p.k, invDxyz);"];
+                    <> ">(cctkGH, gf_, i, j, k, invDxyz);"];
     pr["      gf_rhs_[ijk] = rhs_new;"];
     pr["  }"];
     pr["  }"];
