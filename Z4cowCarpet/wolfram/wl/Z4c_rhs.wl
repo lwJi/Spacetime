@@ -111,3 +111,4 @@ SetEQN[dtalpha[], beta[k] dalpha[-k] - alpha[] cmuL exKh[]];
 (* (12) *)
 
 SetEQN[dtbeta[i_], beta[k] dbeta[-k, i] + cmuS trGt[i] - ceta beta[i]];
+

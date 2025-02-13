@@ -6,7 +6,11 @@
 
 (* See arXiv:1212.2901 [gr-qc] *)
 
+(**************)
+
 (* ADM in Z4c *)
+
+(**************)
 
 SetEQN[ADMgam[i_, j_], W[] ^ -2 gamt[i, j]];
 

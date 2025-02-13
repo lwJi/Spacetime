@@ -4,7 +4,11 @@
 
 (* (c) Liwei Ji, 07/2024 *)
 
-(* ADM variables *)
+(*****************)
+
+(* ADM Variables *)
+
+(*****************)
 
 ADMVarlist =
   GridTensors[
@@ -18,12 +22,3 @@ ADMVarlist =
     *)
   ];
 
-ADMTempVarlist =
-  TempTensors[
-    {invdetgamma [], PrintAs->"1/\[Gamma]"},
-    {invgamma[i, j], Symmetric[{i, j}], PrintAs->"\[Gamma]"},
-    {tempTheta   [], PrintAs -> "\[CapitalTheta]"},
-    {trexK       [], PrintAs -> "K"},
-    {Gt[-k, -i, -j], Symmetric[{-i, -j}], PrintAs->"\[CapitalGamma]"},
-    {tempW       [], PrintAs -> "W"}
-  ];
