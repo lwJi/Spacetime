@@ -34,7 +34,7 @@ extern "C" void Z4cowCarpet_Initial2(CCTK_ARGUMENTS) {
   const array<CCTK_REAL *, 3> gf_trGt{Gamtx, Gamty, Gamtz};
 
   // Derivs Lambdas
-#include "../wolfram/Z4cowGPU_derivs1st.hxx"
+#include "../wolfram/Z4cowCarpet_derivs1st.hxx"
 
   // Loop
 
