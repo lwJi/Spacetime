@@ -17,14 +17,10 @@ const auto &exAt13 = gf_exAt[2];
 const auto &exAt22 = gf_exAt[3];
 const auto &exAt23 = gf_exAt[4];
 const auto &exAt33 = gf_exAt[5];
-const auto &trGt1 = gf_trGt[0];
-const auto &trGt2 = gf_trGt[1];
-const auto &trGt3 = gf_trGt[2];
 const auto &alpha = gf_alpha;
 const auto &beta1 = gf_beta[0];
 const auto &beta2 = gf_beta[1];
 const auto &beta3 = gf_beta[2];
-
 const auto &ADMgam11 = gf_ADMgam[0];
 const auto &ADMgam12 = gf_ADMgam[1];
 const auto &ADMgam13 = gf_ADMgam[2];
@@ -94,12 +90,6 @@ invdetgamma*(-Power(ADMgam12[ijk],2) + ADMgam11[ijk]*ADMgam22[ijk])
 ;
 
 const auto
-tempTheta
-=
-0
-;
-
-const auto
 trexK
 =
 invgamma11*ADMK11[ijk] + 2*invgamma12*ADMK12[ijk] +
@@ -107,6 +97,11 @@ invgamma11*ADMK11[ijk] + 2*invgamma12*ADMK12[ijk] +
   2*invgamma23*ADMK23[ijk] + invgamma33*ADMK33[ijk]
 ;
 
+const auto
+tempTheta
+=
+0
+;
 
 const auto tempW = cbrt(sqrt(invdetgamma));
 
@@ -203,22 +198,6 @@ ADMbeta2[ijk]
 beta3[ijk]
 =
 ADMbeta3[ijk]
-;
-
-
-trGt1[ijk]
-=
-0
-;
-
-trGt2[ijk]
-=
-0
-;
-
-trGt3[ijk]
-=
-0
 ;
 
 
