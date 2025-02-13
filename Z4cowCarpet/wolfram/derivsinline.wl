@@ -37,7 +37,7 @@ SetMainPrint[
 
   Do[
     pr["template <int DI, typename T>"];
-    pr["inline T"];
+    pr["CCTK_ATTRIBUTE_ALWAYS_INLINE inline T"];
     pr["fd_1_o" <> ToString[aOrd]
                 <> "(const cGH *restrict const cctkGH, const T *gf, "
                 <> "int i, int j, int k, const std::array<T, 3> &invDx) {"];
@@ -56,7 +56,7 @@ SetMainPrint[
 
   Do[
     pr["template <int DI, int DJ, typename T>"];
-    pr["inline T"];
+    pr["CCTK_ATTRIBUTE_ALWAYS_INLINE inline T"];
     pr["fd_2_o" <> ToString[aOrd]
                 <> "(const cGH *restrict const cctkGH, const T *gf, "
                 <> "int i, int j, int k, const std::array<T, 3> &invDx) {"];
@@ -81,7 +81,7 @@ SetMainPrint[
 
   Do[
     pr["template <int DI, typename T>"];
-    pr["inline T"];
+    pr["CCTK_ATTRIBUTE_ALWAYS_INLINE inline T"];
     pr["diss_" <> ToString[aOrd] <>"_o" <> ToString[aOrd]
                <> "(const cGH *restrict const cctkGH, const T *gf, "
                <> "int i, int j, int k, const std::array<T, 3> &invDx) {"];

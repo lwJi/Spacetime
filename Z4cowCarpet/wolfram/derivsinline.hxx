@@ -12,7 +12,7 @@
 namespace Z4cowCarpet {
 
 template <int DI, typename T>
-inline T
+CCTK_ATTRIBUTE_ALWAYS_INLINE inline T
 fd_1_o2(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> &invDx) {
   constexpr int D = DI - 1;
   const int m1 = CCTK_GFINDEX3D(cctkGH, i + (D == 0 ? -1 : 0), j + (D == 1 ? -1 : 0), k + (D == 2 ? -1 : 0));
@@ -22,7 +22,7 @@ fd_1_o2(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, cons
 }
 
 template <int DI, typename T>
-inline T
+CCTK_ATTRIBUTE_ALWAYS_INLINE inline T
 fd_1_o4(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> &invDx) {
   constexpr int D = DI - 1;
   const int m2 = CCTK_GFINDEX3D(cctkGH, i + (D == 0 ? -2 : 0), j + (D == 1 ? -2 : 0), k + (D == 2 ? -2 : 0));
@@ -34,7 +34,7 @@ fd_1_o4(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, cons
 }
 
 template <int DI, typename T>
-inline T
+CCTK_ATTRIBUTE_ALWAYS_INLINE inline T
 fd_1_o6(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> &invDx) {
   constexpr int D = DI - 1;
   const int m3 = CCTK_GFINDEX3D(cctkGH, i + (D == 0 ? -3 : 0), j + (D == 1 ? -3 : 0), k + (D == 2 ? -3 : 0));
@@ -48,7 +48,7 @@ fd_1_o6(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, cons
 }
 
 template <int DI, typename T>
-inline T
+CCTK_ATTRIBUTE_ALWAYS_INLINE inline T
 fd_1_o8(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> &invDx) {
   constexpr int D = DI - 1;
   const int m4 = CCTK_GFINDEX3D(cctkGH, i + (D == 0 ? -4 : 0), j + (D == 1 ? -4 : 0), k + (D == 2 ? -4 : 0));
@@ -64,7 +64,7 @@ fd_1_o8(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, cons
 }
 
 template <int DI, int DJ, typename T>
-inline T
+CCTK_ATTRIBUTE_ALWAYS_INLINE inline T
 fd_2_o2(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> &invDx) {
   if constexpr (DI == DJ) {
   constexpr int D = DI - 1;
@@ -90,7 +90,7 @@ fd_2_o2(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, cons
 }
 
 template <int DI, int DJ, typename T>
-inline T
+CCTK_ATTRIBUTE_ALWAYS_INLINE inline T
 fd_2_o4(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> &invDx) {
   if constexpr (DI == DJ) {
   constexpr int D = DI - 1;
@@ -150,7 +150,7 @@ fd_2_o4(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, cons
 }
 
 template <int DI, int DJ, typename T>
-inline T
+CCTK_ATTRIBUTE_ALWAYS_INLINE inline T
 fd_2_o6(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> &invDx) {
   if constexpr (DI == DJ) {
   constexpr int D = DI - 1;
@@ -268,7 +268,7 @@ fd_2_o6(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, cons
 }
 
 template <int DI, int DJ, typename T>
-inline T
+CCTK_ATTRIBUTE_ALWAYS_INLINE inline T
 fd_2_o8(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> &invDx) {
   if constexpr (DI == DJ) {
   constexpr int D = DI - 1;
@@ -468,7 +468,7 @@ fd_2_o8(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, cons
 }
 
 template <int DI, typename T>
-inline T
+CCTK_ATTRIBUTE_ALWAYS_INLINE inline T
 diss_4_o4(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> &invDx) {
   constexpr int D = DI - 1;
   const int m2 = CCTK_GFINDEX3D(cctkGH, i + (D == 0 ? -2 : 0), j + (D == 1 ? -2 : 0), k + (D == 2 ? -2 : 0));
@@ -481,7 +481,7 @@ diss_4_o4(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, co
 }
 
 template <int DI, typename T>
-inline T
+CCTK_ATTRIBUTE_ALWAYS_INLINE inline T
 diss_6_o6(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> &invDx) {
   constexpr int D = DI - 1;
   const int m3 = CCTK_GFINDEX3D(cctkGH, i + (D == 0 ? -3 : 0), j + (D == 1 ? -3 : 0), k + (D == 2 ? -3 : 0));
@@ -496,7 +496,7 @@ diss_6_o6(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, co
 }
 
 template <int DI, typename T>
-inline T
+CCTK_ATTRIBUTE_ALWAYS_INLINE inline T
 diss_8_o8(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> &invDx) {
   constexpr int D = DI - 1;
   const int m4 = CCTK_GFINDEX3D(cctkGH, i + (D == 0 ? -4 : 0), j + (D == 1 ? -4 : 0), k + (D == 2 ? -4 : 0));
@@ -513,7 +513,7 @@ diss_8_o8(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, co
 }
 
 template <int DI, typename T>
-inline T
+CCTK_ATTRIBUTE_ALWAYS_INLINE inline T
 diss_10_o10(const cGH *restrict const cctkGH, const T *gf, int i, int j, int k, const std::array<T, 3> &invDx) {
   constexpr int D = DI - 1;
   const int m5 = CCTK_GFINDEX3D(cctkGH, i + (D == 0 ? -5 : 0), j + (D == 1 ? -5 : 0), k + (D == 2 ? -5 : 0));
