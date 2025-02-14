@@ -6,6 +6,7 @@ SRCS = \
   boundary.cxx \
   constraint.cxx \
   enforce.cxx	\
+  initiallapse.cxx \
   initial1.cxx \
   initial2.cxx \
   molregister.cxx \

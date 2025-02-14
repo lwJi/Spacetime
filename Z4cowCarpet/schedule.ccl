@@ -58,6 +58,14 @@ SCHEDULE Z4cowCarpet_Initial2 IN Z4cowCarpet_InitialGroup AFTER Z4cowCarpet_Init
   SYNC: Gam_tilde
 } "Convert ADM to Z4c variables, part 2"
 
+SCHEDULE Z4cowCarpet_InitialLapse IN Z4cowCarpet_InitialGroup AFTER Z4cowCarpet_Initial2
+{
+  LANG: C
+  READS: W(interior)
+  WRITES: alphaG(interior)
+  SYNC: alphaG
+} "Set initial lapse"
+
 schedule Z4cowCarpet_SelectBoundConds In Z4cowCarpet_InitialGroup AFTER Z4cowCarpet_Initial2
 {
   LANG: C
