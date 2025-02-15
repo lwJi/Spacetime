@@ -62,6 +62,8 @@ for (int k=kstart; k<kend; k++) {
     for (int i=istart; i<iend; i++) {
     const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);
 
+const CCTK_REAL ceta = calceta(r[ijk]);
+
 const auto dW1 = calcderivs1_1(W, i, j, k);
 const auto dW2 = calcderivs1_2(W, i, j, k);
 const auto dW3 = calcderivs1_3(W, i, j, k);

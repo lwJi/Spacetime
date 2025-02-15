@@ -67,7 +67,13 @@ extern "C" void Z4cowCarpet_RHS(CCTK_ARGUMENTS) {
   const CCTK_REAL ckappa2 = kappa2;
   const CCTK_REAL cmuL = f_mu_L;
   const CCTK_REAL cmuS = f_mu_S;
-  const CCTK_REAL ceta = eta;
+  // const CCTK_REAL ceta = eta;
+  const auto calceta = [=](const CCTK_REAL r) CCTK_ATTRIBUTE_ALWAYS_INLINE {
+    const CCTK_REAL r4 = r * r * r * r;
+    const CCTK_REAL is4 =
+        1.0 / (veta_width * veta_width * veta_width * veta_width);
+    return (veta_central - veta_outer) * exp(-r4 * is4) + veta_outer;
+  };
 
   // Derivs Lambdas
 #include "../wolfram/Z4cowCarpet_derivs1st.hxx"

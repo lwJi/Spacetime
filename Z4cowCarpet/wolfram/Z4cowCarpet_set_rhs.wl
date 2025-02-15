@@ -63,6 +63,9 @@ SetMainPrint[
   pr["    const int ijk = CCTK_GFINDEX3D(cctkGH,i,j,k);"];
   pr[];
 
+  pr["const CCTK_REAL ceta = calceta(r[ijk]);"];
+  pr[];
+
   PrintInitializations[{Mode -> "Derivs", DerivsOrder -> 1},
                        dEvolVarlist];
   PrintInitializations[{Mode -> "Derivs", DerivsOrder -> 2},
