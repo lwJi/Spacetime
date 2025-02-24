@@ -51,8 +51,8 @@ SetOutputFile[FileNameJoin[{Directory[], "Z4cowCarpet_set_constraint.hxx"}]];
 SetMainPrint[
   (* Initialize grid function names *)
   PrintInitializations[{Mode -> "MainOut"}, Drop[ConstraintVarlist, {-2}]];
-  PrintInitializations[{Mode -> "MainIn"}, Drop[TmunuVarlist, 1]];
-  PrintInitializations[{Mode -> "MainIn"}, Delete[EvolVarlist, {{1}, {-3}}]];
+  (*PrintInitializations[{Mode -> "MainIn"}, Drop[TmunuVarlist, 1]];*)
+  PrintInitializations[{Mode -> "MainIn"}, Drop[Delete[EvolVarlist, {{1}}], -3]];
   pr[];
 
   (* Loops *)

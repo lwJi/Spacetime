@@ -52,11 +52,19 @@ SetEQN[R[i_, j_], RtW[i, j] + Rt[i, j]];
 
 SetEQN[trR[], invgam[k, l] R[-k, -l]];
 
+SetEQN[rho[], 0];
+
+SetEQN[Sm[i_], 0];
+
+SetEQN[Ss[i_, j_], 0];
+
+(*
 SetEQN[rho[], alpha[] ^ -2 (eTtt[] - 2 beta[j] eTt[-j] + beta[i] beta[j] eT[-i, -j])];
 
 SetEQN[Sm[i_], -alpha[] ^ -1 (eTt[i] - beta[k] eT[-k, i])];
 
 SetEQN[Ss[i_, j_], eT[i, j]];
+*)
 
 SetEQN[trSs[], invgam[k, l] Ss[-k, -l]];
 

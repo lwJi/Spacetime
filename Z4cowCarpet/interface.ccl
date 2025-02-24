@@ -3,7 +3,7 @@
 
 implements: Z4cowCarpet
 
-inherits:   ADMBase Boundary GenericFD Grid TmunuBase
+inherits:   ADMBase Boundary GenericFD Grid #TmunuBase
 
 USES INCLUDE: Symmetry.h
 

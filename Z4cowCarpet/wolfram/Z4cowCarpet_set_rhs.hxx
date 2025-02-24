@@ -26,15 +26,6 @@ const auto &dtalpha = gf_dtalpha;
 const auto &dtbeta1 = gf_dtbeta[0];
 const auto &dtbeta2 = gf_dtbeta[1];
 const auto &dtbeta3 = gf_dtbeta[2];
-const auto &eTt1 = gf_eTt[0];
-const auto &eTt2 = gf_eTt[1];
-const auto &eTt3 = gf_eTt[2];
-const auto &eT11 = gf_eT[0];
-const auto &eT12 = gf_eT[1];
-const auto &eT13 = gf_eT[2];
-const auto &eT22 = gf_eT[3];
-const auto &eT23 = gf_eT[4];
-const auto &eT33 = gf_eT[5];
 const auto &gamt11 = gf_gamt[0];
 const auto &gamt12 = gf_gamt[1];
 const auto &gamt13 = gf_gamt[2];
@@ -1386,68 +1377,61 @@ invgam11*R11 + 2*invgam12*R12 + 2*invgam13*R13 + invgam22*R22 +
 const auto
 rho
 =
-(Power(beta1[ijk],2)*eT11[ijk] + Power(beta2[ijk],2)*eT22[ijk] +
-    Power(beta3[ijk],2)*eT33[ijk] +
-    2*beta1[ijk]*(beta2[ijk]*eT12[ijk] + beta3[ijk]*eT13[ijk] -
-       eTt1[ijk]) + 2*beta2[ijk]*(beta3[ijk]*eT23[ijk] - eTt2[ijk]) -
-    2*beta3[ijk]*eTt3[ijk] + eTtt[ijk])/Power(alpha[ijk],2)
+0
 ;
 
 const auto
 Sm1
 =
-(beta1[ijk]*eT11[ijk] + beta2[ijk]*eT12[ijk] + beta3[ijk]*eT13[ijk] -
-    eTt1[ijk])/alpha[ijk]
+0
 ;
 
 const auto
 Sm2
 =
-(beta1[ijk]*eT12[ijk] + beta2[ijk]*eT22[ijk] + beta3[ijk]*eT23[ijk] -
-    eTt2[ijk])/alpha[ijk]
+0
 ;
 
 const auto
 Sm3
 =
-(beta1[ijk]*eT13[ijk] + beta2[ijk]*eT23[ijk] + beta3[ijk]*eT33[ijk] -
-    eTt3[ijk])/alpha[ijk]
+0
 ;
 
 const auto
 Ss11
 =
-eT11[ijk]
+0
 ;
 
 const auto
 Ss12
 =
-eT12[ijk]
+0
 ;
 
 const auto
 Ss13
 =
-eT13[ijk]
+0
 ;
 
 const auto
 Ss22
 =
-eT22[ijk]
+0
 ;
 
 const auto
 Ss23
 =
-eT23[ijk]
+0
 ;
 
 const auto
 Ss33
 =
-eT33[ijk]
+0
 ;
 
 const auto

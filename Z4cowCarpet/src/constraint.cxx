@@ -37,13 +37,14 @@ extern "C" void Z4cowCarpet_Constraints(CCTK_ARGUMENTS) {
   const CCTK_REAL *gf_exKh = Kh;
   const array<const CCTK_REAL *, 6> gf_exAt{Atxx, Atxy, Atxz, Atyy, Atyz, Atzz};
   const array<const CCTK_REAL *, 3> gf_trGt{Gamtx, Gamty, Gamtz};
-  const CCTK_REAL *gf_alpha = alphaG;
-  const array<const CCTK_REAL *, 3> gf_beta{betaGx, betaGy, betaGz};
+  // const CCTK_REAL *gf_alpha = alphaG;
+  // const array<const CCTK_REAL *, 3> gf_beta{betaGx, betaGy, betaGz};
 
   // More input grid functions
   // const GF3D2<const CCTK_REAL> &gf_eTtt = eTtt;
-  const array<const CCTK_REAL *, 3> gf_eTt{eTtx, eTty, eTtz};
-  const array<const CCTK_REAL *, 6> gf_eT{eTxx, eTxy, eTxz, eTyy, eTyz, eTzz};
+  // const array<const CCTK_REAL *, 3> gf_eTt{eTtx, eTty, eTtz};
+  // const array<const CCTK_REAL *, 6> gf_eT{eTxx, eTxy, eTxz, eTyy, eTyz,
+  // eTzz};
 
   // Output grid functions
   const array<CCTK_REAL *, 3> gf_ZtC{ZtCx, ZtCy, ZtCz};

@@ -45,8 +45,9 @@ extern "C" void Z4cowCarpet_RHS(CCTK_ARGUMENTS) {
 
   // More input grid functions
   // const GF3D2<const CCTK_REAL> &gf_eTtt = eTtt;
-  const array<const CCTK_REAL *, 3> gf_eTt{eTtx, eTty, eTtz};
-  const array<const CCTK_REAL *, 6> gf_eT{eTxx, eTxy, eTxz, eTyy, eTyz, eTzz};
+  // const array<const CCTK_REAL *, 3> gf_eTt{eTtx, eTty, eTtz};
+  // const array<const CCTK_REAL *, 6> gf_eT{eTxx, eTxy, eTxz, eTyy, eTyz,
+  // eTzz};
 
   // Output grid functions
   CCTK_REAL *gf_dtW = W_rhs;
