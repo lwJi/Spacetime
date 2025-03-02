@@ -16,6 +16,10 @@ BOOLEAN set_Theta_zero "set Theta to zero, which converts Z4c to BSSN"
 {
 } no
 
+BOOLEAN use_LazEv_shift "use the shift condition same as LazEv"
+{
+} no
+
 CCTK_REAL kappa1 "kappa1" STEERABLE=always
 {
   *:* :: ""
