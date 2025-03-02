@@ -82,7 +82,11 @@ extern "C" void Z4cowCarpet_RHS(CCTK_ARGUMENTS) {
 
   // Loop
 
+  if (set_Theta_zero) {
+#include "../wolfram/Z4cowCarpet_set_rhs_freezeTheta.hxx"
+  } else {
 #include "../wolfram/Z4cowCarpet_set_rhs.hxx"
+  }
 
   // Dissipation
 #include "../wolfram/Z4cowCarpet_applydiss.hxx"
