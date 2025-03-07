@@ -30,6 +30,16 @@ CCTK_INT FUNCTION Boundary_SelectGroupForBC(CCTK_POINTER_TO_CONST IN cctkGH,
   CCTK_STRING IN var_name, CCTK_STRING IN bc_name)
 USES FUNCTION Boundary_SelectGroupForBC
 
+CCTK_INT FUNCTION                         \
+    NewRad_Apply                          \
+        (CCTK_POINTER_TO_CONST IN cctkGH, \
+         CCTK_REAL ARRAY IN var,          \
+         CCTK_REAL ARRAY INOUT rhs,       \
+         CCTK_REAL IN var0,               \
+         CCTK_REAL IN v0,                 \
+         CCTK_INT IN radpower)
+USES FUNCTION NewRad_Apply
+
 public:
 
 # Evolution variables

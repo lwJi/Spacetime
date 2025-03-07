@@ -108,6 +108,35 @@ SCHEDULE Z4cowCarpet_RHS IN MoL_CalcRHS
   WRITES: betaG_rhs(interior)
 } "Calculate Z4c RHS"
 
+SCHEDULE Z4cowCarpet_NewRad IN MoL_CalcRHS AFTER Z4cowCarpet_RHS
+{
+  LANG: C
+  READS: W(everywhere)
+  READS: gamma_tilde(everywhere)
+  READS: K_hat(everywhere)
+  READS: A_tilde(everywhere)
+  READS: Gam_tilde(everywhere)
+  READS: Theta(everywhere)
+  READS: alphaG(everywhere)
+  READS: betaG(everywhere)
+  READS: W_rhs(interior)
+  READS: gamma_tilde_rhs(interior)
+  READS: K_hat_rhs(interior)
+  READS: A_tilde_rhs(interior)
+  READS: Gam_tilde_rhs(interior)
+  READS: Theta_rhs(interior)
+  READS: alphaG_rhs(interior)
+  READS: betaG_rhs(interior)
+  WRITES: W_rhs(interior)
+  WRITES: gamma_tilde_rhs(interior)
+  WRITES: K_hat_rhs(interior)
+  WRITES: A_tilde_rhs(interior)
+  WRITES: Gam_tilde_rhs(interior)
+  WRITES: Theta_rhs(interior)
+  WRITES: alphaG_rhs(interior)
+  WRITES: betaG_rhs(interior)
+} "Apply NewRad Boundary Conditions"
+
 SCHEDULE Z4cowCarpet_Enforce IN MoL_PostStep
 {
   LANG: C
