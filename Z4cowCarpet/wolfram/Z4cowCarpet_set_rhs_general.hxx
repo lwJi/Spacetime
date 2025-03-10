@@ -1367,27 +1367,6 @@ R33
 Rt33 + RtW33
 ;
 
-
-if (use_LazEv_trR) {
-const auto
-trR
-=
-16*cpi*rho + exAtUU11*exAt11[ijk] + 2*exAtUU12*exAt12[ijk] +
-  2*exAtUU13*exAt13[ijk] + exAtUU22*exAt22[ijk] + 2*exAtUU23*exAt23[ijk] +
-  exAtUU33*exAt33[ijk] - (2*Power(exKh[ijk],2))/3. -
-  (8*exKh[ijk]*Theta[ijk])/3. - (8*Power(Theta[ijk],2))/3.
-;
-
-} else {
-const auto
-trR
-=
-invgam11*R11 + 2*invgam12*R12 + 2*invgam13*R13 + invgam22*R22 +
-  2*invgam23*R23 + invgam33*R33
-;
-
-}
-
 const auto
 rho
 =
@@ -1455,6 +1434,25 @@ invgam11*Ss11 + 2*invgam12*Ss12 + 2*invgam13*Ss13 + invgam22*Ss22 +
   2*invgam23*Ss23 + invgam33*Ss33
 ;
 
+
+CCTK_REAL trR;
+if (use_LazEv_trR) {
+trR
+=
+16*cpi*rho + exAtUU11*exAt11[ijk] + 2*exAtUU12*exAt12[ijk] +
+  2*exAtUU13*exAt13[ijk] + exAtUU22*exAt22[ijk] + 2*exAtUU23*exAt23[ijk] +
+  exAtUU33*exAt33[ijk] - (2*Power(exKh[ijk],2))/3. -
+  (8*exKh[ijk]*Theta[ijk])/3. - (8*Power(Theta[ijk],2))/3.
+;
+
+} else {
+trR
+=
+invgam11*R11 + 2*invgam12*R12 + 2*invgam13*R13 + invgam22*R22 +
+  2*invgam23*R23 + invgam33*R33
+;
+
+}
 
 dtW[ijk]
 =

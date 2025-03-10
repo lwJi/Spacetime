@@ -81,19 +81,18 @@ SetMainPrint[
   PrintEquations[{Mode -> "Temp"}, IntermediateVarlist];
   PrintEquations[{Mode -> "Temp"}, DDVarlist];
   PrintEquations[{Mode -> "Temp"}, Drop[RVarlist, {-1}]];
-  pr[];
-
-  pr["if (use_LazEv_trR) {"];
-  PrintEquations[{Mode -> "Temp", SuffixName -> "LazEvTrR"},
-                 Take[RVarlist, {-1}]];
-  pr["} else {"];
-  PrintEquations[{Mode -> "Temp"}, Take[RVarlist, {-1}]];
-  pr["}"];
-  pr[];
-
   PrintEquations[{Mode -> "Temp"}, MatterVarlist];
   pr[];
 
+  (* here we use "Main" for Temp vars because we don't want 'const auto' *)
+  pr["CCTK_REAL trR;"];
+  pr["if (use_LazEv_trR) {"];
+  PrintEquations[{Mode -> "Main", SuffixName -> "LazEvTrR"},
+                 Take[RVarlist, {-1}]];
+  pr["} else {"];
+  PrintEquations[{Mode -> "Main"}, Take[RVarlist, {-1}]];
+  pr["}"];
+  pr[];
 
   PrintEquations[{Mode -> "Main"}, Delete[dtEvolVarlist, {{-3}, {-1}}]];
   pr[];
