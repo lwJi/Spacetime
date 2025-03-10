@@ -20,6 +20,10 @@ BOOLEAN use_LazEv_shift "use the shift condition same as LazEv"
 {
 } no
 
+BOOLEAN use_LazEv_trR "calculate trR using Hamiltonian constraint same as LazEv"
+{
+} no
+
 CCTK_REAL kappa1 "kappa1" STEERABLE=always
 {
   *:* :: ""
