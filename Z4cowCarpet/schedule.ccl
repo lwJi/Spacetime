@@ -148,14 +148,14 @@ SCHEDULE Z4cowCarpet_Enforce IN MoL_PostStep
   WRITES: gamma_tilde(interior)
   WRITES: A_tilde(interior)
   WRITES: alphaG(interior)
-  SYNC: W
-  SYNC: gamma_tilde
-  SYNC: K_hat
-  SYNC: A_tilde
-  SYNC: Gam_tilde
-  SYNC: Theta
-  SYNC: alphaG
-  SYNC: betaG
+  #SYNC: W
+  #SYNC: gamma_tilde
+  #SYNC: K_hat
+  #SYNC: A_tilde
+  #SYNC: Gam_tilde
+  #SYNC: Theta
+  #SYNC: alphaG
+  #SYNC: betaG
 } "Enforce algebraic Z4c constraints"
 
 schedule Z4cowCarpet_SelectBoundConds in MoL_PostStep after Z4cowCarpet_Enforce
